@@ -1,3 +1,0 @@
-C:/Users/marti/CLionProjects/GameHub/cmake-build-debug/CMakeFiles/GameHub.dir
-C:/Users/marti/CLionProjects/GameHub/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/marti/CLionProjects/GameHub/cmake-build-debug/CMakeFiles/rebuild_cache.dir
