@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: GameHub
+# Project: untitled16
 # Configurations: Debug
 # =============================================================================
 
@@ -41,38 +41,40 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = C$:/Users/marti/CLionProjects/GameHub/cmake-build-debug/
 # =============================================================================
-# Object build statements for STATIC_LIBRARY target GameHub
+# Object build statements for EXECUTABLE target untitled16
 
 
 #############################################
-# Order-only phony target for GameHub
+# Order-only phony target for untitled16
 
-build cmake_object_order_depends_target_GameHub: phony || CMakeFiles/GameHub.dir
+build cmake_object_order_depends_target_untitled16: phony || CMakeFiles/untitled16.dir
 
-build CMakeFiles/GameHub.dir/library.c.obj: C_COMPILER__GameHub_Debug C$:/Users/marti/CLionProjects/GameHub/library.c || cmake_object_order_depends_target_GameHub
-  DEP_FILE = CMakeFiles\GameHub.dir\library.c.obj.d
+build CMakeFiles/untitled16.dir/main.c.obj: C_COMPILER__untitled16_Debug C$:/Users/marti/CLionProjects/GameHub/main.c || cmake_object_order_depends_target_untitled16
+  DEP_FILE = CMakeFiles\untitled16.dir\main.c.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu11
-  OBJECT_DIR = CMakeFiles\GameHub.dir
-  OBJECT_FILE_DIR = CMakeFiles\GameHub.dir
-  TARGET_COMPILE_PDB = CMakeFiles\GameHub.dir\GameHub.pdb
-  TARGET_PDB = libGameHub.pdb
+  OBJECT_DIR = CMakeFiles\untitled16.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled16.dir
+  TARGET_COMPILE_PDB = CMakeFiles\untitled16.dir\
+  TARGET_PDB = untitled16.pdb
 
 
 # =============================================================================
-# Link build statements for STATIC_LIBRARY target GameHub
+# Link build statements for EXECUTABLE target untitled16
 
 
 #############################################
-# Link the static library libGameHub.a
+# Link the executable untitled16.exe
 
-build libGameHub.a: C_STATIC_LIBRARY_LINKER__GameHub_Debug CMakeFiles/GameHub.dir/library.c.obj
-  LANGUAGE_COMPILE_FLAGS = -g
-  OBJECT_DIR = CMakeFiles\GameHub.dir
+build untitled16.exe: C_EXECUTABLE_LINKER__untitled16_Debug CMakeFiles/untitled16.dir/main.c.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\untitled16.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = CMakeFiles\GameHub.dir\GameHub.pdb
-  TARGET_FILE = libGameHub.a
-  TARGET_PDB = libGameHub.pdb
+  TARGET_COMPILE_PDB = CMakeFiles\untitled16.dir\
+  TARGET_FILE = untitled16.exe
+  TARGET_IMPLIB = libuntitled16.dll.a
+  TARGET_PDB = untitled16.pdb
 
 
 #############################################
@@ -100,7 +102,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
-build GameHub: phony libGameHub.a
+build untitled16: phony untitled16.exe
 
 # =============================================================================
 # Folder targets.
@@ -110,7 +112,7 @@ build GameHub: phony libGameHub.a
 #############################################
 # Folder: C:/Users/marti/CLionProjects/GameHub/cmake-build-debug
 
-build all: phony libGameHub.a
+build all: phony untitled16.exe
 
 # =============================================================================
 # Built-in targets

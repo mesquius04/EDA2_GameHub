@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.24)
-project(GameHub C)
+project(untitled16 C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_library(GameHub library.c)
+add_executable(untitled16 main.c main.h)
