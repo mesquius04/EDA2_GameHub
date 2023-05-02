@@ -4,6 +4,8 @@
 #define MAX_HOBBIES 5
 typedef struct {
     char name[MAX_LENGTH];
+    char user[MAX_LENGTH];
+    char password[MAX_LENGTH];
     int age;
     char email [MAX_LENGTH];
     char city [MAX_LENGTH];
