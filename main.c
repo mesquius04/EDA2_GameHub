@@ -12,8 +12,8 @@ char username[30],usersearch[30],userlogin[30],userpass[30],password1[30],passwo
 User new_user;
 User* list_of_user = NULL;
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-HWND button1,button2,button3,button4,button5,button6,button7,button8,button9,button10,button188,button11,button12,button66,buttonFR,hEditControlFR,hEditControl22,hEditControl33,hEditControl,hEditControl2,hEditControl3,hEditControl4,hEditControl5,hEditControl6,hEditControl7,hEditControl8;
-int i=0,h=0,condition=0;
+HWND button1,button2,button3,button4,button5,button6,button7,button8,button9,button10,button188,button288,button11,button12,button66,buttonFR,hEditControlFR,hEditControl22,hEditControl33,hEditControl,hEditControl2,hEditControl3,hEditControl4,hEditControl5,hEditControl6,hEditControl7,hEditControl8;
+int i=0,h=0,k=0,condition=0;
 
 void print_console_users(User* list){
     while(list != NULL){
@@ -22,11 +22,17 @@ void print_console_users(User* list){
     }
 }
 
+void print_screen_error(HDC hdc){
+    RECT rect9 = {1200, 600, 1400, 680 };
+    DrawText(hdc, "Email must have\n'@gmail.com' ending!!", -1, &rect9, DT_LEFT);
+}
+
 void print_screen_users(User* list,HDC hdc){
-    RECT rect2 = { 90, 200, 300, 1000 };
+    RECT rect2 = { 100, 130, 200, 160 };
     while (list!= NULL){
         DrawText(hdc, list->user, -1, &rect2, DT_LEFT | DT_BOTTOM);
-        rect2.top+=80;
+        rect2.top+=35;
+        rect2.bottom+=35;
         list = list->next;
     }
 }
@@ -343,9 +349,20 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     "BUTTON",
                     "BACK",
                     SW_HIDE | WS_CHILD | BS_DEFPUSHBUTTON,
-                    30, 30, 90, 45,
+                    10, 10, 82, 40,
                     hWnd,
                     (HMENU)188,
+                    hInst,
+                    NULL
+            );
+            button288 = CreateWindowEx(
+                    0,
+                    "BUTTON",
+                    "BACK",
+                    SW_HIDE | WS_CHILD | BS_DEFPUSHBUTTON,
+                    10, 10, 82, 40,
+                    hWnd,
+                    (HMENU)288,
                     hInst,
                     NULL
             );
@@ -405,6 +422,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(button2, SW_HIDE);
                     ShowWindow(button3, SW_HIDE);
                     ShowWindow(button4, SW_HIDE);//Amaguem pestanya principal
+                    ShowWindow(button188,SW_SHOW);
                     ShowWindow(hEditControl,SW_SHOW);
                     ShowWindow(button5,SW_SHOW);
                     ShowWindow(hEditControl2,SW_SHOW);
@@ -436,6 +454,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(hEditControl22,SW_SHOW);
                     ShowWindow(hEditControl33,SW_SHOW);
                     ShowWindow(button66,SW_SHOW);
+                    ShowWindow(button188,SW_SHOW);
                     SetClassLongPtr(hWnd, GCLP_HBRBACKGROUND, (LONG)GetStockObject(WHITE_BRUSH)); //Cambiar color de fondo a blanco
                     InvalidateRect(hWnd, NULL, TRUE);
                     break;
@@ -467,6 +486,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                         ShowWindow(hEditControl6, SW_SHOW);
                         ShowWindow(hEditControl7, SW_SHOW);
                         ShowWindow(hEditControl8, SW_SHOW);
+                        ShowWindow(button288,SW_SHOW);
                         ShowWindow(button8,SW_SHOW);
                         ShowWindow(button9,SW_SHOW);
                         ShowWindow(button10,SW_SHOW);
@@ -475,6 +495,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                         ShowWindow(button5,SW_HIDE);
                         ShowWindow(hEditControl,SW_HIDE);
                         ShowWindow(button6,SW_HIDE);
+                        ShowWindow(button188,SW_HIDE);
                         ShowWindow(hEditControl2,SW_HIDE);
                         ShowWindow(button7,SW_HIDE);
                         ShowWindow(hEditControl3,SW_HIDE);
@@ -529,33 +550,39 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                         //printf("%s",newemail);
                         condition++;
                         if (validar_email(newemail)){
-                            printf("\nCorreu: %s",new_user.email);}
-                        else printf("ERROR");
-
-                        add_user_to_list(&list_of_user,new_user);
-
-                        ShowWindow(hEditControl4, SW_HIDE);
-                        ShowWindow(hEditControl5, SW_HIDE);
-                        ShowWindow(hEditControl6, SW_HIDE);
-                        ShowWindow(hEditControl7, SW_HIDE);
-                        ShowWindow(hEditControl8, SW_HIDE);
-                        SetWindowText(hEditControl4, "");
-                        SetWindowText(hEditControl5, "");
-                        SetWindowText(hEditControl6, "");
-                        SetWindowText(hEditControl7, "");
-                        SetWindowText(hEditControl8, "");
-                        ShowWindow(button8,SW_HIDE);
-                        ShowWindow(button9,SW_HIDE);
-                        ShowWindow(button10,SW_HIDE);
-                        ShowWindow(button11,SW_HIDE);
-                        ShowWindow(button12,SW_HIDE);
-                        ShowWindow(button1, SW_SHOW);
-                        ShowWindow(button2, SW_SHOW);
-                        ShowWindow(button3, SW_SHOW);
-                        ShowWindow(button4, SW_SHOW);
-                        i=0;
-                        InvalidateRect(hWnd, NULL, TRUE);
+                            printf("\nCorreu: %s",new_user.email);
+                            add_user_to_list(&list_of_user,new_user);
+                            ShowWindow(hEditControl4, SW_HIDE);
+                            ShowWindow(hEditControl5, SW_HIDE);
+                            ShowWindow(hEditControl6, SW_HIDE);
+                            ShowWindow(hEditControl7, SW_HIDE);
+                            ShowWindow(hEditControl8, SW_HIDE);
+                            SetWindowText(hEditControl4, "");
+                            SetWindowText(hEditControl5, "");
+                            SetWindowText(hEditControl6, "");
+                            SetWindowText(hEditControl7, "");
+                            SetWindowText(hEditControl8, "");
+                            ShowWindow(button8,SW_HIDE);
+                            ShowWindow(button9,SW_HIDE);
+                            ShowWindow(button10,SW_HIDE);
+                            ShowWindow(button11,SW_HIDE);
+                            ShowWindow(button12,SW_HIDE);
+                            ShowWindow(button1, SW_SHOW);
+                            ShowWindow(button2, SW_SHOW);
+                            ShowWindow(button3, SW_SHOW);
+                            ShowWindow(button4, SW_SHOW);
+                            ShowWindow(button288,SW_HIDE);
+                            i=0;
+                            k=0;
+                            InvalidateRect(hWnd, NULL, TRUE);
+                            UpdateWindow(hWnd);}
+                        else {
+                            k=1;
+                            InvalidateRect(hWnd, NULL, TRUE);
                         UpdateWindow(hWnd);
+                        }
+                        break;
+
                     }
                     break;
                 }
@@ -636,16 +663,45 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(button3, SW_SHOW);
                     ShowWindow(button4, SW_SHOW);
                     ShowWindow(button188,SW_HIDE);
+                    ShowWindow(hEditControl,SW_HIDE);
+                    ShowWindow(button5,SW_HIDE);
+                    ShowWindow(hEditControl2,SW_HIDE);
+                    ShowWindow(button6,SW_HIDE);
+                    ShowWindow(hEditControl3,SW_HIDE);
+                    ShowWindow(button7,SW_HIDE);
+                    ShowWindow(hEditControl22,SW_HIDE);
+                    ShowWindow(hEditControl33,SW_HIDE);
+                    ShowWindow(button66,SW_HIDE);
                     SetClassLongPtr(hWnd, GCLP_HBRBACKGROUND, (LONG)GetStockObject(WHITE_BRUSH)); //Cambiar color de fondo a blanco
                     InvalidateRect(hWnd, NULL, TRUE);
                     break;
+                }
+                case 288:{
+                    i=1;
+                    ShowWindow(hEditControl4, SW_HIDE);
+                    ShowWindow(hEditControl5, SW_HIDE);
+                    ShowWindow(hEditControl6, SW_HIDE);
+                    ShowWindow(hEditControl7, SW_HIDE);
+                    ShowWindow(hEditControl8, SW_HIDE);
+                    ShowWindow(button8,SW_HIDE);
+                    ShowWindow(button9,SW_HIDE);
+                    ShowWindow(button10,SW_HIDE);
+                    ShowWindow(button11,SW_HIDE);
+                    ShowWindow(button12,SW_HIDE);
+                    ShowWindow(button188,SW_SHOW);
+                    ShowWindow(hEditControl,SW_SHOW);
+                    ShowWindow(button5,SW_SHOW);
+                    ShowWindow(hEditControl2,SW_SHOW);
+                    ShowWindow(button6,SW_SHOW);
+                    ShowWindow(hEditControl3,SW_SHOW);
+                    ShowWindow(button7,SW_SHOW);
                 }
             }
             break;
         }
 
         case WM_DESTROY:
-            printf("\n\nHa acabat correctament.");
+            printf("\n\nTorna aviat!\n\nExecucció finalitzada correctament.");
             PostQuitMessage(00);
             break;
 
@@ -696,7 +752,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     RECT rect5 = { 30, 30, 200, 50 };
                     DrawText(hdc,new_user.user,-1,&rect5,DT_LEFT | DT_VCENTER);
                 }}
-
             if (i==1){
                 hBrush = CreateSolidBrush(RGB(100, 100, 125)); // Crear un brush con el color deseado (en este caso, azul)
                 RECT rect;
@@ -732,16 +787,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 FillRect(hdc, &rect, hBrush); // Pintar la ventana con el brush creado
                 DeleteObject(hBrush); // Liberar el brush creado
                 SetBkColor(hdc, RGB(200, 200, 125));
-                rect.top-=280;
+                rect.top-=600;
+
                 SetTextColor(hdc, RGB(0, 0, 0));
-                rect.top-=170;
-                hFont = CreateFont(600, 0, 0, 0, FW_NORMAL, BOLD_FONTTYPE, TRUE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
+                hFont = CreateFont(80, 0, 0, 0, FW_NORMAL, BOLD_FONTTYPE, TRUE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial Black");
-
+                hOldFont = (HFONT)SelectObject(hdc, hFont);
                 DrawText(hdc, "LISTADO DE USERS", -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
-                hFont = CreateFont(140, 0, 0, 0, FW_NORMAL, BOLD_FONTTYPE, TRUE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
-                                   CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial Black");
-
+                hFont = CreateFont(24, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
+                                   CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
+                hOldFont = (HFONT)SelectObject(hdc, hFont);
                 print_screen_users(list_of_user,hdc);
             }
             if (i==3){
@@ -805,7 +860,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 DrawText(hdc, "VIDEOJUEGOS:", -1, &rect5, DT_LEFT | DT_VCENTER);
                 RECT rect6 = { 100, 620, 300, 680 };
                 DrawText(hdc, "EMAIL:", -1, &rect6, DT_LEFT | DT_VCENTER);
-
+                hFont = CreateFont(18, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
+                                   CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Courier New Black");
+                hOldFont = (HFONT)SelectObject(hdc, hFont);
+                if(k==1){
+                    print_screen_error(hdc);}
             }
             if (i==10){
                 hBrush = CreateSolidBrush(RGB(160, 80, 125));
