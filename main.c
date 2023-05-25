@@ -14,20 +14,45 @@ User* list_of_user = NULL;
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 HWND button1,button2,button3,button4,button5,button6,button7,button8,button9,button10,button11,button12,button66,buttonFR,hEditControlFR,hEditControl22,hEditControl33,hEditControl,hEditControl2,hEditControl3,hEditControl4,hEditControl5,hEditControl6,hEditControl7,hEditControl8;
 int i=0,h=0,condition=0;
+
 void print_console_users(User* list){
     while(list != NULL){
         printf("%s\n",list->user);
         list = list->next;
     }
 }
+int revisar_timeline (User* user){
+    if (user->publicacion!= NULL){                          //mirar que haya publicado algo
+        printf("%s\n", user->publicacion->post);
+        while (user->publicacion->next != NULL){               // recorrer lista de publicaciones
+            user->publicacion = user->publicacion->next;
+            printf("%s\n", user->publicacion->post);
+        }
+        return TRUE;
+    }
+    return FALSE;
+}
+
+
+void read_user_file(FILE* fd){
+    while ( !feof(fd)){
+        char* user_name;
+        fscanf(fd,"%s,", user_name);        // recoge usuarios
+        printf("%s\n", user_name);                // los imprime
+    }}
+
+
 User* find_user(char name[MAX_LENGTH], User* list){
-    if(list == NULL){                                   //lista vacía
+    if(list == NULL){
+        //lista vacía
+        printf("b");
         return NULL;
     }
     while (list->next != NULL){                         //recorremos la lista hasta el final
         if (strcmp(name,list->user)==0){                //nombre = usuario  (lo hemos encontrado)
             return list;
         }
+        printf("a");
         list = list->next;                              // si no pasamos al siguiente
     }
     return NULL;                                        //no ha habido suerte
@@ -35,8 +60,12 @@ User* find_user(char name[MAX_LENGTH], User* list){
 int log_in_data (char name[MAX_LENGTH], char password[MAX_LENGTH], User* list){
     User* user;
     user = find_user(name, list);
-    if (user != NULL) {                                           //usuario coincide
-        if(strcmp(user->password, password)==0){ return TRUE;};     //miramos que la contraseña también concida
+    if (user != NULL) {
+        printf("nom correcte");
+        //usuario coincide
+        if(strcmp(user->password, password)==0){
+            printf("usuari trobat");
+            return TRUE;};     //miramos que la contraseña también concida
     }
     return FALSE;                                            //no hay matches
 }
@@ -72,11 +101,7 @@ void add_user_to_list(User** list, User user){
             auxUser->next->next = NULL;
         }
     }
-
-
 }
-
-
 
 int friend_request(char name[MAX_LENGTH], User* list){
     if (find_user(name,list)== NULL) {
@@ -85,12 +110,6 @@ int friend_request(char name[MAX_LENGTH], User* list){
     else return TRUE;
 }
 
-void read_user_file(FILE* fd){
-    while ( !feof(fd)){
-        char user_name;
-        fscanf(fd,"%s,", &user_name);
-    }
-}
 int validar_email(char *mail) { //un mail válido tiene esta estructura ______@gmail.com
     char delimitador[] = "@";
     char arroba[] = "gmail.com";
@@ -109,6 +128,8 @@ int validar_email(char *mail) { //un mail válido tiene esta estructura ______@g
     }
 
 }
+
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
     HWND hWnd;
     MSG msg;
@@ -566,7 +587,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                         SetClassLongPtr(hWnd, GCLP_HBRBACKGROUND, (LONG)GetStockObject(WHITE_BRUSH)); //Cambiar color de fondo a blanco
                         InvalidateRect(hWnd, NULL, TRUE);
                         UpdateWindow(hWnd);
-                        break;
                     }
                     else printf("\nNo registrat, ERROR.");
                     break;

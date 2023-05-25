@@ -10,6 +10,12 @@ typedef struct  _user{
     int tail;
 }Cola;
 */
+#define MAX_PUBLI 120
+typedef struct _Publicacion{
+    char post[MAX_PUBLI];
+    struct _Publicacion* next;
+}Publicacion;
+
 
 typedef struct _User{
     char name[MAX_LENGTH];
@@ -20,6 +26,7 @@ typedef struct _User{
     char city [MAX_LENGTH];
     char hobbies  [MAX_HOBBIES][MAX_LENGTH];
     //Cola friend_request;
+    Publicacion* publicacion ;
     struct _User* next;
 } User;
 #endif //UNTITLED16_MAIN_H

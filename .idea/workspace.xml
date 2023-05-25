@@ -20,28 +20,17 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" name="Changes" comment="fitxer bo">
-      <change afterPath="$PROJECT_DIR$/aux_functions.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_list" afterDir="false" />
+    <list default="true" id="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" name="Changes" comment="lab3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-e05b7c9143ccf9f8f588.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-48d7f22005f8d87ba1d2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2023-04-25T12-33-51-0444.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-untitled16-Debug-73f36be1042a9644f783.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/main.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/main.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/untitled16.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/untitled16.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/main.h" afterDir="false" />
     </list>
-    <list id="c5427c62-9ca9-470c-91d9-6b58042e43b3" name="Changes by u213937" comment="">
-      <change beforePath="$PROJECT_DIR$/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/main.h" afterDir="false" />
-    </list>
+    <list id="c5427c62-9ca9-470c-91d9-6b58042e43b3" name="Changes by u213937" comment="" />
     <list id="4fc915c5-2daa-4908-baeb-b283edea9b4e" name="Changes by u214576" comment="">
       <change beforePath="$PROJECT_DIR$/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/main.h" afterDir="false" />
     </list>
@@ -60,10 +49,10 @@
   <component name="LineStatusTrackerManager">
     <file path="$PROJECT_DIR$/main.h">
       <ranges>
-        <range start1="4" end1="5" start2="4" end2="14" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
-        <range start1="12" end1="13" start2="21" end2="23" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
-        <range start1="14" end1="15" start2="24" end2="27" changelist="c5427c62-9ca9-470c-91d9-6b58042e43b3" />
-        <range start1="16" end1="16" start2="28" end2="34" changelist="4fc915c5-2daa-4908-baeb-b283edea9b4e" />
+        <range start1="12" end1="12" start2="12" end2="18" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="22" end1="22" start2="28" end2="29" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="24" end1="25" start2="31" end2="34" changelist="4fc915c5-2daa-4908-baeb-b283edea9b4e" />
+        <range start1="26" end1="26" start2="35" end2="41" changelist="4fc915c5-2daa-4908-baeb-b283edea9b4e" />
       </ranges>
     </file>
   </component>
@@ -94,6 +83,7 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -256,7 +246,12 @@
       <workItem from="1683616917444" duration="3895000" />
       <workItem from="1683622126105" duration="2144000" />
       <workItem from="1683878787245" duration="354000" />
-      <workItem from="1684219082543" duration="6522000" />
+      <workItem from="1684219082543" duration="6643000" />
+      <workItem from="1684479898612" duration="137000" />
+      <workItem from="1684484413373" duration="808000" />
+      <workItem from="1684485312973" duration="147000" />
+      <workItem from="1684668042741" duration="1157000" />
+      <workItem from="1685002043072" duration="300000" />
     </task>
     <task id="LOCAL-00001" summary="fitxer bo">
       <created>1682425595116</created>
@@ -300,7 +295,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683017143691</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="lab3">
+      <created>1684225773859</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1684225773859</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -308,6 +310,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fitxer bo" />
-    <option name="LAST_COMMIT_MESSAGE" value="fitxer bo" />
+    <MESSAGE value="lab3" />
+    <option name="LAST_COMMIT_MESSAGE" value="lab3" />
   </component>
 </project>
