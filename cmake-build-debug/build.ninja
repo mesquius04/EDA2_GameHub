@@ -55,8 +55,32 @@ build CMakeFiles/untitled16.dir/main.c.obj: C_COMPILER__untitled16_Debug C$:/Use
   OBJECT_DIR = CMakeFiles\untitled16.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled16.dir
 
-build CMakeFiles/untitled16.dir/aux_functions.c.obj: C_COMPILER__untitled16_Debug C$:/Users/marti/CLionProjects/GameHub/aux_functions.c || cmake_object_order_depends_target_untitled16
-  DEP_FILE = CMakeFiles\untitled16.dir\aux_functions.c.obj.d
+build CMakeFiles/untitled16.dir/visual_functions.c.obj: C_COMPILER__untitled16_Debug C$:/Users/marti/CLionProjects/GameHub/visual_functions.c || cmake_object_order_depends_target_untitled16
+  DEP_FILE = CMakeFiles\untitled16.dir\visual_functions.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu11
+  OBJECT_DIR = CMakeFiles\untitled16.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled16.dir
+
+build CMakeFiles/untitled16.dir/services.c.obj: C_COMPILER__untitled16_Debug C$:/Users/marti/CLionProjects/GameHub/services.c || cmake_object_order_depends_target_untitled16
+  DEP_FILE = CMakeFiles\untitled16.dir\services.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu11
+  OBJECT_DIR = CMakeFiles\untitled16.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled16.dir
+
+build CMakeFiles/untitled16.dir/dictionary.c.obj: C_COMPILER__untitled16_Debug C$:/Users/marti/CLionProjects/GameHub/dictionary.c || cmake_object_order_depends_target_untitled16
+  DEP_FILE = CMakeFiles\untitled16.dir\dictionary.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu11
+  OBJECT_DIR = CMakeFiles\untitled16.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled16.dir
+
+build CMakeFiles/untitled16.dir/queue_functions.c.obj: C_COMPILER__untitled16_Debug C$:/Users/marti/CLionProjects/GameHub/queue_functions.c || cmake_object_order_depends_target_untitled16
+  DEP_FILE = CMakeFiles\untitled16.dir\queue_functions.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu11
+  OBJECT_DIR = CMakeFiles\untitled16.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled16.dir
+
+build CMakeFiles/untitled16.dir/user_functions.c.obj: C_COMPILER__untitled16_Debug C$:/Users/marti/CLionProjects/GameHub/user_functions.c || cmake_object_order_depends_target_untitled16
+  DEP_FILE = CMakeFiles\untitled16.dir\user_functions.c.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu11
   OBJECT_DIR = CMakeFiles\untitled16.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled16.dir
@@ -69,7 +93,7 @@ build CMakeFiles/untitled16.dir/aux_functions.c.obj: C_COMPILER__untitled16_Debu
 #############################################
 # Link the executable untitled16.exe
 
-build untitled16.exe: C_EXECUTABLE_LINKER__untitled16_Debug CMakeFiles/untitled16.dir/main.c.obj CMakeFiles/untitled16.dir/aux_functions.c.obj
+build untitled16.exe: C_EXECUTABLE_LINKER__untitled16_Debug CMakeFiles/untitled16.dir/main.c.obj CMakeFiles/untitled16.dir/visual_functions.c.obj CMakeFiles/untitled16.dir/services.c.obj CMakeFiles/untitled16.dir/dictionary.c.obj CMakeFiles/untitled16.dir/queue_functions.c.obj CMakeFiles/untitled16.dir/user_functions.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\untitled16.dir

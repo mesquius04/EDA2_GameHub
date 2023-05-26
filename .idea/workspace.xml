@@ -20,15 +20,32 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" name="Changes" comment="ListaUsersok.Error inicio sesion.">
+    <list default="true" id="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" name="Changes" comment="Casi tot ok">
+      <change afterPath="$PROJECT_DIR$/dictionary.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dictionary.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/queue_functions.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/queue_functions.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user_functions.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user_functions.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visual_functions.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visual_functions.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aux_functions.c" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/main.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/main.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/untitled16.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/untitled16.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
+    <list id="71eb45bd-8ba4-4b85-8f28-6b16bd6ceccb" name="Changes by aalex" comment="">
+      <change beforePath="$PROJECT_DIR$/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/main.h" afterDir="false" />
+    </list>
+    <list id="2aa72257-5412-4c30-b30e-ac666e8f8473" name="Changes by Tu" comment="" />
     <list id="c5427c62-9ca9-470c-91d9-6b58042e43b3" name="Changes by u213937" comment="" />
     <list id="4fc915c5-2daa-4908-baeb-b283edea9b4e" name="Changes by u214576" comment="">
       <change beforePath="$PROJECT_DIR$/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/main.h" afterDir="false" />
@@ -44,6 +61,16 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/main.h">
+      <ranges>
+        <range start1="4" end1="5" start2="4" end2="5" changelist="71eb45bd-8ba4-4b85-8f28-6b16bd6ceccb" />
+        <range start1="12" end1="13" start2="12" end2="13" changelist="71eb45bd-8ba4-4b85-8f28-6b16bd6ceccb" />
+        <range start1="31" end1="32" start2="31" end2="36" changelist="4fc915c5-2daa-4908-baeb-b283edea9b4e" />
+        <range start1="33" end1="33" start2="37" end2="50" changelist="4fc915c5-2daa-4908-baeb-b283edea9b4e" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -240,7 +267,13 @@
       <workItem from="1684484413373" duration="808000" />
       <workItem from="1684485312973" duration="147000" />
       <workItem from="1684668042741" duration="1157000" />
-      <workItem from="1685002043072" duration="9479000" />
+      <workItem from="1685002043072" duration="9499000" />
+      <workItem from="1685015720167" duration="247000" />
+      <workItem from="1685027362138" duration="6855000" />
+      <workItem from="1685092549621" duration="2383000" />
+      <workItem from="1685095649000" duration="971000" />
+      <workItem from="1685097010932" duration="529000" />
+      <workItem from="1685108336045" duration="1000" />
     </task>
     <task id="LOCAL-00001" summary="fitxer bo">
       <created>1682425595116</created>
@@ -305,7 +338,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685007645415</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Casi tot ok">
+      <created>1685012162996</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1685012162996</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -316,6 +356,7 @@
     <MESSAGE value="lab3" />
     <MESSAGE value="roman trabaja" />
     <MESSAGE value="ListaUsersok.Error inicio sesion." />
-    <option name="LAST_COMMIT_MESSAGE" value="ListaUsersok.Error inicio sesion." />
+    <MESSAGE value="Casi tot ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="Casi tot ok" />
   </component>
 </project>

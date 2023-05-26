@@ -2,149 +2,33 @@
 #include <stdio.h>
 #include <CommCtrl.h>
 #include "main.h"
-#include "aux_functions.c"
+#include "services.h"
+#include "visual_functions.h"
+#include "dictionary.h"
+#include "queue_functions.h"
+#include "user_functions.h"
 HINSTANCE hInst;
 HBRUSH hBrush;
 int LOGGED=FALSE;
 #define NOT_TAKEN TRUE
 #define MAX_LENGHT 20
-char username[30],usersearch[30],userlogin[30],userpass[30],password1[30],password2[30],newname[MAX_LENGTH],age[3],newhobbie[MAX_LENGTH],newemail[MAX_LENGHT],newcity[MAX_LENGTH];
+char username[30],usersearch[30],userlogin[30],userpass[30],new_publi[300],password1[30],password2[30],newname[MAX_LENGTH],age[3],newhobbie[MAX_LENGTH],newemail[MAX_LENGHT],newcity[MAX_LENGTH];
 User new_user;
 User* list_of_user = NULL;
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-HWND button1,button2,button3,button4,button5,button6,button7,button8,button9,button10,button188,button288,button11,button12,button66,buttonFR,hEditControlFR,hEditControl22,hEditControl33,hEditControl,hEditControl2,hEditControl3,hEditControl4,hEditControl5,hEditControl6,hEditControl7,hEditControl8;
-int i=0,h=0,k=0,condition=0;
-
-void print_console_users(User* list){
-    while(list != NULL){
-        printf("%s\n",list->user);
-        list = list->next;
-    }
-}
-
-void print_screen_error(HDC hdc){
-    RECT rect9 = {1200, 600, 1400, 680 };
-    DrawText(hdc, "Email must have\n'@gmail.com' ending!!", -1, &rect9, DT_LEFT);
-}
-
-void print_screen_users(User* list,HDC hdc){
-    RECT rect2 = { 100, 130, 200, 160 };
-    while (list!= NULL){
-        DrawText(hdc, list->user, -1, &rect2, DT_LEFT | DT_BOTTOM);
-        rect2.top+=35;
-        rect2.bottom+=35;
-        list = list->next;
-    }
-}
-
-int revisar_timeline (User* user){
-    if (user->publicacion!= NULL){                          //mirar que haya publicado algo
-        printf("%s\n", user->publicacion->post);
-        while (user->publicacion->next != NULL){               // recorrer lista de publicaciones
-            user->publicacion = user->publicacion->next;
-            printf("%s\n", user->publicacion->post);
-        }
-        return TRUE;
-    }
-    return FALSE;
-}
+HWND button1,button2,button3,button4,button5,buttonLIST,button388,button6,button7,button8,button9,button10,button188,buttonCHAT,button288,button11,button12,button66,buttonFR,buttonFRprev,hEditControlCHAT,hEditControlFR,hEditControl22,hEditControl33,hEditControl,hEditControl2,hEditControl3,hEditControl4,hEditControl5,hEditControl6,hEditControl7,hEditControl8;
+int i=0,g=0,h=0,k=0,condition=0,msg=0;
 
 
-void read_user_file(FILE* fd){
-    while ( !feof(fd)){
-        char* user_name;
-        fscanf(fd,"%s,", user_name);        // recoge usuarios
-        printf("%s\n", user_name);                // los imprime
-    }}
-
-
-User* find_user(char name[MAX_LENGTH], User* list){
-    if(list == NULL){
-        //lista vacía
-        printf("b");
-        return NULL;
-    }
-    while (list->next != NULL){                         //recorremos la lista hasta el final
-        if (strcmp(name,list->user)==0){                //nombre = usuario  (lo hemos encontrado)
-            return list;
-        }
-        printf("a");
-        list = list->next;                              // si no pasamos al siguiente
-    }
-    return NULL;                                        //no ha habido suerte
-}
-int log_in_data (char name[MAX_LENGTH], char password[MAX_LENGTH], User* list){
-    User* user;
-    user = find_user(name, list);
-    if (user != NULL) {
-        printf("\nNom correcte");
-        //usuario coincide
-        if(strcmp(user->password, password)==0){
-            printf("\nUsuari trobat");
-            return TRUE;};     //miramos que la contraseña también concida
-    }
-    return FALSE;                                            //no hay matches
-}
-void add_user_to_list(User** list, User user){
-    if (*list == NULL) {
-        (*list) = (User*) malloc(sizeof(User));
-        (*list)->age = user.age;
-        strcpy((*list)->name, user.name);
-        strcpy((*list)->user, user.user);
-        strcpy((*list)->password, user.password);
-        strcpy((*list)->email, user.email);
-        strcpy((*list)->city, user.city);
-        for (int ifunc = 0; ifunc< MAX_HOBBIES; ifunc++){
-            strcpy((*list)->hobbies[ifunc],user.hobbies[ifunc]);
-        }
-        (*list)->next = NULL;
-
-    } else{
-        User *auxUser = *list;
-        while (auxUser->next != NULL) {
-            auxUser = auxUser->next;
-        }
-
-        auxUser->next = (User*) malloc(sizeof(User));
-        auxUser->next->age = user.age;
-        strcpy(auxUser->next->name, user.name);
-        strcpy(auxUser->next->user, user.user);
-        strcpy(auxUser->next->password, user.password);
-        strcpy(auxUser->next->email, user.email);
-        strcpy(auxUser->next->city, user.city);
-        for (int ifunc = 0; ifunc< MAX_HOBBIES; ifunc++) {
-            strcpy(auxUser->next->hobbies[ifunc], user.hobbies[ifunc]);
-            auxUser->next->next = NULL;
-        }
-    }
-}
-
-int friend_request(char name[MAX_LENGTH], User* list){
-    if (find_user(name,list)== NULL) {
-        return FALSE;      //no hemos encontrado al usuario deseado
-    }
-    else return TRUE;
-}
-
-int validar_email(char *mail) { //un mail válido tiene esta estructura ______@gmail.com
-    char delimitador[] = "@";
-    char arroba[] = "gmail.com";
-    char *token = strtok(mail, delimitador);   //función split python (divide string)
-    // token == primera parte mail
-    if (token == NULL)return FALSE;                        // no contiene nada
-    else {
-        for (int x = 0; x < strlen(token); x++) {
-            if ((('a' <= token[x] && token[x] <= 'z') || ('0' <= token[x] && token[x] <= '9') || (token[x]=='.'))==0)return FALSE;
-            //nos aseguramos de que la primera parte contenga letras números arroba y punto
-        }
-        token = strtok(NULL, delimitador);  // token == segunda parte mail
-        if ((token == NULL) || (strcmp(token, arroba) != 0) || (strtok(NULL, delimitador) != NULL)) return FALSE;
-        // hay algo después de arroba, es gmail.com y no hay más arrobas
-        return TRUE;
-    }
-
-}
-
+//NO FUNCIONA ENCARA, NO  TREURE DEL MAIN
+void add_screen_msg(char n[], HDC hdc){
+    RECT rectj = {380, 630-msg, 1322, 680-msg};
+    hBrush = CreateSolidBrush(RGB(20, 30, 30));
+    FillRect(hdc, &rectj, hBrush);
+    DrawText(hdc, n, -1, &rectj, DT_LEFT);
+    DeleteObject(hBrush);
+    msg+=55;
+}//NO FUNCIONA ENCARA, NO  TREURE DEL MAIN
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
     HWND hWnd;
@@ -163,19 +47,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
     RegisterClass(&wc);
 
-
-    int screenWidth = GetSystemMetrics(SM_CXSCREEN);
-    int screenHeight = GetSystemMetrics(SM_CYSCREEN);
-
-
-    //TAMANY FINESTRA
-    int windowWidth = screenWidth * 0.9;
-    int windowHeight = screenHeight * 0.9;
-    int windowX = (screenWidth - windowWidth) / 2;
-    int windowY = (screenHeight - windowHeight) / 2;
-
     // Crear finestra
-    hWnd = CreateWindow("MyWindowClass", "GAMEHUB", WS_OVERLAPPEDWINDOW, windowX, windowY, windowWidth, windowHeight, NULL, NULL, hInstance, NULL);
+    hWnd = CreateWindow("MyWindowClass", "GAMEHUB", WS_OVERLAPPEDWINDOW, 77, 43, 1382, 777, NULL, NULL, hInstance, NULL);
     ShowWindow(hWnd, nCmdShow);
     SetClassLongPtr(hWnd, GCLP_HBRBACKGROUND, (LONG)GetStockObject(LTGRAY_BRUSH));
 
@@ -235,6 +108,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                                           350, 420, 800, 70, hWnd, (HMENU)29, hInst, NULL);
             hEditControlFR = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL,
                                           350, 300, 800, 70, hWnd, (HMENU)30, hInst, NULL);
+            hEditControlCHAT = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL,
+                                          350, 685, 922, 40, hWnd, (HMENU)41, hInst, NULL);
+            buttonCHAT = CreateWindowEx(
+                    0,
+                    "BUTTON",
+                    "SEND",
+                    SW_HIDE | WS_CHILD | BS_DEFPUSHBUTTON,
+                    1272, 680, 80, 50,
+                    hWnd,
+                    (HMENU)100,
+                    hInst,
+                    NULL
+            );
             buttonFR = CreateWindowEx(
                     0,
                     "BUTTON",
@@ -243,6 +129,28 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     550, 600, 270, 110,
                     hWnd,
                     (HMENU)66,
+                    hInst,
+                    NULL
+            );
+            buttonFRprev = CreateWindowEx(
+                    0,
+                    "BUTTON",
+                    "ADD FRIEND",
+                    SW_HIDE | WS_CHILD | BS_DEFPUSHBUTTON,
+                    30, 657, 260, 60,
+                    hWnd,
+                    (HMENU)200,
+                    hInst,
+                    NULL
+            );
+            buttonLIST = CreateWindowEx(
+                    0,
+                    "BUTTON",
+                    "LISTADO DE USERS",
+                    SW_HIDE | WS_CHILD | BS_DEFPUSHBUTTON,
+                    30, 567, 260, 60,
+                    hWnd,
+                    (HMENU)203,
                     hInst,
                     NULL
             );
@@ -256,6 +164,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             SendMessage(hEditControl22, WM_SETFONT, (WPARAM)hFont, TRUE);
             SendMessage(hEditControl33, WM_SETFONT, (WPARAM)hFont, TRUE);
             SendMessage(hEditControlFR, WM_SETFONT, (WPARAM)hFont, TRUE);
+            SendMessage(hEditControlCHAT, WM_SETFONT, (WPARAM)hFont, TRUE);
             button5 = CreateWindowEx(
                     0,
                     "BUTTON",
@@ -366,6 +275,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     hInst,
                     NULL
             );
+            button388 = CreateWindowEx(
+                    0,
+                    "BUTTON",
+                    "BACK",
+                    SW_HIDE | WS_CHILD | BS_DEFPUSHBUTTON,
+                    10, 10, 82, 40,
+                    hWnd,
+                    (HMENU)388,
+                    hInst,
+                    NULL
+            );
             button1 = CreateWindowEx(
                     0,
                     "BUTTON",
@@ -403,7 +323,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             button4 = CreateWindowEx(
                     0,
                     "BUTTON",
-
                     "Button 4",
                     WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
                     740, 535, 430, 170,
@@ -429,7 +348,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(button6,SW_SHOW);
                     ShowWindow(hEditControl3,SW_SHOW);
                     ShowWindow(button7,SW_SHOW);//Ensenyem els nous botons i EditControls(espai on posar text)
-                    SetClassLongPtr(hWnd, GCLP_HBRBACKGROUND, (LONG)GetStockObject(WHITE_BRUSH)); //Cambiar color de fondo a blanc
+                    SetClassLongPtr(hWnd, GCLP_HBRBACKGROUND, (LONG) GetStockObject(WHITE_BRUSH) ); //Cambiar color de fondo a blanc
                     InvalidateRect(hWnd, NULL, TRUE); //Invalidem la disposició de l'anterior pestanya
                     break;
                 }
@@ -440,7 +359,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(button3, SW_HIDE);
                     ShowWindow(button4, SW_HIDE);//Amaguem pestanya principal
                     ShowWindow(button188,SW_SHOW); //Ensenyem botó de back amb id button188
-                    //print_console_users(list_of_user);
+                    print_console_users(list_of_user);
                     SetClassLongPtr(hWnd, GCLP_HBRBACKGROUND, (LONG)GetStockObject(WHITE_BRUSH)); //Cambiar color de fondo a blanc
                     InvalidateRect(hWnd, NULL, TRUE); //Invalidem la disposició de l'anterior pestanya
                     break;
@@ -624,11 +543,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     if (log_in_data(userlogin,userpass,list_of_user)!=FALSE){
                         printf("\nL'user existeix, CORRECTE.");
                         i=10;
+                        ShowWindow(buttonLIST,SW_SHOW);
                         ShowWindow(hEditControl22,SW_HIDE);
                         ShowWindow(hEditControl33,SW_HIDE);
                         ShowWindow(button66,SW_HIDE);
-                        ShowWindow(hEditControlFR,SW_SHOW);
-                        ShowWindow(buttonFR,SW_SHOW);
+                        ShowWindow(button188,SW_HIDE);
+                        ShowWindow(button288,SW_HIDE);
+                        ShowWindow(buttonCHAT,SW_SHOW);
+                        ShowWindow(hEditControlCHAT,SW_SHOW);
+                        ShowWindow(buttonFRprev,SW_SHOW);
                         SetClassLongPtr(hWnd, GCLP_HBRBACKGROUND, (LONG)GetStockObject(WHITE_BRUSH)); //Cambiar color de fondo a blanco
                         InvalidateRect(hWnd, NULL, TRUE);
                         UpdateWindow(hWnd);
@@ -648,12 +571,23 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                         ShowWindow(hEditControl22,SW_HIDE);
                         ShowWindow(hEditControl33,SW_HIDE);
                         ShowWindow(button66,SW_HIDE);
-                        ShowWindow(hEditControlFR,SW_SHOW);
-                        ShowWindow(buttonFR,SW_SHOW);
+                        ShowWindow(button188,SW_HIDE);
+                        ShowWindow(buttonFRprev,SW_SHOW);
+                        ShowWindow(buttonLIST,SW_SHOW);
+                        ShowWindow(hEditControlCHAT,SW_SHOW);
+                        ShowWindow(buttonCHAT,SW_SHOW);
                         SetClassLongPtr(hWnd, GCLP_HBRBACKGROUND, (LONG)GetStockObject(WHITE_BRUSH)); //Cambiar color de fondo a blanco
                         InvalidateRect(hWnd, NULL, TRUE);
                         UpdateWindow(hWnd);
                         LOGGED=TRUE;}
+                    break;
+                }
+                case 100:{
+                    GetWindowText(hEditControlCHAT,new_publi,300);
+                    SetWindowText(hEditControlCHAT, "");
+                    g=1;
+                    printf("\nNew msg: %s",new_publi);
+                    UpdateWindow(hWnd);
                     break;
                 }
                 case 188:{
@@ -696,12 +630,49 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(hEditControl3,SW_SHOW);
                     ShowWindow(button7,SW_SHOW);
                 }
+                case 388:{
+                    i=10;
+                    ShowWindow(hEditControlCHAT,SW_SHOW);
+                    ShowWindow(buttonCHAT,SW_SHOW);
+                    ShowWindow(buttonFRprev,SW_SHOW);
+                    ShowWindow(button388,SW_HIDE);
+                    ShowWindow(buttonLIST,SW_SHOW);
+                    SetClassLongPtr(hWnd, GCLP_HBRBACKGROUND, (LONG)GetStockObject(WHITE_BRUSH)); //Cambiar color de fondo a blanco
+                    InvalidateRect(hWnd, NULL, TRUE);
+                    UpdateWindow(hWnd);
+                }
+                case 200:{
+                    i=12;
+                    ShowWindow(hEditControlFR,SW_SHOW);
+                    ShowWindow(buttonFR,SW_SHOW);
+                    ShowWindow(buttonFRprev,SW_SHOW);
+                    ShowWindow(button188,SW_SHOW);
+                    ShowWindow(buttonLIST,SW_SHOW);
+                    ShowWindow(hEditControlCHAT,SW_HIDE);
+                    ShowWindow(buttonCHAT,SW_HIDE);
+                    SetClassLongPtr(hWnd, GCLP_HBRBACKGROUND, (LONG)GetStockObject(WHITE_BRUSH)); //Cambiar color de fondo a blanco
+                    InvalidateRect(hWnd, NULL, TRUE);
+                    break;
+                }
+                case 203:{
+                    i=2;
+                    ShowWindow(buttonFRprev,SW_HIDE);
+                    ShowWindow(hEditControlCHAT,SW_HIDE);
+                    ShowWindow(buttonCHAT,SW_HIDE);
+                    ShowWindow(buttonLIST,SW_HIDE);
+                    ShowWindow(button388,SW_SHOW); //Ensenyem botó de back amb id button188
+                    print_console_users(list_of_user);
+                    SetClassLongPtr(hWnd, GCLP_HBRBACKGROUND, (LONG)GetStockObject(WHITE_BRUSH)); //Cambiar color de fondo a blanc
+                    InvalidateRect(hWnd, NULL, TRUE); //Invalidem la disposició de l'anterior pestanya
+                    break;
+                }
             }
             break;
         }
 
         case WM_DESTROY:
-            printf("\n\nTorna aviat!\n\nExecucció finalitzada correctament.");
+            free(list_of_user);
+            printf("\n\nVuelva pronto!\n\nExecuccion finalizada correctamente.");
             PostQuitMessage(00);
             break;
 
@@ -714,7 +685,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
 
             HFONT hOldFont = (HFONT)SelectObject(hdc, hFont);
-
             if (i==0){
                 hBrush = CreateSolidBrush(RGB(70, 0, 70));
                 LOGFONT lf = { 0 };
@@ -781,15 +751,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 DrawText(hdc, "CONFIRMAR \nCONTRASENYA:", -1, &rect4, DT_LEFT | DT_VCENTER);
             }
             if (i==2){
-                hBrush = CreateSolidBrush(RGB(200, 200, 125)); // Crear un brush con el color deseado (en este caso, azul)
+                hBrush = CreateSolidBrush(RGB(0, 0, 0)); // Crear un brush con el color deseado (en este caso, azul)
                 RECT rect;
                 GetClientRect(hWnd, &rect);
                 FillRect(hdc, &rect, hBrush); // Pintar la ventana con el brush creado
                 DeleteObject(hBrush); // Liberar el brush creado
-                SetBkColor(hdc, RGB(200, 200, 125));
+                SetBkColor(hdc, RGB(0, 0, 0));
                 rect.top-=600;
 
-                SetTextColor(hdc, RGB(0, 0, 0));
+                SetTextColor(hdc, RGB(235, 235, 235));
                 hFont = CreateFont(80, 0, 0, 0, FW_NORMAL, BOLD_FONTTYPE, TRUE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial Black");
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
@@ -867,30 +837,59 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     print_screen_error(hdc);}
             }
             if (i==10){
-                hBrush = CreateSolidBrush(RGB(160, 80, 125));
-                RECT rect;
-                GetClientRect(hWnd, &rect);
-                FillRect(hdc, &rect, hBrush);
+                RECT rectCHAT = {320, 0, 1382, 777 };
+
+                hBrush = CreateSolidBrush(RGB(0, 0, 0));
+                FillRect(hdc, &rectCHAT, hBrush);
+                DeleteObject(hBrush);
+
+                RECT rect10 = {0, 0, 320, 777 };
+
+                hBrush = CreateSolidBrush(RGB(100, 100, 125));
+                FillRect(hdc, &rect10, hBrush);
+                DeleteObject(hBrush);
+
+                RECT rectCombined;
+                UnionRect(&rectCombined, &rect10, &rectCHAT);
+
+                hBrush = CreateSolidBrush(RGB(0, 0, 0));
+                FillRect(hdc, &rectCombined, hBrush);
+                DeleteObject(hBrush);
+
+                hBrush = CreateSolidBrush(RGB(100, 100, 125));
+                FillRect(hdc, &rect10, hBrush);
+                DeleteObject(hBrush);
+
                 DeleteObject(hBrush);
                 SetBkColor(hdc, RGB(100, 100, 125));
-                rect.top-=280;
-                SetTextColor(hdc, RGB(0, 0, 0));
-                hFont = CreateFont(110, 0, 0, 0, FW_NORMAL, BOLD_FONTTYPE, TRUE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
-                                   CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial Black");
-                rect.top+=260;
-                hFont = CreateFont(30, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
-                                   CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Courier New Black");
-                hOldFont = (HFONT)SelectObject(hdc, hFont);
-                SetTextColor(hdc,RGB(0,0,0));
-                RECT rect2 = { 130, 320, 400, 360 };
-                DrawText(hdc, "Friend request:", -1, &rect2, DT_LEFT | DT_VCENTER);
-                if (LOGGED){
-                    hFont = CreateFont(20, 0, 0, 0, FW_NORMAL, BOLD_FONTTYPE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
-                                       CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Courier New Black");
-                    hOldFont = (HFONT)SelectObject(hdc, hFont);
-                    RECT rect5 = { 30, 30, 200, 50 };
-                    DrawText(hdc,new_user.user,-1,&rect5,DT_LEFT | DT_VCENTER);
+                if (g!=0){
+                    add_screen_msg(new_publi,hdc);
                 }
+            }
+            if (i==12){
+                RECT rectCHAT = {320, 0, 1382, 777 };
+
+                hBrush = CreateSolidBrush(RGB(0, 0, 0));
+                FillRect(hdc, &rectCHAT, hBrush);
+                DeleteObject(hBrush);
+
+                RECT rect10 = {0, 0, 320, 777 };
+
+                hBrush = CreateSolidBrush(RGB(100, 100, 125));
+                FillRect(hdc, &rect10, hBrush);
+                DeleteObject(hBrush);
+                RECT rectCombined;
+                UnionRect(&rectCombined, &rect10, &rectCHAT);
+
+                hBrush = CreateSolidBrush(RGB(0, 0, 0));
+                FillRect(hdc, &rectCombined, hBrush);
+                DeleteObject(hBrush);
+
+                hBrush = CreateSolidBrush(RGB(100, 100, 125));
+                FillRect(hdc, &rect10, hBrush);
+                DeleteObject(hBrush);
+
+                DeleteObject(hBrush);
             }
             SelectObject(hdc, hOldFont);
             DeleteObject(hFont);
