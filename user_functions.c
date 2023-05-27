@@ -17,6 +17,7 @@ User* find_user(char* user, User* list){
     return NULL;     //no ha habido suerte/ list vacía
 }
 
+
 int log_in_data (char* name, char* password, User* list){
     if (find_user(name, list) != NULL) {
         //usuario coincide
@@ -34,6 +35,16 @@ void add_user_to_list(User** list, User user){
      *list = aux;
 }
 
+int len_user_list(User* list){
+    int count = 0;
+    while(list != NULL){
+        //recorremos la lista y actualizamos el contador
+        list = list->next;
+        count++;
+    }
+    return count;
+};
+
 void read_user_file(FILE* fd){
     while ( !feof(fd) ){
         char* user_name;
@@ -41,3 +52,6 @@ void read_user_file(FILE* fd){
         printf("%s\n", user_name);    // los imprime
     }
 }
+
+
+

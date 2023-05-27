@@ -2,6 +2,7 @@
 #define UNTITLED16_MAIN_H
 #define MAX_LENGTH 20
 #define MAX_HOBBIES 5
+#define MAX_FRIENDS 50
 
 /*
 typedef struct  _user{
@@ -17,6 +18,7 @@ typedef struct _Publicacion{
 }Publicacion;
 
 
+
 typedef struct _User{
     char name[MAX_LENGTH];
     char user[MAX_LENGTH];
@@ -25,8 +27,23 @@ typedef struct _User{
     char email [MAX_LENGTH];
     char city [MAX_LENGTH];
     char hobbies  [MAX_HOBBIES][MAX_LENGTH];
-    //Cola friend_request;
-    Publicacion* publicacion ;
+    Publicacion* publicacion;
+    struct _User** friends; //array dinámico de pointers de users
+    int num_friends;
     struct _User* next;
+    struct _Queue* friend_request;
 } User;
+
+typedef struct _Queue{
+    int head;
+    int tail;
+    User** array;
+    int size;
+} Queue;
+
+typedef struct{
+    int top;
+    User* array[3];
+}Stack;
+
 #endif //UNTITLED16_MAIN_H

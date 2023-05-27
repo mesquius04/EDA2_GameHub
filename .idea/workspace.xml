@@ -21,35 +21,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" name="Changes" comment="Casi tot ok">
-      <change afterPath="$PROJECT_DIR$/dictionary.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dictionary.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/queue_functions.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/queue_functions.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_functions.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_functions.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visual_functions.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visual_functions.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_04_2023_14_33__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_04_2023_14_33__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aux_functions.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cache-v2-7f2a5bfe6de87336d41b.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-ae5e56697e6ec318439b.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/main.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/main.c.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.24.2/CMakeCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.24.2/CMakeCCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.24.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.24.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.24.2/CMakeRCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.24.2/CMakeRCCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.24.2/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.24.2/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.24.2/CompilerIdC/a.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.24.2/CompilerIdC/a.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/main.c.obj" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/untitled16.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/untitled16.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
-    </list>
-    <list id="71eb45bd-8ba4-4b85-8f28-6b16bd6ceccb" name="Changes by aalex" comment="">
       <change beforePath="$PROJECT_DIR$/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/main.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/queue_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/queue_functions.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services.c" beforeDir="false" afterPath="$PROJECT_DIR$/services.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/user_functions.c" afterDir="false" />
     </list>
+    <list id="71eb45bd-8ba4-4b85-8f28-6b16bd6ceccb" name="Changes by aalex" comment="" />
     <list id="2aa72257-5412-4c30-b30e-ac666e8f8473" name="Changes by Tu" comment="" />
     <list id="c5427c62-9ca9-470c-91d9-6b58042e43b3" name="Changes by u213937" comment="" />
-    <list id="4fc915c5-2daa-4908-baeb-b283edea9b4e" name="Changes by u214576" comment="">
-      <change beforePath="$PROJECT_DIR$/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/main.h" afterDir="false" />
-    </list>
+    <list id="4fc915c5-2daa-4908-baeb-b283edea9b4e" name="Changes by u214576" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,16 +63,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/main.h">
-      <ranges>
-        <range start1="4" end1="5" start2="4" end2="5" changelist="71eb45bd-8ba4-4b85-8f28-6b16bd6ceccb" />
-        <range start1="12" end1="13" start2="12" end2="13" changelist="71eb45bd-8ba4-4b85-8f28-6b16bd6ceccb" />
-        <range start1="31" end1="32" start2="31" end2="36" changelist="4fc915c5-2daa-4908-baeb-b283edea9b4e" />
-        <range start1="33" end1="33" start2="37" end2="50" changelist="4fc915c5-2daa-4908-baeb-b283edea9b4e" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -104,6 +96,11 @@
   }
 }</component>
   <component name="RunManager">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="untitled16" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="untitled16" TARGET_NAME="untitled16" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="untitled16" RUN_TARGET_NAME="untitled16">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -274,6 +271,8 @@
       <workItem from="1685095649000" duration="971000" />
       <workItem from="1685097010932" duration="529000" />
       <workItem from="1685108336045" duration="1000" />
+      <workItem from="1685195701579" duration="17252000" />
+      <workItem from="1685223537601" duration="1000" />
     </task>
     <task id="LOCAL-00001" summary="fitxer bo">
       <created>1682425595116</created>

@@ -470,6 +470,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                         condition++;
                         if (validar_email(newemail)){
                             printf("\nCorreu: %s",new_user.email);
+                            new_user.friends = NULL;
                             add_user_to_list(&list_of_user,new_user);
                             ShowWindow(hEditControl4, SW_HIDE);
                             ShowWindow(hEditControl5, SW_HIDE);
