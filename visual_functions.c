@@ -16,5 +16,11 @@ void print_screen_users(User* list,HDC hdc){
         rect2.top+=35;
         rect2.bottom+=35;
         list = list->next;
+        if (rect2.bottom>=600){
+            rect2.bottom=160;
+            rect2.top=130;
+            rect2.left+=120;
+            rect2.right+=120;
+        }
     }
 }

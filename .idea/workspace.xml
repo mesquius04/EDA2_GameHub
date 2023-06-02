@@ -21,10 +21,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" name="Changes" comment="Casi tot ok">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_04_2023_14_33__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_04_2023_14_33__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cache-v2-7f2a5bfe6de87336d41b.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-ae5e56697e6ec318439b.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
@@ -38,20 +35,26 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/main.c.obj" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/untitled16.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/untitled16.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/main.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/queue_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/queue_functions.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services.c" beforeDir="false" afterPath="$PROJECT_DIR$/services.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/user_functions.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visual_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/visual_functions.c" afterDir="false" />
     </list>
     <list id="71eb45bd-8ba4-4b85-8f28-6b16bd6ceccb" name="Changes by aalex" comment="" />
-    <list id="2aa72257-5412-4c30-b30e-ac666e8f8473" name="Changes by Tu" comment="" />
+    <list id="2aa72257-5412-4c30-b30e-ac666e8f8473" name="Changes by Tu" comment="">
+      <change beforePath="$PROJECT_DIR$/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/main.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/queue_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/queue_functions.c" afterDir="false" />
+    </list>
     <list id="c5427c62-9ca9-470c-91d9-6b58042e43b3" name="Changes by u213937" comment="" />
-    <list id="4fc915c5-2daa-4908-baeb-b283edea9b4e" name="Changes by u214576" comment="" />
+    <list id="4fc915c5-2daa-4908-baeb-b283edea9b4e" name="Changes by u214576" comment="">
+      <change beforePath="$PROJECT_DIR$/dictionary.c" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionary.h" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/main.h" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,6 +66,66 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/main.c">
+      <ranges>
+        <range start1="17" end1="17" start2="17" end2="18" changelist="4fc915c5-2daa-4908-baeb-b283edea9b4e" />
+        <range start1="18" end1="20" start2="19" end2="21" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="24" end1="25" start2="25" end2="26" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="30" end1="30" start2="31" end2="35" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="37" end1="38" start2="42" end2="45" changelist="4fc915c5-2daa-4908-baeb-b283edea9b4e" />
+        <range start1="109" end1="110" start2="116" end2="117" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="128" end1="129" start2="135" end2="136" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="137" end1="138" start2="144" end2="145" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="139" end1="140" start2="146" end2="147" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="145" end1="145" start2="152" end2="163" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="150" end1="151" start2="168" end2="169" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="156" end1="156" start2="174" end2="196" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="350" end1="351" start2="390" end2="390" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="362" end1="363" start2="401" end2="401" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="376" end1="377" start2="414" end2="414" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="541" end1="542" start2="578" end2="579" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="543" end1="545" start2="580" end2="585" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="547" end1="547" start2="587" end2="594" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="552" end1="556" start2="599" end2="599" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="559" end1="560" start2="602" end2="603" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="575" end1="576" start2="618" end2="618" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="577" end1="578" start2="619" end2="622" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="579" end1="580" start2="623" end2="625" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="585" end1="586" start2="630" end2="631" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="593" end1="594" start2="638" end2="639" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="609" end1="610" start2="654" end2="654" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="613" end1="614" start2="657" end2="658" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="632" end1="632" start2="676" end2="679" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="633" end1="634" start2="680" end2="681" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="635" end1="636" start2="682" end2="686" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="637" end1="637" start2="687" end2="688" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="639" end1="641" start2="690" end2="692" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="643" end1="643" start2="694" end2="695" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="646" end1="646" start2="698" end2="706" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="648" end1="649" start2="708" end2="708" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="650" end1="654" start2="709" end2="709" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="655" end1="655" start2="710" end2="711" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="659" end1="662" start2="715" end2="715" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="663" end1="663" start2="716" end2="723" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="665" end1="666" start2="725" end2="725" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="870" end1="875" start2="929" end2="936" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="876" end1="893" start2="937" end2="946" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/main.h">
+      <ranges>
+        <range start1="4" end1="5" start2="4" end2="5" changelist="2aa72257-5412-4c30-b30e-ac666e8f8473" />
+        <range start1="6" end1="13" start2="6" end2="7" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="14" end1="14" start2="8" end2="18" changelist="4fc915c5-2daa-4908-baeb-b283edea9b4e" />
+        <range start1="18" end1="20" start2="22" end2="22" changelist="4fc915c5-2daa-4908-baeb-b283edea9b4e" />
+        <range start1="30" end1="32" start2="32" end2="32" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="34" end1="34" start2="34" end2="37" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="36" end1="36" start2="39" end2="45" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="37" end1="41" start2="46" end2="48" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -95,10 +158,15 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\marti\CLionProjects\GameHub\cmake-build-debug" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
     <configuration name="untitled16" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="untitled16" TARGET_NAME="untitled16" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="untitled16" RUN_TARGET_NAME="untitled16">
@@ -273,6 +341,11 @@
       <workItem from="1685108336045" duration="1000" />
       <workItem from="1685195701579" duration="17252000" />
       <workItem from="1685223537601" duration="1000" />
+      <workItem from="1685349105589" duration="111000" />
+      <workItem from="1685349984803" duration="1481000" />
+      <workItem from="1685361494682" duration="185000" />
+      <workItem from="1685517712548" duration="32000" />
+      <workItem from="1685687916570" duration="5656000" />
     </task>
     <task id="LOCAL-00001" summary="fitxer bo">
       <created>1682425595116</created>

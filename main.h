@@ -4,13 +4,7 @@
 #define MAX_HOBBIES 5
 #define MAX_FRIENDS 50
 
-/*
-typedef struct  _user{
-    struct _user* queue_users[MAX_LENGTH];
-    int head;
-    int tail;
-}Cola;
-*/
+
 #define MAX_PUBLI 120
 typedef struct _Publicacion{
     char post[MAX_PUBLI];
@@ -28,17 +22,22 @@ typedef struct _User{
     char city [MAX_LENGTH];
     char hobbies  [MAX_HOBBIES][MAX_LENGTH];
     Publicacion* publicacion;
-    struct _User** friends; //array dinámico de pointers de users
-    int num_friends;
     struct _User* next;
     struct _Queue* friend_request;
+    int numfriends;
+    int maxfriends;
+    struct _User** friends; //dynamic list of pointers of User
 } User;
 
+typedef struct _element{
+    User* user;
+    struct _element* next;
+    struct _element* prev;
+}Element;
+
 typedef struct _Queue{
-    int head;
-    int tail;
-    User** array;
-    int size;
+    Element* first;
+    Element* last;
 } Queue;
 
 typedef struct{
