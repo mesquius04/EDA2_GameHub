@@ -1,0 +1,28 @@
+Index: main.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#ifndef UNTITLED16_MAIN_H\r\n#define UNTITLED16_MAIN_H\r\n#define MAX_LENGTH 20\r\n#define MAX_HOBBIES 5\r\n\r\n/*\r\ntypedef struct  _user{\r\n    struct _user* queue_users[MAX_LENGTH];\r\n    int head;\r\n    int tail;\r\n}Cola;\r\n*/\r\n#define MAX_PUBLI 120\r\ntypedef struct _Publicacion{\r\n    char post[MAX_PUBLI];\r\n    struct _Publicacion* next;\r\n}Publicacion;\r\n\r\n\r\ntypedef struct _User{\r\n    char name[MAX_LENGTH];\r\n    char user[MAX_LENGTH];\r\n    char password[MAX_LENGTH];\r\n    int age;\r\n    char email [MAX_LENGTH];\r\n    char city [MAX_LENGTH];\r\n    char hobbies  [MAX_HOBBIES][MAX_LENGTH];\r\n    //Cola friend_request;\r\n    Publicacion* publicacion ;\r\n    struct _User* next;\r\n} User;\r\n#endif //UNTITLED16_MAIN_H\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/main.h b/main.h
+--- a/main.h	(revision c8bbece816c041190c8259fbc48aeba0cb5b641e)
++++ b/main.h	(date 1685094949985)
+@@ -2,7 +2,7 @@
+ #define UNTITLED16_MAIN_H
+ #define MAX_LENGTH 20
+ #define MAX_HOBBIES 5
+-
++#define MAX_PUBLI 120
+ /*
+ typedef struct  _user{
+     struct _user* queue_users[MAX_LENGTH];
+@@ -10,7 +10,7 @@
+     int tail;
+ }Cola;
+ */
+-#define MAX_PUBLI 120
++
+ typedef struct _Publicacion{
+     char post[MAX_PUBLI];
+     struct _Publicacion* next;

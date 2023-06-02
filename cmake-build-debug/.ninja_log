@@ -1,0 +1,15 @@
+# ninja log v5
+6	2517	7074025078210611	CMakeFiles/untitled16.dir/main.c.obj	5d13de1caade15b6
+2518	2758	7074025081083677	untitled16.exe	3bf697c08393e04f
+21	2515	7074025078255548	CMakeFiles/untitled16.dir/dictionary.c.obj	30fc71c3964d521c
+23	3052	7073942368749723	CMakeFiles/untitled16.dir/services.c.obj	fe7eb5d7093f3bf7
+60	3010	7073942368319391	CMakeFiles/untitled16.dir/user_functions.c.obj	c24aec3f35e3a23
+13	2119	7073993733692212	CMakeFiles/untitled16.dir/queue_functions.c.obj	b59d802c328add33
+9	1590	7073950587719153	CMakeFiles/untitled16.dir/visual_functions.c.obj	7471a6aec4c96bf2
+8	1133	7074034997764125	CMakeFiles/untitled16.dir/visual_functions.c.obj	7471a6aec4c96bf2
+19	1145	7074034997932773	CMakeFiles/untitled16.dir/user_functions.c.obj	c24aec3f35e3a23
+14	1149	7074034997957230	CMakeFiles/untitled16.dir/queue_functions.c.obj	b59d802c328add33
+25	1160	7074034998071053	CMakeFiles/untitled16.dir/services.c.obj	fe7eb5d7093f3bf7
+34	1175	7074034998230159	CMakeFiles/untitled16.dir/dictionary.c.obj	30fc71c3964d521c
+1	1222	7074034998692543	CMakeFiles/untitled16.dir/main.c.obj	5d13de1caade15b6
+1222	1375	7074035000141377	untitled16.exe	3bf697c08393e04f
