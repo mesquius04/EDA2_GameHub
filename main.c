@@ -18,7 +18,7 @@ User new_user;
 User* list_of_user = NULL;
 Dict* dict;
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-HWND button1,button2,button3,button4,button5,buttonLIST,button388,button6,button7,button8,button9,button10,button188,buttonCHAT,button288,button11,button12,button66,buttonFR,buttonFRprev,buttonFRcheck,buttoncreatepubli,buttonshowpubli,hEditControlCHAT,hEditControlFR,hEditControl22,hEditControl33,hEditControl,hEditControl2,hEditControl3,hEditControl4,hEditControl5,hEditControl6,hEditControl7,hEditControl8;
+HWND button1,button2,button3,button4,button5,buttonLIST,button388,button6,button7,button8,button9,button10,button188,buttonCHAT,button288,button_me,button_log_out,button11,button12,button66,buttonFR,buttonFRprev,buttonFRcheck,buttoncreatepubli,buttonshowpubli,hEditControlCHAT,hEditControlFR,hEditControl22,hEditControl33,hEditControl,hEditControl2,hEditControl3,hEditControl4,hEditControl5,hEditControl6,hEditControl7,hEditControl8;
 int i=0,g=0,h=0,k=0,condition=0,msg=0,msg2=0;
 
 
@@ -189,6 +189,28 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     30, 657, 260, 60,
                     hWnd,
                     (HMENU)205,
+                    hInst,
+                    NULL
+            );
+            button_me = CreateWindowEx(
+                    0,
+                    "BUTTON",
+                    "ME",
+                    SW_HIDE | WS_CHILD | BS_DEFPUSHBUTTON,
+                    5, 5, 150, 40,
+                    hWnd,
+                    (HMENU)221,
+                    hInst,
+                    NULL
+            );
+            button_log_out = CreateWindowEx(
+                    0,
+                    "BUTTON",
+                    "LOG OUT",
+                    SW_HIDE | WS_CHILD | BS_DEFPUSHBUTTON,
+                    165, 5, 150, 40,
+                    hWnd,
+                    (HMENU)222,
                     hInst,
                     NULL
             );
@@ -494,6 +516,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                         strcpy(new_user.hobbies[h],newhobbie);
                         h++;
                         condition++;
+                        SetWindowText(hEditControl7, "");
                         printf("\nhobbie%d: %s",h,new_user.hobbies[h-1]);
                     }
                     break;
@@ -587,6 +610,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                         ShowWindow(buttonFRcheck,SW_SHOW);
                         ShowWindow(buttoncreatepubli,SW_SHOW);
                         ShowWindow(buttonFRprev,SW_SHOW);
+                        ShowWindow(button_me,SW_SHOW);
+                        ShowWindow(button_log_out,SW_SHOW);
 
                         ShowWindow(hEditControl22,SW_HIDE);
                         ShowWindow(hEditControl33,SW_HIDE);
@@ -609,7 +634,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     if (log_in_data(userlogin,userpass,list_of_user)!=FALSE){
                         i=10;
                         current_user= find_user(userlogin,list_of_user);
-                        if (current_user!=NULL){printf("\n lalalalala\n");}
+                        SetWindowText(hEditControl22, "");
+                        SetWindowText(hEditControl33, "");
                         ShowWindow(hEditControl22,SW_HIDE);
                         ShowWindow(hEditControl33,SW_HIDE);
                         ShowWindow(button66,SW_HIDE);
@@ -618,6 +644,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                         ShowWindow(buttonshowpubli,SW_SHOW);
                         ShowWindow(buttonFRcheck,SW_SHOW);
                         ShowWindow(buttoncreatepubli,SW_SHOW);
+                        ShowWindow(button_me,SW_SHOW);
+                        ShowWindow(button_log_out,SW_SHOW);
                         ShowWindow(buttonFRprev,SW_SHOW);
                         InvalidateRect(hWnd, NULL, TRUE);
                         UpdateWindow(hWnd);
@@ -696,6 +724,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(buttonshowpubli,SW_SHOW);
                     ShowWindow(buttonFRcheck,SW_SHOW);
                     ShowWindow(buttoncreatepubli,SW_SHOW);
+                    ShowWindow(button_me,SW_SHOW);
+                    ShowWindow(button_log_out,SW_SHOW);
+                    ShowWindow(button_me,SW_SHOW);
+                    ShowWindow(button_log_out,SW_SHOW);
                     ShowWindow(buttonFRprev,SW_SHOW);
                     ShowWindow(hEditControlCHAT,SW_HIDE);
                     ShowWindow(buttonCHAT,SW_HIDE);
@@ -712,11 +744,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(buttonshowpubli,SW_HIDE);
                     ShowWindow(buttonFRcheck,SW_HIDE);
                     ShowWindow(buttoncreatepubli,SW_HIDE);
+                    ShowWindow(button_me,SW_HIDE);
+                    ShowWindow(button_log_out,SW_HIDE);
                     ShowWindow(buttonFRprev,SW_HIDE);
-
+                    ShowWindow(button_me,SW_HIDE);
+                    ShowWindow(button_log_out,SW_HIDE);
                     ShowWindow(hEditControlFR,SW_SHOW);
                     ShowWindow(buttonFR,SW_SHOW);
-                    ShowWindow(button188,SW_SHOW);
+                    ShowWindow(button388,SW_SHOW);
                     InvalidateRect(hWnd, NULL, TRUE);
                     UpdateWindow(hWnd);
                     break;
@@ -727,6 +762,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(buttonshowpubli,SW_HIDE);
                     ShowWindow(buttonFRcheck,SW_HIDE);
                     ShowWindow(buttoncreatepubli,SW_HIDE);
+                    ShowWindow(button_me,SW_HIDE);
+                    ShowWindow(button_log_out,SW_HIDE);
                     ShowWindow(buttonFRprev,SW_HIDE);
 
                     ShowWindow(button388,SW_SHOW); //Ensenyem botó de back amb id button188
@@ -734,18 +771,59 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     InvalidateRect(hWnd, NULL, TRUE); //Invalidem la disposició de l'anterior pestanya
                     break;
                 }
-                case 205:{
+                case 205:{ //Nueva publicacion selecionada.
                     i=13;
+                    ShowWindow(buttonLIST,SW_HIDE);
+                    ShowWindow(buttonshowpubli,SW_HIDE);
+                    ShowWindow(buttonFRcheck,SW_HIDE);
+                    ShowWindow(button_me,SW_HIDE);
+                    ShowWindow(button_log_out,SW_HIDE);
+                    ShowWindow(buttoncreatepubli,SW_HIDE);
+                    ShowWindow(buttonCHAT,SW_HIDE);
+                    ShowWindow(hEditControlCHAT,SW_HIDE);
+                    ShowWindow(buttonFRprev,SW_HIDE);
+
+                    ShowWindow(button388,SW_SHOW);
+                    ShowWindow(buttonCHAT,SW_SHOW);
+                    ShowWindow(hEditControlCHAT,SW_SHOW);
+                    InvalidateRect(hWnd, NULL, TRUE);
+                    UpdateWindow(hWnd);
+                    break;
+                }
+                case 221:{ //me screen
                     ShowWindow(buttonLIST,SW_HIDE);
                     ShowWindow(buttonshowpubli,SW_HIDE);
                     ShowWindow(buttonFRcheck,SW_HIDE);
                     ShowWindow(buttoncreatepubli,SW_HIDE);
                     ShowWindow(buttonCHAT,SW_HIDE);
+                    ShowWindow(button_me,SW_HIDE);
+                    ShowWindow(button_log_out,SW_HIDE);
                     ShowWindow(hEditControlCHAT,SW_HIDE);
                     ShowWindow(buttonFRprev,SW_HIDE);
-                    ShowWindow(button188,SW_SHOW);
-                    ShowWindow(buttonCHAT,SW_SHOW);
-                    ShowWindow(hEditControlCHAT,SW_SHOW);
+                    ShowWindow(button388,SW_SHOW);
+                    i=14;
+                    InvalidateRect(hWnd, NULL, TRUE);
+                    UpdateWindow(hWnd);
+                    break;
+                }
+                case 222:{ //log out
+                    ShowWindow(buttonLIST,SW_HIDE);
+                    ShowWindow(buttonshowpubli,SW_HIDE);
+                    ShowWindow(buttonFRcheck,SW_HIDE);
+                    ShowWindow(buttoncreatepubli,SW_HIDE);
+                    ShowWindow(buttonCHAT,SW_HIDE);
+                    ShowWindow(button_me,SW_HIDE);
+                    ShowWindow(button_log_out,SW_HIDE);
+                    ShowWindow(hEditControlCHAT,SW_HIDE);
+                    ShowWindow(buttonFRprev,SW_HIDE);
+
+                    i=0;
+                    ShowWindow(button1, SW_SHOW);
+                    ShowWindow(button2, SW_SHOW);
+                    ShowWindow(button3, SW_SHOW);
+                    ShowWindow(button4, SW_SHOW);
+                    LOGGED=FALSE;
+                    current_user=NULL;
                     InvalidateRect(hWnd, NULL, TRUE);
                     UpdateWindow(hWnd);
                     break;
@@ -922,7 +1000,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             }
             if (i==10){
                 RECT rectCHAT = {320, 0, 1382, 777 };
-
+                SetWindowText(button_me, current_user->user);
                 hBrush = CreateSolidBrush(RGB(0, 0, 0));
                 FillRect(hdc, &rectCHAT, hBrush);
                 DeleteObject(hBrush);
@@ -971,6 +1049,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             }
             if (i==13){
 
+            }
+            if (i==14){
+                hBrush = CreateSolidBrush(RGB(180, 170, 190)); // Crear un brush con el color deseado (en este caso, azul)
+                RECT rect;
+                GetClientRect(hWnd, &rect);
+                FillRect(hdc, &rect, hBrush); // Pintar la ventana con el brush creado
+                DeleteObject(hBrush); // Liberar el brush creado
+                SetBkColor(hdc, RGB(180, 170, 190));
+                hFont = CreateFont(42, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
+                                   CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
+                hOldFont = (HFONT)SelectObject(hdc, hFont);
+                print_me_screen(current_user,hdc);
             }
             SelectObject(hdc, hOldFont);
             DeleteObject(hFont);

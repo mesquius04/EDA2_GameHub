@@ -9,4 +9,5 @@
 #define UNTITLED16_VISUAL_FUNCTIONS_H
 void print_screen_error(HDC hdc);
 void print_screen_users(User* list,HDC hdc);
+void print_me_screen (User* user,HDC hdc);
 #endif //UNTITLED16_VISUAL_FUNCTIONS_H
