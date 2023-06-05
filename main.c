@@ -15,26 +15,12 @@ User* current_user;
 #define MAX_LENGHT 20
 char username[30],usersearch[30],userlogin[30],userpass[30],new_publi[300],password1[30],password2[30],newname[MAX_LENGTH],age[3],newhobbie[MAX_LENGTH],newemail[MAX_LENGHT],newcity[MAX_LENGTH];
 User new_user;
+int condition=0,condition2=0,condition3=0,condition4=0,condition5=0,condition6=0;
 User* list_of_user = NULL;
 Dict* dict;
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 HWND button1,button2,button3,button4,button5,buttonLIST,button388,button6,button7,button8,button9,button10,button188,buttonCHAT,button288,button_me,button_log_out,button11,button12,button66,buttonFR,buttonFRprev,buttonFRcheck,buttoncreatepubli,buttonshowpubli,hEditControlCHAT,hEditControlFR,hEditControl22,hEditControl33,hEditControl,hEditControl2,hEditControl3,hEditControl4,hEditControl5,hEditControl6,hEditControl7,hEditControl8;
-int i=0,g=0,h=0,k=0,condition=0,msg=0,msg2=0;
-
-
-//NO FUNCIONA ENCARA, NO  TREURE DEL MAIN
-void add_screen_msg(char n[], HDC hdc){
-    RECT rectj = {380+msg2, 630-msg, 480+msg2, 680-msg};
-    hBrush = CreateSolidBrush(RGB(20, 30, 30));
-    FillRect(hdc, &rectj, hBrush);
-    DrawText(hdc, n, -1, &rectj, DT_LEFT);
-    DeleteObject(hBrush);
-    msg+=55;
-    if (msg>=495){
-        msg=0;
-        msg2+=200;
-    }
-}//NO FUNCIONA ENCARA, NO  TREURE DEL MAIN
+int i=0,g=0,h=0,k=0,error=0,pass_error=0;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
     HWND hWnd;
@@ -71,7 +57,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     HFONT hFont; //Definim una primera font(tipus de lletra)
     hFont = CreateFont(400, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_OUTLINE_PRECIS,
                        CLIP_DEFAULT_PRECIS, ANTIALIASED_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
-
     switch (msg) {
         case WM_CREATE:{ //Creem tots els elements que utlitzarem, EditControl per poder entrar text i Buttons per poder clickar
             dict = initialize_dictionary(1000);
@@ -113,14 +98,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                                           350, 420, 800, 70, hWnd, (HMENU)29, hInst, NULL);
             hEditControlFR = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL,
                                           300, 646, 620, 45, hWnd, (HMENU)30, hInst, NULL);
-            hEditControlCHAT = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL,
-                                          350, 685, 922, 40, hWnd, (HMENU)41, hInst, NULL);
+            hEditControlCHAT = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_MULTILINE,
+                                          200, 535, 922, 190, hWnd, (HMENU)41, hInst, NULL);
             buttonCHAT = CreateWindowEx(
                     0,
                     "BUTTON",
                     "SEND",
                     SW_HIDE | WS_CHILD | BS_DEFPUSHBUTTON,
-                    1272, 680, 80, 50,
+                    1122, 645, 100, 80,
                     hWnd,
                     (HMENU)100,
                     hInst,
@@ -440,23 +425,28 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     break;
                 }
                 case 6:{
-                    if (NOT_TAKEN && strlen(username)<MAX_LENGHT && strlen(username)>=5){
+                    if (find_user(username,list_of_user)==NULL && strlen(username)<MAX_LENGHT && strlen(username)>=5){
                         strcpy(new_user.user,username);
                         printf("\nuser: %s",new_user.user);
                         condition=1;}
+                    else {error=1;
+                    InvalidateRect(hWnd, NULL, TRUE);
+                    UpdateWindow(hWnd);}
                     break;
                 }
                 case 7:{
-                    if (NOT_TAKEN && strlen(password1)<MAX_LENGHT && strlen(password1)>=5){
-                        if (condition==1){condition=2;}}
+                    if (strlen(password1)<MAX_LENGHT && strlen(password1)>=5){
+                        condition2=1;}
                     break;
                 }
                 case 8:{
-                    if (NOT_TAKEN && strlen(password2)<MAX_LENGHT && condition==2 &&strcmp(password1,password2)==0){
+                    if (condition==1 && condition2==1 && strcmp(password1,password2)==0){
                         condition=0;
+                        pass_error=0;
                         strcpy(new_user.password,password1);
                         printf("\npass: %s",new_user.password);
                         i=7;
+                        error=0;
                         ShowWindow(hEditControl4, SW_SHOW);
                         ShowWindow(hEditControl5, SW_SHOW);
                         ShowWindow(hEditControl6, SW_SHOW);
@@ -478,13 +468,24 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                         SetWindowText(hEditControl, "");
                         SetWindowText(hEditControl2, "");
                         SetWindowText(hEditControl3, "");
+                        error=0;
                         InvalidateRect(hWnd, NULL, TRUE);
                         UpdateWindow(hWnd);}
+                    else if (error==1){
+                        error=3;
+                        InvalidateRect(hWnd, NULL, TRUE);
+                        UpdateWindow(hWnd);}
+                    else {error=2;
+                        InvalidateRect(hWnd, NULL, TRUE);
+                        UpdateWindow(hWnd);}
+                    if (strcmp(password1,password2)!=0){
+                        pass_error=1;
+                    }
                     break;
                 }
                 case 9:{
                     if (strlen(newname)<=MAX_LENGTH){
-                        condition++;
+                        condition3=1;
                         strcpy(new_user.name,newname);
                         printf("\nname: %s",new_user.name);
                     }
@@ -498,7 +499,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                             newage+=(int)age[k]-48;
                         }
                         new_user.age=newage;
-                        condition++;
+                        condition4=1;
                         printf("\nage: %d",new_user.age);
                     }
                     break;
@@ -507,7 +508,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     if (strlen(newcity)<=MAX_LENGTH){
                         strcpy(new_user.city,newcity);
                         printf("\ncity: %s",new_user.city);
-                        condition++;
+                        condition5=1;
                     }
                     break;
                 }
@@ -515,7 +516,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     if (strlen(newhobbie)<=MAX_LENGTH && h<MAX_HOBBIES){
                         strcpy(new_user.hobbies[h],newhobbie);
                         h++;
-                        condition++;
+                        condition6=1;
                         SetWindowText(hEditControl7, "");
                         printf("\nhobbie%d: %s",h,new_user.hobbies[h-1]);
                     }
@@ -523,37 +524,43 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 }
                 case 13:{
                     if (strlen(newemail)<=MAX_LENGTH){
+                        GetWindowText(hEditControl8,newemail, 30);
                         strcpy(new_user.email,newemail);
-                        //printf("%s",newemail);
-                        condition++;
-                        if (validar_email(newemail)){
-                            printf("\nCorreu: %s",new_user.email);
-                            new_user.friends = NULL;
-                            add_user_to_list(&list_of_user,new_user);
-                            ShowWindow(hEditControl4, SW_HIDE);
-                            ShowWindow(hEditControl5, SW_HIDE);
-                            ShowWindow(hEditControl6, SW_HIDE);
-                            ShowWindow(hEditControl7, SW_HIDE);
-                            ShowWindow(hEditControl8, SW_HIDE);
-                            SetWindowText(hEditControl4, "");
-                            SetWindowText(hEditControl5, "");
-                            SetWindowText(hEditControl6, "");
-                            SetWindowText(hEditControl7, "");
-                            SetWindowText(hEditControl8, "");
-                            ShowWindow(button8,SW_HIDE);
-                            ShowWindow(button9,SW_HIDE);
-                            ShowWindow(button10,SW_HIDE);
-                            ShowWindow(button11,SW_HIDE);
-                            ShowWindow(button12,SW_HIDE);
-                            ShowWindow(button1, SW_SHOW);
-                            ShowWindow(button2, SW_SHOW);
-                            ShowWindow(button3, SW_SHOW);
-                            ShowWindow(button4, SW_SHOW);
-                            ShowWindow(button288,SW_HIDE);
-                            i=0;
-                            k=0;
-                            InvalidateRect(hWnd, NULL, TRUE);
-                            UpdateWindow(hWnd);}
+                        if (validar_email(newemail)) {
+                            printf("\nCorreu: %s", new_user.email);
+                            if (condition3 == 1 && condition4 == 1 && condition5 == 1 && condition6 == 1) {
+                                new_user.friends = NULL;
+                                add_user_to_list(&list_of_user, new_user);
+                                condition = 0, condition2 = 0, condition3 = 0, condition4 = 0, condition5 = 0, condition6 = 0;
+                                ShowWindow(hEditControl4, SW_HIDE);
+                                ShowWindow(hEditControl5, SW_HIDE);
+                                ShowWindow(hEditControl6, SW_HIDE);
+                                ShowWindow(hEditControl7, SW_HIDE);
+                                ShowWindow(hEditControl8, SW_HIDE);
+                                SetWindowText(hEditControl4, "");
+                                SetWindowText(hEditControl5, "");
+                                SetWindowText(hEditControl6, "");
+                                SetWindowText(hEditControl7, "");
+                                SetWindowText(hEditControl8, "");
+                                ShowWindow(button8, SW_HIDE);
+                                ShowWindow(button9, SW_HIDE);
+                                ShowWindow(button10, SW_HIDE);
+                                ShowWindow(button11, SW_HIDE);
+                                ShowWindow(button12, SW_HIDE);
+                                ShowWindow(button1, SW_SHOW);
+                                ShowWindow(button2, SW_SHOW);
+                                ShowWindow(button3, SW_SHOW);
+                                ShowWindow(button4, SW_SHOW);
+                                ShowWindow(button288, SW_HIDE);
+                                i = 0;
+                                k = 0;
+                                InvalidateRect(hWnd, NULL, TRUE);
+                                UpdateWindow(hWnd);
+                            }
+                            else {error=2;
+                                InvalidateRect(hWnd, NULL, TRUE);
+                                UpdateWindow(hWnd);}
+                        }
                         else {
                             k=1;
                             InvalidateRect(hWnd, NULL, TRUE);
@@ -594,7 +601,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     break;}
                 case 27:
                 {
-                    GetWindowText(hEditControl8,newemail, 30);
+
 
                     break;}
                 case 66: //FRIEND REQUEST SEND
@@ -604,24 +611,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     SetWindowText(hEditControlFR, "");
                     if (find_user(searchfr,list_of_user)!=NULL){
                         printf("\nL'user existeix, SOLICITUD ENVIADA.");
-                        i=10;
-                        ShowWindow(buttonLIST,SW_SHOW);
-                        ShowWindow(buttonshowpubli,SW_SHOW);
-                        ShowWindow(buttonFRcheck,SW_SHOW);
-                        ShowWindow(buttoncreatepubli,SW_SHOW);
-                        ShowWindow(buttonFRprev,SW_SHOW);
-                        ShowWindow(button_me,SW_SHOW);
-                        ShowWindow(button_log_out,SW_SHOW);
-
-                        ShowWindow(hEditControl22,SW_HIDE);
-                        ShowWindow(hEditControl33,SW_HIDE);
-                        ShowWindow(button66,SW_HIDE);
-                        ShowWindow(button188,SW_HIDE);
-                        ShowWindow(button288,SW_HIDE);
-                        InvalidateRect(hWnd, NULL, TRUE);
-                        UpdateWindow(hWnd);
+                        send_friend_request(&list_of_user,&current_user,searchfr); //ROMAN MIRA AIXÒ (aqui cridem la funció)
                     }
                     else printf("\nNo registrat, SOLICITUD ERROR.");
+
+
                     break;
                 }
                 case 30:
@@ -891,6 +885,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 FillRect(hdc, &rect, hBrush); // Pintar la ventana con el brush creado
                 DeleteObject(hBrush); // Liberar el brush creado
                 SetBkColor(hdc, RGB(100, 100, 125));
+                if (error==1){
+                    print_screen_error3(hdc);
+                }
+                else if (error==2){
+                    print_screen_error2(hdc);
+                }
+                else if (error==3){
+                    print_screen_error2(hdc);
+                    print_screen_error3(hdc);
+                }
+                if (pass_error==1){
+                    print_screen_error5(hdc);
+                }
                 rect.top-=280;
                 SetTextColor(hdc, RGB(0, 0, 0));
                 rect.top-=170;
@@ -898,7 +905,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial Black");
 
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
-                DrawText(hdc, "REGISTRE DE NOU USUARI", -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+                DrawText(hdc, "REGISTRO DE NUEVO USUARIO", -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
                 rect.top+=260;
 
                 hFont = CreateFont(25, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
@@ -906,11 +913,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
                 SetTextColor(hdc,RGB(0,0,0));
                 RECT rect2 = { 80, 320, 300, 360 };
-                DrawText(hdc, "NOM D'USUARI:", -1, &rect2, DT_LEFT | DT_VCENTER);
+                DrawText(hdc, "USER:", -1, &rect2, DT_LEFT | DT_VCENTER);
                 RECT rect3 = { 80, 440, 300, 480 };
-                DrawText(hdc, "CONTRASENYA:", -1, &rect3, DT_LEFT | DT_VCENTER);
+                DrawText(hdc, "PASSWORD:", -1, &rect3, DT_LEFT | DT_VCENTER);
                 RECT rect4 = { 80, 520, 300, 580 };
-                DrawText(hdc, "CONFIRMAR \nCONTRASENYA:", -1, &rect4, DT_LEFT | DT_VCENTER);
+                DrawText(hdc, "CONFIRMAR \nPASSWORD:", -1, &rect4, DT_LEFT | DT_VCENTER);
             }
             if (i==2){
                 hBrush = CreateSolidBrush(RGB(0, 0, 0)); // Crear un brush con el color deseado (en este caso, azul)
@@ -955,9 +962,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
                 SetTextColor(hdc,RGB(0,0,0));
                 RECT rect2 = { 130, 320, 400, 360 };
-                DrawText(hdc, "NOM D'USUARI:", -1, &rect2, DT_LEFT | DT_VCENTER);
+                DrawText(hdc, "USER:", -1, &rect2, DT_LEFT | DT_VCENTER);
                 RECT rect3 = { 130, 440, 400, 480 };
-                DrawText(hdc, "CONTRASENYA:", -1, &rect3, DT_LEFT | DT_VCENTER);
+                DrawText(hdc, "PASSWORD:", -1, &rect3, DT_LEFT | DT_VCENTER);
             }
 
             if (i==7){
@@ -969,13 +976,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 SetBkColor(hdc, RGB(100, 100, 125));
                 rect.top-=280;
                 SetTextColor(hdc, RGB(0, 0, 0));
+                if (error==2){
+                    print_screen_error4(hdc);
+                }
                 rect.top-=170;
                 hFont = CreateFont(110, 0, 0, 0, FW_NORMAL, BOLD_FONTTYPE, TRUE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial Black");
 
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
                 rect.top-=100;
-                DrawText(hdc, "REGISTRE DE NOU USUARI", -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+                DrawText(hdc, "REGISTRO DE NUEVO USUARIO", -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
                 rect.top+=260;
 
                 hFont = CreateFont(30, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
@@ -983,11 +993,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
                 SetTextColor(hdc,RGB(0,0,0));
                 RECT rect2 = { 100, 220, 300, 280 };
-                DrawText(hdc, "NOM:", -1, &rect2, DT_LEFT | DT_VCENTER);
+                DrawText(hdc, "NOMBRE:", -1, &rect2, DT_LEFT | DT_VCENTER);
                 RECT rect3 = { 100, 320, 300, 380 };
                 DrawText(hdc, "EDAD:", -1, &rect3, DT_LEFT | DT_VCENTER);
                 RECT rect4 = { 100, 420, 300, 480 };
-                DrawText(hdc, "CIUTAT:", -1, &rect4, DT_LEFT | DT_VCENTER);
+                DrawText(hdc, "CIUDAD:", -1, &rect4, DT_LEFT | DT_VCENTER);
                 RECT rect5 = { 100, 520, 300, 580 };
                 DrawText(hdc, "VIDEOJUEGOS:", -1, &rect5, DT_LEFT | DT_VCENTER);
                 RECT rect6 = { 100, 620, 300, 680 };
@@ -1024,9 +1034,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
                 DeleteObject(hBrush);
                 SetBkColor(hdc, RGB(100, 100, 125));
-                if (g!=0){
-                    add_screen_msg(new_publi,hdc);
-                }
             }
             if (i==12){
                 hBrush = CreateSolidBrush(RGB(0, 0, 0)); // Crear un brush con el color deseado (en este caso, azul)
@@ -1048,15 +1055,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 print_screen_users(list_of_user,hdc);
             }
             if (i==13){
-
+                hBrush = CreateSolidBrush(RGB(25, 121, 169)); // Crear un brush con el color deseado (en este caso, azul)
+                RECT rect;
+                GetClientRect(hWnd, &rect);
+                FillRect(hdc, &rect, hBrush);
             }
             if (i==14){
-                hBrush = CreateSolidBrush(RGB(180, 170, 190)); // Crear un brush con el color deseado (en este caso, azul)
+                hBrush = CreateSolidBrush(RGB(110, 110, 135)); // Crear un brush con el color deseado (en este caso, azul)
                 RECT rect;
                 GetClientRect(hWnd, &rect);
                 FillRect(hdc, &rect, hBrush); // Pintar la ventana con el brush creado
                 DeleteObject(hBrush); // Liberar el brush creado
-                SetBkColor(hdc, RGB(180, 170, 190));
+                SetBkColor(hdc, RGB(110, 110, 135));
                 hFont = CreateFont(42, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
                 hOldFont = (HFONT)SelectObject(hdc, hFont);

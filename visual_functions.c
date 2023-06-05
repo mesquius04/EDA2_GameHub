@@ -6,9 +6,33 @@
 #include <CommCtrl.h>
 #include "main.h"
 void print_screen_error(HDC hdc){
-    RECT rect9 = {1200, 600, 1400, 680 };
-    DrawText(hdc, "Email must have\n'@gmail.com' ending!!", -1, &rect9, DT_LEFT);
+    RECT rect = {1200, 600, 1400, 680 };
+    DrawText(hdc, "Email debe terminar\ncon '@gmail.com'!!", -1, &rect, DT_LEFT);
 }
+
+void print_screen_error2(HDC hdc){
+    RECT rect3 = {200, 637, 600, 687 };
+    printf("\nERROR: Tienes que llenar todos los campos!");
+    DrawText(hdc, "Tienes que llenar todos los campos!", -1, &rect3, DT_CENTER | DT_BOTTOM);
+}
+
+void print_screen_error3(HDC hdc){
+    RECT rect2 = {700, 637, 1100, 687 };
+    printf("\nERROR: Nombre de usuario no disponible!");
+    DrawText(hdc, "Nombre de usuario no disponible!", -1, &rect2, DT_CENTER | DT_BOTTOM);
+}
+
+void print_screen_error4(HDC hdc){
+    RECT rect3 = {200, 677, 600, 727 };
+    printf("\nERROR: Tienes que llenar todos los campos!");
+    DrawText(hdc, "Tienes que llenar todos los campos!", -1, &rect3, DT_CENTER | DT_BOTTOM);
+}
+
+void print_screen_error5(HDC hdc){
+    RECT rect = {1200, 509, 1400, 582 };
+    DrawText(hdc, "Los password\ndeben coincidir!!", -1, &rect, DT_VCENTER | DT_LEFT);
+}
+
 void print_screen_users(User* list,HDC hdc){
     RECT rect2 = { 100, 130, 200, 160 };
     while (list!= NULL){
@@ -27,8 +51,6 @@ void print_screen_users(User* list,HDC hdc){
 
 void print_me_screen (User* user,HDC hdc){
     RECT rect = { 150, 50, 320, 100 };
-    int end;
-    end=FALSE;
     DrawText(hdc, "USER:", -1, &rect, DT_LEFT | DT_BOTTOM);
     rect.left+=200;
     rect.right+=400;

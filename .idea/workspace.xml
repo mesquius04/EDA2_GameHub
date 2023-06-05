@@ -20,26 +20,33 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" name="Changes" comment="Delete visual_functions.h">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_05_2023_12_44_[Changes_by_aalex]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_05_2023_12_44__Changes_by_aalex_.xml" beforeDir="false" />
+    <list default="true" id="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" name="Changes" comment="a">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/dictionary.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/dictionary.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/main.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/main.c.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/user_functions.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/user_functions.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/visual_functions.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/visual_functions.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/untitled16.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/untitled16.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionary.c" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/queue_functions.h" beforeDir="false" afterPath="$PROJECT_DIR$/queue_functions.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visual_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/visual_functions.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visual_functions.h" beforeDir="false" afterPath="$PROJECT_DIR$/visual_functions.h" afterDir="false" />
     </list>
     <list id="71eb45bd-8ba4-4b85-8f28-6b16bd6ceccb" name="Changes by aalex" comment="" />
+    <list id="dbab221a-5f81-455b-89a8-31239e3b61b6" name="Changes by alexd" comment="">
+      <change beforePath="$PROJECT_DIR$/dictionary.c" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionary.h" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+    </list>
     <list id="2aa72257-5412-4c30-b30e-ac666e8f8473" name="Changes by Tu" comment="Changes by Tu" />
     <list id="c5427c62-9ca9-470c-91d9-6b58042e43b3" name="Changes by u213937" comment="" />
     <list id="4fc915c5-2daa-4908-baeb-b283edea9b4e" name="Changes by u214576" comment="Changes by u214576" />
+    <list id="79737fd2-93f4-4b5f-b3ba-1ba5b63a368d" name="Changes by Usuario" comment="">
+      <change beforePath="$PROJECT_DIR$/user_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/user_functions.c" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,6 +58,51 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/main.c">
+      <ranges>
+        <range start1="17" end1="17" start2="17" end2="18" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="21" end1="37" start2="22" end2="23" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="73" end1="74" start2="59" end2="59" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="115" end1="117" start2="100" end2="102" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="122" end1="123" start2="107" end2="108" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="442" end1="443" start2="427" end2="428" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="446" end1="446" start2="431" end2="434" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="449" end1="451" start2="437" end2="439" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="454" end1="455" start2="442" end2="443" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="456" end1="456" start2="444" end2="445" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="459" end1="459" start2="448" end2="449" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="480" end1="480" start2="470" end2="471" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="482" end1="482" start2="473" end2="483" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="486" end1="487" start2="487" end2="488" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="500" end1="501" start2="501" end2="502" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="509" end1="510" start2="510" end2="511" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="517" end1="518" start2="518" end2="519" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="525" end1="525" start2="526" end2="527" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="526" end1="556" start2="528" end2="563" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="596" end1="597" start2="603" end2="604" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="606" end1="622" start2="613" end2="614" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="624" end1="624" start2="616" end2="618" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="660" end1="666" start2="654" end2="657" changelist="dbab221a-5f81-455b-89a8-31239e3b61b6" />
+        <range start1="667" end1="668" start2="658" end2="659" changelist="dbab221a-5f81-455b-89a8-31239e3b61b6" />
+        <range start1="893" end1="893" start2="884" end2="897" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="900" end1="901" start2="904" end2="905" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="908" end1="909" start2="912" end2="913" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="910" end1="911" start2="914" end2="915" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="912" end1="913" start2="916" end2="917" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="957" end1="958" start2="961" end2="962" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="959" end1="960" start2="963" end2="964" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="971" end1="971" start2="975" end2="978" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="977" end1="978" start2="984" end2="985" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="985" end1="986" start2="992" end2="993" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="989" end1="990" start2="996" end2="997" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="1026" end1="1029" start2="1033" end2="1033" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="1050" end1="1051" start2="1054" end2="1058" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="1053" end1="1054" start2="1060" end2="1061" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+        <range start1="1058" end1="1059" start2="1065" end2="1066" changelist="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -66,24 +118,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "last_opened_file_path": "C:/Users/marti/CLionProjects/untitled21",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "structure.view.defaults.are.configured": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/marti/CLionProjects/untitled21&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\marti\CLionProjects\GameHub\cmake-build-debug" />
@@ -268,7 +320,8 @@
       <workItem from="1685517712548" duration="32000" />
       <workItem from="1685687916570" duration="6672000" />
       <workItem from="1685695664870" duration="3760000" />
-      <workItem from="1685710110709" duration="7046000" />
+      <workItem from="1685710110709" duration="7237000" />
+      <workItem from="1685955309431" duration="6730000" />
     </task>
     <task id="LOCAL-00001" summary="fitxer bo">
       <created>1682425595116</created>
@@ -347,11 +400,29 @@
       <option name="project" value="LOCAL" />
       <updated>1685693696991</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="a">
+      <created>1685914942799</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1685914942799</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fitxer bo" />
@@ -361,6 +432,18 @@
     <MESSAGE value="Casi tot ok" />
     <MESSAGE value="LAB 4" />
     <MESSAGE value="Add files via upload&#10;&#10;CLASSE 2/6" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add files via upload&#10;&#10;CLASSE 2/6" />
+    <MESSAGE value="a" />
+    <option name="LAST_COMMIT_MESSAGE" value="a" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.c</url>
+          <line>377</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
