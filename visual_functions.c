@@ -34,19 +34,25 @@ void print_screen_error5(HDC hdc){
 }
 
 void print_screen_users(User* list,HDC hdc){
-    RECT rect2 = { 100, 130, 200, 160 };
+    RECT rect2 = { 100, 130, 220, 160 };
     while (list!= NULL){
         DrawText(hdc, list->user, -1, &rect2, DT_LEFT | DT_BOTTOM);
         rect2.top+=35;
         rect2.bottom+=35;
         list = list->next;
-        if (rect2.bottom>=600){
+        if (rect2.bottom>=700){
             rect2.bottom=160;
             rect2.top=130;
-            rect2.left+=120;
-            rect2.right+=120;
+            rect2.left+=140;
+            rect2.right+=140;
         }
     }
+}
+
+void print_screen_publi(User* current,HDC hdc){
+    RECT rect = {260, 140, 1122, 687 };
+    SetBkColor(hdc, RGB(100, 100, 125));
+    DrawText(hdc, "Esta es una publicacion de prueba, el Roman no trabaja.", -1, &rect, DT_CENTER | DT_TOP);
 }
 
 void print_me_screen (User* user,HDC hdc){

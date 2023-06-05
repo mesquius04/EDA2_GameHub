@@ -7,6 +7,7 @@
 #include "main.h"
 #ifndef UNTITLED16_VISUAL_FUNCTIONS_H
 #define UNTITLED16_VISUAL_FUNCTIONS_H
+void print_screen_publi(User* current,HDC hdc);
 void print_screen_error(HDC hdc);
 void print_screen_users(User* list,HDC hdc);
 void print_screen_error4(HDC hdc);
