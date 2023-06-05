@@ -41,7 +41,10 @@ Dict* initialize_dictionary(int size){
     dict->count = 0;
     //espacio para todos los items
     dict->items = malloc(sizeof(Node)*dict->size);
-    for (int i =0; i<dict->size; i++){
+    //item 0 nos ayudará luego para hacer top 10
+    dict->items[0].key = ".NONE.";
+    dict->items[0].count = 0;
+    for (int i =1; i<dict->size; i++){
         //inicializamos items
         dict->items[i].key = NULL;
         dict->items[i].count = 0;
@@ -134,27 +137,27 @@ int dictionary(char* post, char* words[MAX_PALABRAS]) {
     return word_count;  //devolvemos idx máximo
 }
 
-int setup_top(int* top, Dict* dict){
-    //necesitamos valores iniciales para poder establecer una comparación (determinar top10)
-    int i = 0, idx = 0;
-    while ( i<(dict->size) || idx>=9){
-        //no salir indice dicc ni superar indice top
-        if(dict->items[i].key != NULL){ //
-            top[idx] = i;
-            idx +=1;
-        }
-        i++;
-    }
-    return idx;
-}
+//int setup_top(int* top, Dict* dict){
+//    //necesitamos valores iniciales para poder establecer una comparación (determinar top10)
+//    int i = 0, idx = 0;
+//    while ( i<(dict->size) || idx>=9){
+//        //no salir indice dicc ni superar indice top
+//        if(dict->items[i].key != NULL){ //
+//            top[idx] = i;
+//            idx +=1;
+//        }
+//        i++;
+//    }
+//    return idx;
+//}
 
-void top_10(int idx_max, int* top, Dict* dict){
+void top_10(int* top, Dict* dict){
     int idx, aux_idx; //necesitamos dos variables extra para no influir en los for
-    for (int j =0; j<(dict->size); j++){
+    for (int j =1; j<(dict->size); j++){
         idx = j;
         if (dict->items[j].key != NULL){
             //si la entrada no está vacía
-            for(int i=0; i<idx_max; i++) {
+            for(int i=0; i<10; i++) {
                 if (dict->items[idx].count >= dict->items[top[i]].count) {
                     //si es más grande o igual empieza bola de nieve
                     aux_idx = top[i];
@@ -174,19 +177,14 @@ void create_post (char* post, User* user){
     //primera publicación usuario
     if (user->publicacion ==  NULL){
         user->publicacion = publi;
-        printf("entra");
     }
     else{
-        printf("b");
         while (user->publicacion->next != NULL){
             //nos quedamos con la última completa
             user->publicacion = user->publicacion->next;
-            printf("a");
         }
         user->publicacion->next = publi;
     }
-
-    printf("sale");
 }
 
 int new_post(char* post, Dict* dict, User* user){

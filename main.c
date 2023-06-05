@@ -652,14 +652,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     GetWindowText(hEditControlCHAT,new_publi,120);
                     SetWindowText(hEditControlCHAT, "");
                     new_post(new_publi,dict, current_user);
-                    int top[10] = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
-                    //-1 -> elemento está vacío
-                    printf("2\n");
-                    int idx_max = setup_top(top,dict);
-                    printf("3\n");
-                    top_10(idx_max,top,dict);
+                    int top[10] = {0,0,0,0,0,0,0,0,0,0};
+                    //0 -> elemento está vacío
+                    top_10(top,dict);
                     for (int b = 0; b<10; b++){     //imprimir top 10
-                        if (top[b] != -1){
+                        if (top[b] != 0){
                             printf("[%d} Pos%d: %s, %d times\n", top[b], b+1, dict->items[top[b]].key,dict->items[top[b]].count);
                         }
                     }

@@ -16,8 +16,8 @@ void resize_dictionary(Dict* dict);
 void revisar_timeline (User* user);
 int add_item(Dict* dict, char* key);
 int dictionary(char* post, char* words[MAX_PALABRAS]);
-int setup_top(int* top, Dict* dict);
-void top_10(int idx_max, int* top, Dict* dict);
+//int setup_top(int* top, Dict* dict);
+void top_10 (int* top, Dict* dict);
 void create_post (char* post, User* user);
 int new_post(char* post, Dict* dict, User* user);
 #endif //UNTITLED16_DICTIONARY_H
