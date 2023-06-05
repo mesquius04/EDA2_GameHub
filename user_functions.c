@@ -54,7 +54,7 @@ void read_user_file(FILE* fd){
 }
 
 void init_queue(Queue* queue){
-    queue = malloc(sizeof(Queue));
+
     queue->first = NULL;
     queue->last = NULL;
 }
