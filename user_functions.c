@@ -53,5 +53,13 @@ void read_user_file(FILE* fd){
     }
 }
 
+void init_queue(Queue* queue){
+    queue = malloc(sizeof(Queue));
+    queue->first = NULL;
+    queue->last = NULL;
+}
 
+void init_user(User* user){
+    user->friend_request =
+}
 
