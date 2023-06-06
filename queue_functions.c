@@ -6,6 +6,7 @@
 #include <CommCtrl.h>
 #include "main.h"
 #include "user_functions.h"
+#include <string.h>
 #include <time.h>
 
 int are_friends(User u1, User u2){
@@ -43,8 +44,9 @@ void add_3random_Stack(User* list, User* user, Stack stack){
 void send_friend_request(User** list,User** user,char* name) {
     User *newfriend = find_user(name, *list); //se encuentra al ususari que se quiere añadir
     if (newfriend == NULL) printf("Invalid Name\n"); //si no existe se notifica
-    else if (are_friends(**user, *newfriend) || friend_request_already(**user, *newfriend)) {
-        //si ya son amigos o la petición había sido enviada, entonces lo notifica
+    else if (are_friends(**user, *newfriend) == TRUE || friend_request_already(**user, *newfriend)  == TRUE
+    || friend_request_already(*newfriend, **user) ==TRUE || newfriend == (*user) ){
+        //si ya son amigos o la petición había sido enviada o recibida del usuario, entonces lo notifica
         printf("Request already sent or Already friends\n");
     }
     else {//encolamos en la queue de friend request
@@ -80,13 +82,33 @@ void makefriends(User* u1, User* u2) {
     u2->numfriends++;
 }
 
-User* queue_dequeue(User* user){
-    User* ultimo = user->friend_request->last->user;
-    if (user->friend_request->last == user->friend_request->first){
-
+User* dequeue(User* user){
+    User* primero = user->friend_request->first->user;
+    Element* aux = user->friend_request->first;
+    //si solo hay 1 elemento, pasa a no haber cola
+    if(user->friend_request->first == user->friend_request->last){
+        user->friend_request->first = NULL;
+        user->friend_request->last = NULL;
+    } else { //si hay varios elementos, el primero se quita y el 2o pasa a ser el primero
+        user->friend_request->first = user->friend_request->first->next;
+        user->friend_request->first->prev = NULL;
     }
-    Element* aux = user->friend_request->last;
-    user->friend_request->last = user->friend_request->last->prev;
     free(aux);
-    return ultimo;
+    return primero;
+}
+
+void manage_friend_request(User* current){
+    int menu;
+    User* newfriend;
+    while(current->friend_request->first!=NULL){ //mientras la friendrequest no este vacia
+        newfriend = dequeue(current);
+        printf("Quieres hacerte amigo de %s?",newfriend->name);
+        printf(" Pulsa 1 para aceptar, 2 para rechazar o 3 para salir \n");
+        scanf("%d", &menu);
+        if(menu == 1) makefriends(current,newfriend); //si aceptas, se hacen amigos
+        if(menu == 3) return; //si quieres salir
+        //si rechazas, pasas al siguiente user
+    }
+    //has salido, por lo tanto no quedan peticiones, o no tenías ninguna originalmente
+    printf("no tienes ninguna peticion");
 }
