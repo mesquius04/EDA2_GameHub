@@ -81,7 +81,9 @@ void makefriends(User* u1, User* u2) {
 }
 
 User* queue_dequeue(User* user){
-    User* penultimo = user->friend_request->last->prev->user;//penúltimo
-    user->friend_request->last->user;
-    return user->friend_request->last->user;
+    User* ultimo = user->friend_request->last->user;
+    Element* aux = user->friend_request->last;
+    user->friend_request->last = user->friend_request->last->prev;
+    free(aux);
+    return ultimo;
 }

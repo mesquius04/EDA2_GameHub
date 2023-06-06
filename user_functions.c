@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <CommCtrl.h>
 #include "main.h"
+
+#define INITIAL_FRIENDS 40
 User* find_user(char* user, User* list){
     while (list != NULL){
         //recorremos la lista hasta el final
@@ -28,9 +30,22 @@ int log_in_data (char* name, char* password, User* list){
     return FALSE;                                            //no hay matches
 }
 
+void init_user(User* user){
+    user->friend_request = (Queue*) malloc(sizeof(Queue));
+    user->friend_request->first = NULL;
+    user->friend_request->last = NULL;
+    user->friends = (User**) malloc(INITIAL_FRIENDS*sizeof(User*));
+    user->numfriends = 0;
+    user->maxfriends = INITIAL_FRIENDS;
+    user->next = NULL;
+    user->next = NULL;
+}
+
+
 void add_user_to_list(User** list, User user){
      User* aux = (User*) malloc(sizeof(User));
      *aux = user;
+     init_user(aux);
      aux->next = *list;
      *list = aux;
 }
@@ -53,12 +68,4 @@ void read_user_file(FILE* fd){
     }
 }
 
-void init_queue(Queue* queue){
-
-    queue->first = NULL;
-    queue->last = NULL;
-}
-void init_user(User* user){
-    user->friend_request = malloc(sizeof(Queue));
-}
 
