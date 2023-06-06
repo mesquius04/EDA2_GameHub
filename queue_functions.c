@@ -49,15 +49,15 @@ void send_friend_request(User** list,User** user,char* name) {
     }
     else {//encolamos en la queue de friend request
         Element* node = malloc(sizeof(Element));
-        node->user = newfriend;
+        node->user = *user;
         node->next = NULL;//es el último de la lista, el siguiente apunta a null
-        if((*user)->friend_request->first == NULL){//si es el primeo de la lista
+        if((newfriend)->friend_request->first == NULL){//si es el primeo de la lista
             node->prev = NULL; //no hay previo
-            (*user)->friend_request->first = node; //el primero será el último
+            (newfriend)->friend_request->first = node; //el primero será el último
         }else{//si no es el único de la lista
-            node->prev = (*user)->friend_request->last; //el previo al nodo será el anterior último
+            node->prev = (newfriend)->friend_request->last; //el previo al nodo será el anterior último
         }
-        (*user)->friend_request->last = node; //estamos encolando, así que el nuevo elemento siempre será el último
+        (newfriend)->friend_request->last = node; //estamos encolando, así que el nuevo elemento siempre será el último
     }
 }
 
@@ -82,6 +82,9 @@ void makefriends(User* u1, User* u2) {
 
 User* queue_dequeue(User* user){
     User* ultimo = user->friend_request->last->user;
+    if (user->friend_request->last == user->friend_request->first){
+
+    }
     Element* aux = user->friend_request->last;
     user->friend_request->last = user->friend_request->last->prev;
     free(aux);
