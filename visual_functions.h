@@ -7,11 +7,12 @@
 #include "main.h"
 #ifndef UNTITLED16_VISUAL_FUNCTIONS_H
 #define UNTITLED16_VISUAL_FUNCTIONS_H
-void print_screen_publi(User* current,HDC hdc);
+void print_screen_publi(User* current,HDC hdc,int aser);
 void print_screen_error(HDC hdc);
 void print_screen_users(User* list,HDC hdc);
 void print_screen_error4(HDC hdc);
 void print_screen_error2(HDC hdc);
+void print_screen_fr(User* current_user,HDC hdc);
 void print_screen_trend(HDC hdc,Dict* dict);
 void print_screen_error3(HDC hdc);
 void print_screen_error5(HDC hdc);

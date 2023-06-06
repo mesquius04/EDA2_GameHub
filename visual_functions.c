@@ -66,10 +66,14 @@ void print_screen_users(User* list,HDC hdc){
     }
 }
 
-void print_screen_publi(User* current,HDC hdc){
+void print_screen_publi(User* current,HDC hdc,int aser){
     RECT rect = {260, 140, 1122, 687 };
     SetBkColor(hdc, RGB(100, 100, 125));
-    DrawText(hdc, "Esta es una publicacion de prueba, el Roman no trabaja.", -1, &rect, DT_CENTER | DT_TOP);
+    if (aser<=current->numfriends){
+        DrawText(hdc, current->friends[aser]->publicacion->post, -1, &rect, DT_CENTER | DT_TOP);
+        printf("\n%s",current->friends[aser]->publicacion->post);
+        printf("\n%s\n",current->friends[aser]->user);}
+    else DrawText(hdc, "No hay mas publicaciones disponibles", -1, &rect, DT_CENTER | DT_TOP);
 }
 
 void print_me_screen (User* user,HDC hdc){
@@ -122,4 +126,11 @@ void print_me_screen (User* user,HDC hdc){
     rect.right+=700;
     sprintf(result, "%s, %s, %s, %s, %s", user->hobbies[0], user->hobbies[1], user->hobbies[2], user->hobbies[3],user->hobbies[4]);
     DrawText(hdc, result, -1, &rect, DT_LEFT | DT_BOTTOM);
+}
+
+void print_screen_fr(User* current_user,HDC hdc){
+    RECT rect = {260, 140, 1122, 687 };
+    if (current_user->friend_request->first!=NULL){
+        print_me_screen(current_user->friend_request->first->user,hdc);}
+    else DrawText(hdc, "No hay solicitudes entrantes.", -1, &rect, DT_CENTER | DT_TOP);
 }

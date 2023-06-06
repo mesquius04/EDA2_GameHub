@@ -13,11 +13,11 @@ User* current_user;
 #define MAX_LENGHT 20
 char username[30],usersearch[30],searchfr[30],userlogin[30],userpass[30],new_publi[300],password1[30],password2[30],newname[MAX_LENGTH],age[3],newemail[MAX_LENGHT],newcity[MAX_LENGTH];
 User new_user;
-int condition=0,condition2=0,condition3=0,condition4=0,condition5=0,condition6=0;
+int condition=0,aser=1,condition2=0,condition3=0,condition4=0,condition5=0,condition6=0;
 User* list_of_user = NULL;
 Dict* dict;
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-HWND button1,button2,button3,button4,button5,buttonLIST,buttonSendFR,button488,button388,button_next_post,button_prev_post,button6,button7,button8,button9,button10,button188,buttonCHAT,button288,button_me,button_log_out,button11,button12,button66,buttonFR,buttonFRprev,buttonFRcheck,buttoncreatepubli,buttonshowpubli,hEditControlCHAT,hEditControlFR,hEditControl22,hEditControl33,hEditControl,hEditControl2,hEditControl3,hEditControl4,hEditControl5,hEditControl6,hEditControl7,hEditControl7_1,hEditControl7_2,hEditControl7_3,hEditControl7_4,hEditControl8;
+HWND button1,button2,button3,button4,button5,button_accept,button_deny,buttonLIST,buttonSendFR,button488,button388,button_next_post,button6,button7,button8,button9,button10,button188,buttonCHAT,button288,button_me,button_log_out,button11,button12,button66,buttonFR,buttonFRprev,buttonFRcheck,buttoncreatepubli,buttonshowpubli,hEditControlCHAT,hEditControlFR,hEditControl22,hEditControl33,hEditControl,hEditControl2,hEditControl3,hEditControl4,hEditControl5,hEditControl6,hEditControl7,hEditControl7_1,hEditControl7_2,hEditControl7_3,hEditControl7_4,hEditControl8;
 int i=0,h=0,k=0,error=0,pass_error=0;
 
 //Funcion principal de app de Windows
@@ -63,7 +63,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
             FILE* fp= fopen("../resources/user_list","r");//Obrim el fitxer que conté users inicials
             while (fscanf(fp,"%s %s %s %d %s h:%s %s %s %s %s %s",new_user.user,new_user.password,new_user.name,&new_user.age,new_user.city,new_user.hobbies[0],new_user.hobbies[1],new_user.hobbies[2],new_user.hobbies[3],new_user.hobbies[4],new_user.email)>0){
-                new_user.friends = NULL;
+                new_user.friend_request = NULL;
                 add_user_to_list(&list_of_user, new_user); //Els afegim a la llista
             }
             fclose(fp);//Tanquem el fitxer
@@ -365,7 +365,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             button_next_post = CreateWindowEx(
                     0,
                     "BUTTON",
-                    "BACK",
+                    "NEXT",
                     SW_HIDE | WS_CHILD | BS_DEFPUSHBUTTON,
                     1182, 612, 100, 65,
                     hWnd,
@@ -384,14 +384,26 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     hInst,
                     NULL
             );
-            button_prev_post = CreateWindowEx(
+
+            button_accept = CreateWindowEx(
                     0,
                     "BUTTON",
-                    "NEXT",
+                    "ACCEPT",
                     SW_HIDE | WS_CHILD | BS_DEFPUSHBUTTON,
-                    100, 612, 100, 65,
+                    1132, 612, 100, 65,
                     hWnd,
-                    (HMENU)209,
+                    (HMENU)270,
+                    hInst,
+                    NULL
+            );
+            button_deny = CreateWindowEx(
+                    0,
+                    "BUTTON",
+                    "DENY",
+                    SW_HIDE | WS_CHILD | BS_DEFPUSHBUTTON,
+                    1252, 612, 100, 65,
+                    hWnd,
+                    (HMENU)271,
                     hInst,
                     NULL
             );
@@ -555,7 +567,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                             printf("\nCorreu: %s", new_user.email);
                             printf("\n%d %d %d %d %d",condition3,condition4,condition5,condition6);
                             if (condition3 == 1 && condition4 == 1 && condition5 == 1 && condition6 == 1) {
-                                new_user.friends = NULL;
                                 add_user_to_list(&list_of_user, new_user);
                                 condition = 0, condition2 = 0, condition3 = 0, condition4 = 0, condition5 = 0, condition6 = 0;
                                 ShowWindow(hEditControl4, SW_HIDE);
@@ -759,15 +770,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(button_me,SW_SHOW);
                     ShowWindow(button_log_out,SW_SHOW);
                     ShowWindow(buttonFRprev,SW_SHOW);//Enseñamos los elementos de la pestaña anterior, y cambiamos 'i'.
-
+                    aser=1;
                     ShowWindow(button_next_post,SW_HIDE);
-                    ShowWindow(button_prev_post,SW_HIDE);
                     ShowWindow(hEditControlCHAT,SW_HIDE);
                     ShowWindow(buttonCHAT,SW_HIDE);
                     ShowWindow(button388,SW_HIDE);
                     ShowWindow(hEditControlFR,SW_HIDE);
                     ShowWindow(buttonFR,SW_HIDE); //Escondemos los elementos de todas las ventanas posibles desde la que podemos acceder al boton
-
+                    ShowWindow(button_deny,SW_HIDE);
+                    ShowWindow(button_accept,SW_HIDE);
                     InvalidateRect(hWnd, NULL, TRUE);
                     UpdateWindow(hWnd);
                     break;
@@ -801,7 +812,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(buttonCHAT,SW_HIDE);
                     ShowWindow(hEditControlCHAT,SW_HIDE);
                     ShowWindow(buttonFRprev,SW_HIDE);
-
+                    ShowWindow(button_deny,SW_SHOW);
+                    ShowWindow(button_accept,SW_SHOW);
                     ShowWindow(button388,SW_SHOW);
                     InvalidateRect(hWnd, NULL, TRUE);
                     UpdateWindow(hWnd);
@@ -835,7 +847,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(buttonFRprev,SW_HIDE);
 
                     ShowWindow(button_next_post,SW_SHOW);
-                    ShowWindow(button_prev_post,SW_SHOW);
                     ShowWindow(button388,SW_SHOW);
                     InvalidateRect(hWnd, NULL, TRUE);
                     UpdateWindow(hWnd);
@@ -856,6 +867,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(button388,SW_SHOW);
                     ShowWindow(buttonCHAT,SW_SHOW);
                     ShowWindow(hEditControlCHAT,SW_SHOW);
+                    InvalidateRect(hWnd, NULL, TRUE);
+                    UpdateWindow(hWnd);
+                    break;
+                }
+                case 208:{
+                    if (current_user->friends[aser]->publicacion->next!=NULL){
+                        current_user->friends[aser]->publicacion=current_user->friends[aser]->publicacion->next;}
+                    else if (current_user->friends[aser]->publicacion->next==NULL){
+                        aser++;
+                    }
                     InvalidateRect(hWnd, NULL, TRUE);
                     UpdateWindow(hWnd);
                     break;
@@ -893,6 +914,23 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(button3, SW_SHOW);
                     ShowWindow(button4, SW_SHOW);
                     current_user=NULL;
+                    InvalidateRect(hWnd, NULL, TRUE);
+                    UpdateWindow(hWnd);
+                    break;
+                }
+                case 270:{//accept
+                    makefriends(current_user,current_user->friend_request->first->user);
+                    printf("ACCEPTED");
+                    dequeue(current_user);
+                    printf("ACCEPTED");
+                    printf("firndes:%d",current_user->numfriends);
+                    InvalidateRect(hWnd, NULL, TRUE);
+                    UpdateWindow(hWnd);
+                    break;
+                }
+                case 271:{//deny
+                    dequeue(current_user);
+                    printf("DENAYED");
                     InvalidateRect(hWnd, NULL, TRUE);
                     UpdateWindow(hWnd);
                     break;
@@ -1020,9 +1058,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 FillRect(hdc, &recta, hBrush); // Pintar la ventana con el brush creado
                 DeleteObject(hBrush); // Liberar el brush creado
                 SetBkColor(hdc, RGB(100, 100, 125));
-                recta.top-=280;
+                recta.top-=450;
                 SetTextColor(hdc, RGB(0, 0, 0));
-                recta.top-=170;
                 hFont = CreateFont(115, 0, 0, 0, FW_NORMAL, BOLD_FONTTYPE, TRUE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial Black");
 
@@ -1179,7 +1216,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 FillRect(hdc, &rect10, hBrush);
                 DeleteObject(hBrush);
 
-                print_screen_publi(current_user,hdc);
+                print_screen_publi(current_user,hdc,aser);
 
             }
             else if (i==16){ //VER SOLICITUDES ENTRANTES
@@ -1192,15 +1229,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 hFont = CreateFont(42, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
-
+                print_screen_fr(current_user,hdc);
             }
             else if (i==17){//Enviar solicitud, menu de la persona que buscamos
-                hBrush = CreateSolidBrush(RGB(0, 0, 51)); // Crear un brush con el color deseado (en este caso, azul)
+                hBrush = CreateSolidBrush(RGB(0, 0, 204)); // Crear un brush con el color deseado (en este caso, azul)
                 RECT rect;
                 GetClientRect(hWnd, &rect);
                 FillRect(hdc, &rect, hBrush); // Pintar la ventana con el brush creado
                 DeleteObject(hBrush); // Liberar el brush creado
-                SetBkColor(hdc, RGB(0, 0, 51));
+                SetBkColor(hdc, RGB(0, 0, 204));
                 hFont = CreateFont(42, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
                 hOldFont = (HFONT)SelectObject(hdc, hFont);

@@ -45,7 +45,7 @@ void send_friend_request(User** list,User** user,char* name) {
     User *newfriend = find_user(name, *list); //se encuentra al ususari que se quiere añadir
     if (newfriend == NULL) printf("Invalid Name\n"); //si no existe se notifica
     else if (are_friends(**user, *newfriend) == TRUE || friend_request_already(**user, *newfriend)  == TRUE
-    || friend_request_already(*newfriend, **user) ==TRUE || newfriend == (*user) ){
+             || friend_request_already(*newfriend, **user) ==TRUE || newfriend == (*user) ){
         //si ya son amigos o la petición había sido enviada o recibida del usuario, entonces lo notifica
         printf("Request already sent or Already friends\n");
     }
@@ -58,6 +58,7 @@ void send_friend_request(User** list,User** user,char* name) {
             (newfriend)->friend_request->first = node; //el primero será el último
         }else{//si no es el único de la lista
             node->prev = (newfriend)->friend_request->last; //el previo al nodo será el anterior último
+            (newfriend)->friend_request->last->next=node;
         }
         (newfriend)->friend_request->last = node; //estamos encolando, así que el nuevo elemento siempre será el último
     }
@@ -78,7 +79,7 @@ void makefriends(User* u1, User* u2) {
     u1->friends[u1->numfriends] = u2;
     u1->numfriends++;
     //el otro también se hace amigo
-    u2->friends[u1->numfriends] = u2;
+    u2->friends[u2->numfriends] = u1;
     u2->numfriends++;
 }
 

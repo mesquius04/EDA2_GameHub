@@ -30,14 +30,14 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/untitled16.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/untitled16.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/queue_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/queue_functions.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/queue_functions.h" beforeDir="false" afterPath="$PROJECT_DIR$/queue_functions.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visual_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/visual_functions.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visual_functions.h" beforeDir="false" afterPath="$PROJECT_DIR$/visual_functions.h" afterDir="false" />
     </list>
     <list id="71eb45bd-8ba4-4b85-8f28-6b16bd6ceccb" name="Changes by aalex" comment="" />
     <list id="dbab221a-5f81-455b-89a8-31239e3b61b6" name="Changes by alexd" comment="Changes by alexd" />
-    <list id="524b5df1-64e6-4b3e-8ebd-6cd314262809" name="Changes by Tu" comment="">
-      <change beforePath="$PROJECT_DIR$/queue_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/queue_functions.c" afterDir="false" />
-    </list>
+    <list id="524b5df1-64e6-4b3e-8ebd-6cd314262809" name="Changes by Tu" comment="Changes by Tu" />
     <list id="c5427c62-9ca9-470c-91d9-6b58042e43b3" name="Changes by u213937" comment="" />
     <list id="4fc915c5-2daa-4908-baeb-b283edea9b4e" name="Changes by u214576" comment="Changes by u214576" />
     <list id="79737fd2-93f4-4b5f-b3ba-1ba5b63a368d" name="Changes by Usuario" comment="Changes by Usuario" />
@@ -277,7 +277,9 @@
       <workItem from="1685978548349" duration="8007000" />
       <workItem from="1686040446825" duration="1842000" />
       <workItem from="1686042581721" duration="2282000" />
-      <workItem from="1686051070610" duration="5997000" />
+      <workItem from="1686051070610" duration="6250000" />
+      <workItem from="1686062284179" duration="865000" />
+      <workItem from="1686068886828" duration="7348000" />
     </task>
     <task id="LOCAL-00001" summary="fitxer bo">
       <created>1682425595116</created>
@@ -426,7 +428,21 @@
       <option name="project" value="LOCAL" />
       <updated>1686044273176</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="a">
+      <created>1686057355565</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1686057355565</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Changes by Tu">
+      <created>1686057371675</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1686057371675</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -453,8 +469,8 @@
     <MESSAGE value="Add files via upload&#10;&#10;CLASSE 2/6" />
     <MESSAGE value="Changes by alexd" />
     <MESSAGE value="Changes by Usuario" />
-    <MESSAGE value="Changes by Tu" />
     <MESSAGE value="a" />
-    <option name="LAST_COMMIT_MESSAGE" value="a" />
+    <MESSAGE value="Changes by Tu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes by Tu" />
   </component>
 </project>
