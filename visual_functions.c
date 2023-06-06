@@ -5,6 +5,23 @@
 #include <stdio.h>
 #include <CommCtrl.h>
 #include "main.h"
+#include "dictionary.h"
+void print_screen_trend(HDC hdc,Dict* dict){
+    RECT rect = {400, 50, 1302, 727 };
+    int top[10] = {0,0,0,0,0,0,0,0,0,0};
+    top_10(top,dict);
+    rect.top+=20;
+    rect.bottom+=20;
+    for (int b = 0; b<10; b++){     //imprimir top 10
+        char trend_word[100];
+        sprintf(trend_word, "%d. '%s' con %d repeticiones.", b+1, dict->items[top[b]].key, dict->items[top[b]].count);
+        if (top[b] != 0){
+            rect.top+=60;
+            rect.bottom+=60;
+            DrawText(hdc, trend_word, -1, &rect, DT_LEFT);
+        }
+    }
+}
 void print_screen_error(HDC hdc){
     RECT rect = {1220, 560, 1420, 620 };
     DrawText(hdc, "Email debe terminar\ncon '@gmail.com'!!", -1, &rect, DT_LEFT);

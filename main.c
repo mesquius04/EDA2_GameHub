@@ -9,24 +9,28 @@
 #include "user_functions.h"
 HINSTANCE hInst;
 HBRUSH hBrush;
-int LOGGED=FALSE;
 User* current_user;
 #define MAX_LENGHT 20
-char username[30],usersearch[30],userlogin[30],userpass[30],new_publi[300],password1[30],password2[30],newname[MAX_LENGTH],age[3],newhobbie[MAX_LENGTH],newemail[MAX_LENGHT],newcity[MAX_LENGTH];
+char username[30],usersearch[30],searchfr[30],userlogin[30],userpass[30],new_publi[300],password1[30],password2[30],newname[MAX_LENGTH],age[3],newemail[MAX_LENGHT],newcity[MAX_LENGTH];
 User new_user;
 int condition=0,condition2=0,condition3=0,condition4=0,condition5=0,condition6=0;
 User* list_of_user = NULL;
 Dict* dict;
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-HWND button1,button2,button3,button4,button5,buttonLIST,button388,button_next_post,button_prev_post,button6,button7,button8,button9,button10,button188,buttonCHAT,button288,button_me,button_log_out,button11,button12,button66,buttonFR,buttonFRprev,buttonFRcheck,buttoncreatepubli,buttonshowpubli,hEditControlCHAT,hEditControlFR,hEditControl22,hEditControl33,hEditControl,hEditControl2,hEditControl3,hEditControl4,hEditControl5,hEditControl6,hEditControl7,hEditControl7_1,hEditControl7_2,hEditControl7_3,hEditControl7_4,hEditControl8;
+HWND button1,button2,button3,button4,button5,buttonLIST,buttonSendFR,button488,button388,button_next_post,button_prev_post,button6,button7,button8,button9,button10,button188,buttonCHAT,button288,button_me,button_log_out,button11,button12,button66,buttonFR,buttonFRprev,buttonFRcheck,buttoncreatepubli,buttonshowpubli,hEditControlCHAT,hEditControlFR,hEditControl22,hEditControl33,hEditControl,hEditControl2,hEditControl3,hEditControl4,hEditControl5,hEditControl6,hEditControl7,hEditControl7_1,hEditControl7_2,hEditControl7_3,hEditControl7_4,hEditControl8;
 int i=0,h=0,k=0,error=0,pass_error=0;
 
+//Funcion principal de app de Windows
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-    HWND hWnd;
-    MSG msg;
-    WNDCLASS wc;
-    hInst = hInstance;
-    ZeroMemory(&wc, sizeof(WNDCLASS));
+    //Declaramos variables:
+    HWND hWnd;//Identificador de la ventana
+    MSG msg;//Mensajes de la ventana
+    WNDCLASS wc;//Estructura de la clase de la ventana
+    hInst = hInstance;//copiamos para uso posterior
+
+    ZeroMemory(&wc, sizeof(WNDCLASS));//Ponemos a 0 todos los bytes de wc
+
+    //Configuramos los miembros de la estructura wc
     wc.lpfnWndProc = WndProc;
     wc.hInstance = hInstance;
     wc.hCursor = LoadCursor(NULL, IDC_ARROW);
@@ -35,21 +39,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 
 
-    RegisterClass(&wc);
+    RegisterClass(&wc);//Registramos la classe, nos permitirá crear la ventana
 
     // Crear finestra
-    hWnd = CreateWindow("MyWindowClass", "GAMEHUB", WS_OVERLAPPEDWINDOW, 77, 43, 1382, 777, NULL, NULL, hInstance, NULL);
-    ShowWindow(hWnd, nCmdShow);
-    SetClassLongPtr(hWnd, GCLP_HBRBACKGROUND, (LONG)GetStockObject(LTGRAY_BRUSH));
+    hWnd = CreateWindow("MyWindowClass", "GAMEHUB", WS_OVERLAPPEDWINDOW, 77, 43, 1382, 777, NULL, NULL, hInstance, NULL);//Nombre y tamaño de la ventana
+    ShowWindow(hWnd, nCmdShow);//mostrarla
 
-    ShowWindow(hWnd, nCmdShow);
-
-    while (GetMessage(&msg, NULL, 0, 0)) {
-        TranslateMessage(&msg);
-        DispatchMessage(&msg);
+    while (GetMessage(&msg, NULL, 0, 0)) {//Manejamos mensajes de ventana
+        TranslateMessage(&msg);//traducimos el mensaje para la interpretacion
+        DispatchMessage(&msg);//enviamos el mensaje a WndProc para su procesamiento
     }
 
-    return msg.wParam;
+    return msg.wParam;//retornamos el WParam del ultimo mensaje, tipicamente el codigo de salida de la app (0) despues del WM_DESTROY.
 }
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
@@ -305,6 +306,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     hInst,
                     NULL
             );
+            button488 = CreateWindowEx(
+                    0,
+                    "BUTTON",
+                    "BACK",
+                    SW_HIDE | WS_CHILD | BS_DEFPUSHBUTTON,
+                    10, 10, 82, 40,
+                    hWnd,
+                    (HMENU)488,
+                    hInst,
+                    NULL
+            );
             button1 = CreateWindowEx(
                     0,
                     "BUTTON",
@@ -358,6 +370,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     1182, 612, 100, 65,
                     hWnd,
                     (HMENU)208,
+                    hInst,
+                    NULL
+            );
+            buttonSendFR = CreateWindowEx(
+                    0,
+                    "BUTTON",
+                    "SEND",
+                    SW_HIDE | WS_CHILD | BS_DEFPUSHBUTTON,
+                    1182, 612, 100, 65,
+                    hWnd,
+                    (HMENU)260,
                     hInst,
                     NULL
             );
@@ -596,16 +619,43 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     break;}
                 case 66: //FRIEND REQUEST SEND
                 {
-                    char searchfr[30];
                     GetWindowText(hEditControlFR,searchfr, 30);
                     SetWindowText(hEditControlFR, "");
                     if (find_user(searchfr,list_of_user)!=NULL){
-                        send_friend_request(&list_of_user,&current_user,searchfr); //ROMAN MIRA AIXÒ (aqui cridem la funció)
-                        printf("\nSortim de la funció");
+                        i=17;
+                        ShowWindow(hEditControlFR,SW_HIDE);
+                        ShowWindow(buttonFR,SW_HIDE);
+                        ShowWindow(button388,SW_HIDE);
+
+                        ShowWindow(button488,SW_SHOW);
+                        ShowWindow(buttonSendFR,SW_SHOW);
+                        InvalidateRect(hWnd, NULL, TRUE);
+                        UpdateWindow(hWnd);
+                        break;
                     }
-                    else printf("\nNo registrat, SOLICITUD ERROR.");
-
-
+                    break;
+                }
+                case 260:{
+                    send_friend_request(&list_of_user,&current_user,searchfr); //ROMAN MIRA AIXÒ (aqui cridem la funció)
+                    ShowWindow(hEditControlFR,SW_SHOW);
+                    ShowWindow(buttonFR,SW_SHOW);
+                    ShowWindow(button388,SW_SHOW);
+                    i=12;
+                    ShowWindow(button488,SW_HIDE);
+                    ShowWindow(buttonSendFR,SW_HIDE);
+                    InvalidateRect(hWnd, NULL, TRUE);
+                    UpdateWindow(hWnd);
+                    break;
+                }
+                case 488:{
+                    ShowWindow(hEditControlFR,SW_SHOW);
+                    ShowWindow(buttonFR,SW_SHOW);
+                    ShowWindow(button388,SW_SHOW);
+                    i=12;
+                    ShowWindow(button488,SW_HIDE);
+                    ShowWindow(buttonSendFR,SW_HIDE);
+                    InvalidateRect(hWnd, NULL, TRUE);
+                    UpdateWindow(hWnd);
                     break;
                 }
                 case 30:
@@ -632,16 +682,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                         ShowWindow(button_log_out,SW_SHOW);
                         ShowWindow(buttonFRprev,SW_SHOW);
                         InvalidateRect(hWnd, NULL, TRUE);
-                        UpdateWindow(hWnd);
-                        LOGGED=TRUE;}
+                        UpdateWindow(hWnd);}
                     break;
                 }
 
 
-                case 100:{ //NEW PUBLI CASE. ALEX!!
+                case 100:{ //NEW PUBLI CASE
                     GetWindowText(hEditControlCHAT,new_publi,120);
                     SetWindowText(hEditControlCHAT, "");
                     new_post(new_publi,dict, current_user);
+                    printf("\nNew msg: %s",new_publi);
                     int top[10] = {0,0,0,0,0,0,0,0,0,0};
                     //0 -> elemento está vacío
                     top_10(top,dict);
@@ -650,10 +700,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                             printf("[%d} Pos%d: %s, %d times\n", top[b], b+1, dict->items[top[b]].key,dict->items[top[b]].count);
                         }
                     }
-                    printf("\nNew msg: %s",new_publi);
                     UpdateWindow(hWnd);
                     break;
                 }
+
 
 
                 case 188:{//BACK; FIRST ONE
@@ -735,6 +785,23 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(button_log_out,SW_HIDE);
                     ShowWindow(hEditControlFR,SW_SHOW);
                     ShowWindow(buttonFR,SW_SHOW);
+                    ShowWindow(button388,SW_SHOW);
+                    InvalidateRect(hWnd, NULL, TRUE);
+                    UpdateWindow(hWnd);
+                    break;
+                }
+                case 201:{//Ver Solicitudes Entrantes
+                    i=16;
+                    ShowWindow(buttonLIST,SW_HIDE);
+                    ShowWindow(buttonshowpubli,SW_HIDE);
+                    ShowWindow(buttonFRcheck,SW_HIDE);
+                    ShowWindow(button_me,SW_HIDE);
+                    ShowWindow(button_log_out,SW_HIDE);
+                    ShowWindow(buttoncreatepubli,SW_HIDE);
+                    ShowWindow(buttonCHAT,SW_HIDE);
+                    ShowWindow(hEditControlCHAT,SW_HIDE);
+                    ShowWindow(buttonFRprev,SW_HIDE);
+
                     ShowWindow(button388,SW_SHOW);
                     InvalidateRect(hWnd, NULL, TRUE);
                     UpdateWindow(hWnd);
@@ -825,7 +892,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(button2, SW_SHOW);
                     ShowWindow(button3, SW_SHOW);
                     ShowWindow(button4, SW_SHOW);
-                    LOGGED=FALSE;
                     current_user=NULL;
                     InvalidateRect(hWnd, NULL, TRUE);
                     UpdateWindow(hWnd);
@@ -835,11 +901,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             break;
         }
 
-        case WM_DESTROY:
+        case WM_DESTROY:{
+            free(dict);
             free(list_of_user);
-            printf("\n\nVuelva pronto!\n\nExecuccion finalizada correctamente.");
+            printf("\n\nVuelva pronto!\n\nEjecucion finalizada correctamente.\n");
             PostQuitMessage(00);
-            break;
+            break;}
+
+
 
         case WM_PAINT:
         {
@@ -850,7 +919,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
 
             HFONT hOldFont = (HFONT)SelectObject(hdc, hFont);
-            if (i==0){
+            if (i==0){//Ventana inicial.
                 hBrush = CreateSolidBrush(RGB(70, 0, 70));
                 LOGFONT lf = { 0 };
                 GetObject(hFont, sizeof(LOGFONT), &lf);
@@ -858,11 +927,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 lf.lfItalic=BOLD_FONTTYPE;
                 strcpy(lf.lfFaceName,"Courier New Black");
                 HFONT hNewFont = CreateFontIndirect(&lf);
-                SendMessage(button4, WM_SETFONT, (WPARAM)hNewFont, TRUE);
+                SendMessage(button4, WM_SETFONT, (WPARAM)hNewFont, TRUE);//Elegimos la fuente del boton (previamente definida como hNewFont)
                 SendMessage(button3, WM_SETFONT, (WPARAM)hNewFont, TRUE);
                 SendMessage(button2, WM_SETFONT, (WPARAM)hNewFont, TRUE);
                 SendMessage(button1, WM_SETFONT, (WPARAM)hNewFont, TRUE);
-                SetWindowText(button4, "SALIR");
+
+                SetWindowText(button4, "SALIR"); //Ponemos el texto que queremos dentro
                 SetWindowText(button1, "CREAR NUEVA CUENTA");
                 SetWindowText(button2, "LISTADO DE GAMERS");
                 SetWindowText(button3, "INICIAR SESION");
@@ -870,56 +940,52 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 // Seleccionar la fuente en el contexto del dispositivo
                 hFont = CreateFont(200, 95, 0, 0, FW_NORMAL, BOLD_FONTTYPE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial Black");
-                SetBkColor(hdc, RGB(70, 0, 70));
-                hOldFont = (HFONT)SelectObject(hdc, hFont);
-                SetTextColor(hdc, RGB(200, 160, 200));
-                GetClientRect(hWnd, &rect);
-                GetClientRect(hWnd, &rect);
-                FillRect(hdc, &rect, hBrush); // Pintar la ventana con el brush creado
-                DeleteObject(hBrush); // Liberar el brush creado
-                rect.top-=360;
-                DrawText(hdc, "GAMEHUB", -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+                SetBkColor(hdc, RGB(70, 0, 70));//Color de subrallado (fondo del texto)
+                hOldFont = (HFONT)SelectObject(hdc, hFont);//Aplicamos fuente
+                SetTextColor(hdc, RGB(200, 160, 200));//Elegimos el color del texto
 
-                if (LOGGED){
-                    hFont = CreateFont(20, 0, 0, 0, FW_NORMAL, BOLD_FONTTYPE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
-                                       CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Courier New Black");
-                    hOldFont = (HFONT)SelectObject(hdc, hFont);
-                    RECT rect5 = { 30, 30, 200, 50 };
-                    DrawText(hdc,new_user.user,-1,&rect5,DT_LEFT | DT_VCENTER);
-                }}
-            else if (i==1){
-                hBrush = CreateSolidBrush(RGB(100, 100, 125)); // Crear un brush con el color deseado (en este caso, azul)
-                RECT rect;
                 GetClientRect(hWnd, &rect);
                 FillRect(hdc, &rect, hBrush); // Pintar la ventana con el brush creado
+
                 DeleteObject(hBrush); // Liberar el brush creado
-                SetBkColor(hdc, RGB(100, 100, 125));
+                rect.top-=360;//Nos adaptamos el rect para escribir posteriormente
+                DrawText(hdc, "GAMEHUB", -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);}//Escribimos "GAMEHUB" usando la fuente y el color que hemos escojido, lo centramos vertical y centralmente y lo subrallamos.
+            else if (i==1){//Primera parte del registro de nuevo usuario
+                hBrush = CreateSolidBrush(RGB(100, 100, 125)); // Crear un brush con el color deseado (en este caso, azul)
+
+                GetClientRect(hWnd, &rect);
+                FillRect(hdc, &rect, hBrush); // Pintar la ventana con el brush creado
+
+                DeleteObject(hBrush); // Liberar el brush creado
+                SetBkColor(hdc, RGB(100, 100, 125));//Color de subrallado (fondo del texto)
+
                 if (error==1){
-                    print_screen_error3(hdc);
+                    print_screen_error3(hdc);//ver en visual_functions.c
                 }
                 else if (error==2){
-                    print_screen_error2(hdc);
+                    print_screen_error2(hdc);//ver en visual_functions.c
                 }
                 else if (error==3){
-                    print_screen_error2(hdc);
-                    print_screen_error3(hdc);
+                    print_screen_error2(hdc);//ver en visual_functions.c
+                    print_screen_error3(hdc);//ver en visual_functions.c
                 }
                 if (pass_error==1){
-                    print_screen_error5(hdc);
+                    print_screen_error5(hdc);//ver en visual_functions.c
                 }
-                rect.top-=280;
-                SetTextColor(hdc, RGB(0, 0, 0));
-                rect.top-=170;
+                rect.top-=450; //Adaptamos el rect
+                SetTextColor(hdc, RGB(0, 0, 0));//Pintamos de negro nuestro texto (nuevo color)
+                //Escribimos:
                 hFont = CreateFont(110, 0, 0, 0, FW_NORMAL, BOLD_FONTTYPE, TRUE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial Black");
 
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
                 DrawText(hdc, "REGISTRO DE NUEVO USUARIO", -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
-                rect.top+=260;
+
+                rect.top+=260;//Adaptamos el rect
 
                 hFont = CreateFont(25, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Courier New Black");
-                hOldFont = (HFONT)SelectObject(hdc, hFont);
+                hOldFont = (HFONT)SelectObject(hdc, hFont); //Cambiamos la fuente
                 SetTextColor(hdc,RGB(0,0,0));
                 RECT rect2 = { 80, 320, 300, 360 };
                 DrawText(hdc, "USER:", -1, &rect2, DT_LEFT | DT_VCENTER);
@@ -928,7 +994,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 RECT rect4 = { 80, 520, 300, 580 };
                 DrawText(hdc, "CONFIRMAR \nPASSWORD:", -1, &rect4, DT_LEFT | DT_VCENTER);
             }
-            else if (i==2){
+            else if (i==2){//Listado de users seleccionado
                 hBrush = CreateSolidBrush(RGB(102, 0, 51)); // Crear un brush con el color deseado (en este caso, azul)
                 RECT rect;
                 GetClientRect(hWnd, &rect);
@@ -945,9 +1011,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 hFont = CreateFont(24, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
-                print_screen_users(list_of_user,hdc);
+                print_screen_users(list_of_user,hdc);//ver en visual_functions.c
             }
-            else if (i==3){
+            else if (i==3){//Iniciar sesión seleccionado
                 hBrush = CreateSolidBrush(RGB(100, 100, 125)); // Crear un brush con el color deseado (en este caso, azul)
                 RECT recta;
                 GetClientRect(hWnd, &recta);
@@ -976,7 +1042,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 DrawText(hdc, "PASSWORD:", -1, &rect3, DT_LEFT | DT_VCENTER);
             }
 
-            else if (i==7){
+            else if (i==7){//Segunda parte del registro de nuevo usuario
                 hBrush = CreateSolidBrush(RGB(100, 100, 125));
                 RECT rect;
                 GetClientRect(hWnd, &rect);
@@ -986,7 +1052,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 rect.top-=280;
                 SetTextColor(hdc, RGB(0, 0, 0));
                 if (error==2){
-                    print_screen_error4(hdc);
+                    print_screen_error4(hdc);//ver en visual_functions.c
                 }
                 rect.top-=170;
                 hFont = CreateFont(110, 0, 0, 0, FW_NORMAL, BOLD_FONTTYPE, TRUE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
@@ -1015,9 +1081,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Courier New Black");
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
                 if(k==1){
-                    print_screen_error(hdc);}
+                    print_screen_error(hdc);}//ver en visual_functions.c
             }
-            else if (i==10){
+            else if (i==10){//Menú principal, despues de iniciar sesion.Incluye casi todas las funcionalidades
                 RECT rectCHAT = {320, 0, 1382, 777 };
                 SetWindowText(button_me, current_user->user);
                 hBrush = CreateSolidBrush(RGB(0, 0, 0));
@@ -1036,15 +1102,23 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 hBrush = CreateSolidBrush(RGB(0, 0, 0));
                 FillRect(hdc, &rectCombined, hBrush);
                 DeleteObject(hBrush);
-
                 hBrush = CreateSolidBrush(RGB(100, 100, 125));
                 FillRect(hdc, &rect10, hBrush);
                 DeleteObject(hBrush);
-
                 DeleteObject(hBrush);
-                SetBkColor(hdc, RGB(100, 100, 125));
+                SetBkColor(hdc, RGB(0, 0, 0));
+                SetTextColor(hdc,RGB(255,255,255));
+                hFont = CreateFont(48, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
+                                   CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Courier New Black");
+                hOldFont = (HFONT)SelectObject(hdc, hFont);
+                RECT rect = {400, 50, 1302, 727 };
+                DrawText(hdc, "TENDENCIAS DE LA SEMANA", -1, &rect, DT_CENTER | BOLD_FONTTYPE | DT_SINGLELINE);
+                hFont = CreateFont(32, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
+                                   CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Courier New Black");
+                hOldFont = (HFONT)SelectObject(hdc, hFont);
+                print_screen_trend(hdc,dict);
             }
-            else if (i==12){
+            else if (i==12){//Listado de usuarios para mandar friend request
                 hBrush = CreateSolidBrush(RGB(0, 0, 51)); // Crear un brush con el color deseado (en este caso, azul)
                 RECT rect;
                 GetClientRect(hWnd, &rect);
@@ -1061,15 +1135,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 hFont = CreateFont(24, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
-                print_screen_users(list_of_user,hdc);
+                print_screen_users(list_of_user,hdc);//ver en visual_functions.c
             }
-            else if (i==13){
-                hBrush = CreateSolidBrush(RGB(25, 121, 169)); // Crear un brush con el color deseado (en este caso, azul)
+            else if (i==13){ //Nueva publicacion seleccionada
+                hBrush = CreateSolidBrush(RGB(178, 102, 255)); // Crear un brush con el color deseado (en este caso, azul)
                 RECT rect;
                 GetClientRect(hWnd, &rect);
                 FillRect(hdc, &rect, hBrush);
             }
-            else if (i==14){
+            else if (i==14){//VENTANA ME, menu de usuario
                 hBrush = CreateSolidBrush(RGB(178, 102, 255)); // Crear un brush con el color deseado (en este caso, azul)
                 RECT rect;
                 GetClientRect(hWnd, &rect);
@@ -1081,9 +1155,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
                 print_me_screen(current_user,hdc);
             }
-            else if (i==15){
+            else if (i==15){ //VER PUBLICACIONES
                 RECT rectCHAT= {0, 0, 1382, 777 };
                 hBrush = CreateSolidBrush(RGB(100, 100, 125));
+
                 FillRect(hdc, &rectCHAT, hBrush);
                 DeleteObject(hBrush);
 
@@ -1106,6 +1181,30 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
                 print_screen_publi(current_user,hdc);
 
+            }
+            else if (i==16){ //VER SOLICITUDES ENTRANTES
+                hBrush = CreateSolidBrush(RGB(178, 102, 255)); // Crear un brush con el color deseado (en este caso, azul)
+                RECT rect;
+                GetClientRect(hWnd, &rect);
+                FillRect(hdc, &rect, hBrush); // Pintar la ventana con el brush creado
+                DeleteObject(hBrush); // Liberar el brush creado
+                SetBkColor(hdc, RGB(178, 102, 255));
+                hFont = CreateFont(42, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
+                                   CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
+                hOldFont = (HFONT)SelectObject(hdc, hFont);
+
+            }
+            else if (i==17){//Enviar solicitud, menu de la persona que buscamos
+                hBrush = CreateSolidBrush(RGB(0, 0, 51)); // Crear un brush con el color deseado (en este caso, azul)
+                RECT rect;
+                GetClientRect(hWnd, &rect);
+                FillRect(hdc, &rect, hBrush); // Pintar la ventana con el brush creado
+                DeleteObject(hBrush); // Liberar el brush creado
+                SetBkColor(hdc, RGB(0, 0, 51));
+                hFont = CreateFont(42, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
+                                   CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
+                hOldFont = (HFONT)SelectObject(hdc, hFont);
+                print_me_screen(find_user(searchfr,list_of_user),hdc);
             }
             SelectObject(hdc, hOldFont);
             DeleteObject(hFont);
