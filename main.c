@@ -18,7 +18,7 @@ int condition=0,condition2=0,condition3=0,condition4=0,condition5=0,condition6=0
 User* list_of_user = NULL;
 Dict* dict;
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-HWND button1,button2,button3,button4,button5,buttonLIST,button388,button_next_post,button_prev_post,button6,button7,button8,button9,button10,button188,buttonCHAT,button288,button_me,button_log_out,button11,button12,button66,buttonFR,buttonFRprev,buttonFRcheck,buttoncreatepubli,buttonshowpubli,hEditControlCHAT,hEditControlFR,hEditControl22,hEditControl33,hEditControl,hEditControl2,hEditControl3,hEditControl4,hEditControl5,hEditControl6,hEditControl7,hEditControl8;
+HWND button1,button2,button3,button4,button5,buttonLIST,button388,button_next_post,button_prev_post,button6,button7,button8,button9,button10,button188,buttonCHAT,button288,button_me,button_log_out,button11,button12,button66,buttonFR,buttonFRprev,buttonFRcheck,buttoncreatepubli,buttonshowpubli,hEditControlCHAT,hEditControlFR,hEditControl22,hEditControl33,hEditControl,hEditControl2,hEditControl3,hEditControl4,hEditControl5,hEditControl6,hEditControl7,hEditControl7_1,hEditControl7_2,hEditControl7_3,hEditControl7_4,hEditControl8;
 int i=0,h=0,k=0,error=0,pass_error=0;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
@@ -73,20 +73,28 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
             SendMessage(hEditControl, WM_SETFONT, (WPARAM)hFont, TRUE);
 
-            hEditControl2 = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL,
+            hEditControl2 = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL | ES_PASSWORD,
                                          300, 420, 800, 70, hWnd, (HMENU)21, hInst, NULL);//Cada Editcontrol té: 1.Nom, 2.Text inicial, 3.Propietats i
-            hEditControl3 = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL,
+            hEditControl3 = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL | ES_PASSWORD,
                                          300, 510, 800, 70, hWnd, (HMENU)22, hInst, NULL);
             hEditControl4 = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL,
-                                         300, 200, 800, 60, hWnd, (HMENU)23, hInst, NULL);
+                                         300, 200, 900, 60, hWnd, (HMENU)23, hInst, NULL);
             hEditControl5 = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL,
-                                         300, 300, 800, 60, hWnd, (HMENU)24, hInst, NULL);
+                                         300, 300, 900, 60, hWnd, (HMENU)24, hInst, NULL);
             hEditControl6 = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL,
-                                         300, 400, 800, 60, hWnd, (HMENU)25, hInst, NULL);
+                                         300, 400, 900, 60, hWnd, (HMENU)25, hInst, NULL);
             hEditControl7 = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL,
-                                         300, 500, 800, 60, hWnd, (HMENU)26, hInst, NULL);
+                                         300, 500, 170, 60, hWnd, (HMENU)26, hInst, NULL);
             hEditControl8 = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL,
-                                         300, 600, 800, 60, hWnd, (HMENU)27, hInst, NULL);
+                                         300, 600, 900, 60, hWnd, (HMENU)27, hInst, NULL);
+            hEditControl7_1 = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL,
+                                         482, 500, 170, 60, hWnd, (HMENU)2743, hInst, NULL);
+            hEditControl7_2 = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL,
+                                           664, 500, 170, 60, hWnd, (HMENU)2217, hInst, NULL);
+            hEditControl7_3 = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL,
+                                           847, 500, 170, 60, hWnd, (HMENU)1227, hInst, NULL);
+            hEditControl7_4 = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL,
+                                           1030, 500, 170, 60, hWnd, (HMENU)2527, hInst, NULL);
             button66 = CreateWindowEx(
                     0,
                     "BUTTON",
@@ -100,7 +108,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             );
             hEditControl22 = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL,
                                           350, 300, 800, 70, hWnd, (HMENU)28, hInst, NULL);
-            hEditControl33 = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL,
+            hEditControl33 = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL | ES_PASSWORD,
                                           350, 420, 800, 70, hWnd, (HMENU)29, hInst, NULL);
             hEditControlFR = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL,
                                           620, 641, 620, 55, hWnd, (HMENU)30, hInst, NULL);
@@ -211,6 +219,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             SendMessage(hEditControl5, WM_SETFONT, (WPARAM)hFont, TRUE);
             SendMessage(hEditControl6, WM_SETFONT, (WPARAM)hFont, TRUE);
             SendMessage(hEditControl7, WM_SETFONT, (WPARAM)hFont, TRUE);
+            SendMessage(hEditControl7_1, WM_SETFONT, (WPARAM)hFont, TRUE);
+            SendMessage(hEditControl7_2, WM_SETFONT, (WPARAM)hFont, TRUE);
+            SendMessage(hEditControl7_3, WM_SETFONT, (WPARAM)hFont, TRUE);
+            SendMessage(hEditControl7_4, WM_SETFONT, (WPARAM)hFont, TRUE);
             SendMessage(hEditControl8, WM_SETFONT, (WPARAM)hFont, TRUE);
             SendMessage(hEditControl22, WM_SETFONT, (WPARAM)hFont, TRUE);
             SendMessage(hEditControl33, WM_SETFONT, (WPARAM)hFont, TRUE);
@@ -249,56 +261,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     hInst,
                     NULL
             );
-            button8 = CreateWindowEx(
-                    0,
-                    "BUTTON",
-                    "Apply",
-                    SW_HIDE | WS_CHILD | BS_DEFPUSHBUTTON,
-                    1100, 199, 100, 63,
-                    hWnd,
-                    (HMENU)9,
-                    hInst,
-                    NULL
-            );
-            button9 = CreateWindowEx(
-                    0,
-                    "BUTTON",
-                    "Apply",
-                    SW_HIDE | WS_CHILD | BS_DEFPUSHBUTTON,
-                    1100, 299, 100, 63,
-                    hWnd,
-                    (HMENU)10,
-                    hInst,
-                    NULL
-            );
-            button10 = CreateWindowEx(
-                    0,
-                    "BUTTON",
-                    "Apply",
-                    SW_HIDE | WS_CHILD | BS_DEFPUSHBUTTON,
-                    1100, 399, 100, 63,
-                    hWnd,
-                    (HMENU)11,
-                    hInst,
-                    NULL
-            );
-            button11 = CreateWindowEx(
-                    0,
-                    "BUTTON",
-                    "Apply",
-                    SW_HIDE | WS_CHILD | BS_DEFPUSHBUTTON,
-                    1100, 499, 100, 63,
-                    hWnd,
-                    (HMENU)12,
-                    hInst,
-                    NULL
-            );
             button12 = CreateWindowEx(
                     0,
                     "BUTTON",
-                    "Apply",
+                    "REGISTRAR",
                     SW_HIDE | WS_CHILD | BS_DEFPUSHBUTTON,
-                    1100, 599, 100, 63,
+                    1200, 596, 120, 69,
                     hWnd,
                     (HMENU)13,
                     hInst,
@@ -486,6 +454,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                         ShowWindow(hEditControl5, SW_SHOW);
                         ShowWindow(hEditControl6, SW_SHOW);
                         ShowWindow(hEditControl7, SW_SHOW);
+                        ShowWindow(hEditControl7_1, SW_SHOW);
+                        ShowWindow(hEditControl7_2, SW_SHOW);
+                        ShowWindow(hEditControl7_3, SW_SHOW);
+                        ShowWindow(hEditControl7_4, SW_SHOW);
                         ShowWindow(hEditControl8, SW_SHOW);
                         ShowWindow(button288,SW_SHOW);
                         ShowWindow(button8,SW_SHOW);
@@ -518,51 +490,47 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     }
                     break;
                 }
-                case 9:{
-                    if (strlen(newname)<=MAX_LENGTH){
-                        condition3=1;
-                        strcpy(new_user.name,newname);
-                        printf("\nname: %s",new_user.name);
-                    }
-                    break;
-                }
-                case 10:{
-                    if (strlen(age)<=3){
-                        int newage=0;
-                        for (int k=0;k<2;k++){
-                            newage*=10;
-                            newage+=(int)age[k]-48;
-                        }
-                        new_user.age=newage;
-                        condition4=1;
-                        printf("\nage: %d",new_user.age);
-                    }
-                    break;
-                }
-                case 11:{
-                    if (strlen(newcity)<=MAX_LENGTH){
-                        strcpy(new_user.city,newcity);
-                        printf("\ncity: %s",new_user.city);
-                        condition5=1;
-                    }
-                    break;
-                }
-                case 12:{
-                    if (strlen(newhobbie)<=MAX_LENGTH && h<MAX_HOBBIES){
-                        strcpy(new_user.hobbies[h],newhobbie);
-                        h++;
-                        condition6=1;
-                        SetWindowText(hEditControl7, "");
-                        printf("\nhobbie%d: %s",h,new_user.hobbies[h-1]);
-                    }
-                    break;
-                }
                 case 13:{
+                    GetWindowText(hEditControl8, newemail, 30);
                     if (strlen(newemail)<=MAX_LENGTH){
-                        GetWindowText(hEditControl8,newemail, 30);
+                        GetWindowText(hEditControl6, newcity, 30);
+                        GetWindowText(hEditControl4, newname, 30);
+                        GetWindowText(hEditControl5, age, 3);
+                        GetWindowText(hEditControl7, new_user.hobbies[0], 30);
+                        GetWindowText(hEditControl7_1, new_user.hobbies[1], 30);
+                        GetWindowText(hEditControl7_2, new_user.hobbies[2], 30);
+                        GetWindowText(hEditControl7_3, new_user.hobbies[3], 30);
+                        GetWindowText(hEditControl7_4,new_user.hobbies[4], 30);
+                        if (strlen(newcity)<=MAX_LENGTH){
+                            strcpy(new_user.city,newcity);
+                            printf("\ncity: %s",new_user.city);
+                            condition5=1;
+                        }
+                        if (strcmp(new_user.hobbies[0],"")!=0){
+                            strcpy(new_user.city,newcity);
+                            printf("\nhobbie1: %s",new_user.hobbies[0]);
+                            condition6=1;
+                        }
+                        if (strlen(newname)<=MAX_LENGTH){
+                            condition3=1;
+                            strcpy(new_user.name,newname);
+                            printf("\nname: %s",new_user.name);
+                        }
+                        if (strlen(age)<=3){
+                            int newage=0;
+                            for (int k=0;k<2;k++){
+                                newage*=10;
+                                newage+=(int)age[k]-48;
+                            }
+                            new_user.age=newage;
+                            condition4=1;
+                            printf("\nage: %d",new_user.age);
+                        }
                         strcpy(new_user.email,newemail);
+                        printf("\nCorreu: %s", new_user.email);
                         if (validar_email(newemail)) {
                             printf("\nCorreu: %s", new_user.email);
+                            printf("\n%d %d %d %d %d",condition3,condition4,condition5,condition6);
                             if (condition3 == 1 && condition4 == 1 && condition5 == 1 && condition6 == 1) {
                                 new_user.friends = NULL;
                                 add_user_to_list(&list_of_user, new_user);
@@ -571,11 +539,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                                 ShowWindow(hEditControl5, SW_HIDE);
                                 ShowWindow(hEditControl6, SW_HIDE);
                                 ShowWindow(hEditControl7, SW_HIDE);
+                                ShowWindow(hEditControl7_1, SW_HIDE);
+                                ShowWindow(hEditControl7_2, SW_HIDE);
+                                ShowWindow(hEditControl7_3, SW_HIDE);
+                                ShowWindow(hEditControl7_4, SW_HIDE);
                                 ShowWindow(hEditControl8, SW_HIDE);
                                 SetWindowText(hEditControl4, "");
                                 SetWindowText(hEditControl5, "");
                                 SetWindowText(hEditControl6, "");
                                 SetWindowText(hEditControl7, "");
+                                SetWindowText(hEditControl7_1, "");
+                                SetWindowText(hEditControl7_2, "");
+                                SetWindowText(hEditControl7_3, "");
+                                SetWindowText(hEditControl7_4, "");
                                 SetWindowText(hEditControl8, "");
                                 ShowWindow(button8, SW_HIDE);
                                 ShowWindow(button9, SW_HIDE);
@@ -618,35 +594,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 {
                     GetWindowText(hEditControl3, password2, 30);
                     break;}
-                case 23:
-                {
-                    GetWindowText(hEditControl4, newname, 30);
-                    break;}
-                case 24:
-                {
-                    GetWindowText(hEditControl5, age, 3);
-                    break;}
-                case 25:
-                {
-                    GetWindowText(hEditControl6, newcity, 30);
-                    break;}
-                case 26:
-                {
-                    GetWindowText(hEditControl7, newhobbie, 20);
-                    break;}
-                case 27:
-                {
-
-
-                    break;}
                 case 66: //FRIEND REQUEST SEND
                 {
                     char searchfr[30];
                     GetWindowText(hEditControlFR,searchfr, 30);
                     SetWindowText(hEditControlFR, "");
                     if (find_user(searchfr,list_of_user)!=NULL){
-                        printf("\nL'user existeix, SOLICITUD ENVIADA.");
                         send_friend_request(&list_of_user,&current_user,searchfr); //ROMAN MIRA AIXÒ (aqui cridem la funció)
+                        printf("\nSortim de la funció");
                     }
                     else printf("\nNo registrat, SOLICITUD ERROR.");
 

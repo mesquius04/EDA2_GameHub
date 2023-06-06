@@ -6,7 +6,7 @@
 #include <CommCtrl.h>
 #include "main.h"
 void print_screen_error(HDC hdc){
-    RECT rect = {1200, 600, 1400, 680 };
+    RECT rect = {1220, 560, 1420, 620 };
     DrawText(hdc, "Email debe terminar\ncon '@gmail.com'!!", -1, &rect, DT_LEFT);
 }
 

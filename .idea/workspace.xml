@@ -21,32 +21,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" name="Changes" comment="a">
-      <change afterPath="$PROJECT_DIR$/resources/user_list" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cache-v2-4a787547b0cece9c6fa5.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-e05b7c9143ccf9f8f588.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2023-06-02T10-04-54-0359.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cache-v2-6bc437c1f9a028b542c0.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2023-06-05T16-48-37-0505.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/main.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/main.c.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/queue_functions.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/queue_functions.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/user_functions.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/user_functions.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/visual_functions.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/visual_functions.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/untitled16.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/untitled16.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/user_list" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/user_list" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/user_functions.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user_list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/user_list" beforeDir="false" afterPath="$PROJECT_DIR$/resources/user_list" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visual_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/visual_functions.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visual_functions.h" beforeDir="false" afterPath="$PROJECT_DIR$/visual_functions.h" afterDir="false" />
     </list>
     <list id="71eb45bd-8ba4-4b85-8f28-6b16bd6ceccb" name="Changes by aalex" comment="" />
     <list id="dbab221a-5f81-455b-89a8-31239e3b61b6" name="Changes by alexd" comment="Changes by alexd" />
-    <list id="2aa72257-5412-4c30-b30e-ac666e8f8473" name="Changes by Tu" comment="Changes by Tu" />
+    <list id="2aa72257-5412-4c30-b30e-ac666e8f8473" name="Changes by Tu" comment="Changes by Tu">
+      <change beforePath="$PROJECT_DIR$/queue_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/queue_functions.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/user_functions.c" afterDir="false" />
+    </list>
     <list id="c5427c62-9ca9-470c-91d9-6b58042e43b3" name="Changes by u213937" comment="" />
     <list id="4fc915c5-2daa-4908-baeb-b283edea9b4e" name="Changes by u214576" comment="Changes by u214576" />
     <list id="79737fd2-93f4-4b5f-b3ba-1ba5b63a368d" name="Changes by Usuario" comment="Changes by Usuario" />
@@ -76,24 +74,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "last_opened_file_path": "C:/Users/marti/OneDrive/Escritorio/s3_students_code (1)",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "structure.view.defaults.are.configured": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/marti/OneDrive/Escritorio/s3_students_code (1)&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\marti\CLionProjects\GameHub\resources" />
@@ -101,11 +99,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="untitled16" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="untitled16" TARGET_NAME="untitled16" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="untitled16" RUN_TARGET_NAME="untitled16">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -288,7 +281,9 @@
       <workItem from="1685955309431" duration="6863000" />
       <workItem from="1685962272902" duration="57000" />
       <workItem from="1685962354305" duration="25000" />
-      <workItem from="1685978548349" duration="7954000" />
+      <workItem from="1685978548349" duration="8007000" />
+      <workItem from="1686040446825" duration="1842000" />
+      <workItem from="1686042581721" duration="1499000" />
     </task>
     <task id="LOCAL-00001" summary="fitxer bo">
       <created>1682425595116</created>
@@ -402,7 +397,21 @@
       <option name="project" value="LOCAL" />
       <updated>1685962319396</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="a">
+      <created>1685986595013</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1685986595013</updated>
+    </task>
+    <task id="LOCAL-00018" summary="a">
+      <created>1685986611250</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1685986611250</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -428,8 +437,8 @@
     <MESSAGE value="LAB 4" />
     <MESSAGE value="Add files via upload&#10;&#10;CLASSE 2/6" />
     <MESSAGE value="Changes by alexd" />
-    <MESSAGE value="a" />
     <MESSAGE value="Changes by Usuario" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes by Usuario" />
+    <MESSAGE value="a" />
+    <option name="LAST_COMMIT_MESSAGE" value="a" />
   </component>
 </project>
