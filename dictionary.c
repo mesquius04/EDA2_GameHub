@@ -174,16 +174,22 @@ void create_post (char* post, User* user){
     Publicacion* publi = malloc (sizeof(Publicacion));
     strcpy(publi->post, post);
     publi-> next = NULL;
+    Publicacion* post_aux = user->publicacion;
     //primera publicación usuario
     if (user->publicacion ==  NULL){
         user->publicacion = publi;
     }
     else{
-        while (user->publicacion->next != NULL){
+
+        while (post_aux->next != NULL){
             //nos quedamos con la última completa
-            user->publicacion = user->publicacion->next;
+            //user->publicacion = user->publicacion->next;
+            post_aux=post_aux->next;
+            printf("b");
         }
-        user->publicacion->next = publi;
+
+        //user->publicacion->next = publi;
+        post_aux->next = publi;
     }
 }
 

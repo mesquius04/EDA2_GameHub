@@ -10,10 +10,11 @@
 HINSTANCE hInst;
 HBRUSH hBrush;
 User* current_user;
+Publicacion* actual_post;
 #define MAX_LENGHT 20
 char username[30],usersearch[30],searchfr[30],userlogin[30],userpass[30],new_publi[300],password1[30],password2[30],newname[MAX_LENGTH],age[3],newemail[MAX_LENGHT],newcity[MAX_LENGTH];
 User new_user;
-int condition=0,aser=1,condition2=0,condition3=0,condition4=0,condition5=0,condition6=0;
+int condition=0,aser=0,condition2=0,condition3=0,condition4=0,condition5=0,condition6=0;
 User* list_of_user = NULL;
 Dict* dict;
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -60,7 +61,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     switch (msg) {
         case WM_CREATE:{ //Creem tots els elements que utlitzarem, EditControl per poder entrar text i Buttons per poder clickar
             dict = initialize_dictionary(1000);//Inicialitzem diccionari
-
             FILE* fp= fopen("../resources/user_list","r");//Obrim el fitxer que conté users inicials
             while (fscanf(fp,"%s %s %s %d %s h:%s %s %s %s %s %s",new_user.user,new_user.password,new_user.name,&new_user.age,new_user.city,new_user.hobbies[0],new_user.hobbies[1],new_user.hobbies[2],new_user.hobbies[3],new_user.hobbies[4],new_user.email)>0){
                 new_user.friend_request = NULL;
@@ -770,7 +770,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(button_me,SW_SHOW);
                     ShowWindow(button_log_out,SW_SHOW);
                     ShowWindow(buttonFRprev,SW_SHOW);//Enseñamos los elementos de la pestaña anterior, y cambiamos 'i'.
-                    aser=1;
+                    aser=0;
                     ShowWindow(button_next_post,SW_HIDE);
                     ShowWindow(hEditControlCHAT,SW_HIDE);
                     ShowWindow(buttonCHAT,SW_HIDE);
@@ -836,6 +836,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 }
                 case 204:{//Ver publicaciones
                     i=15;
+                    aser=0;
+                    actual_post=current_user->friends[aser]->publicacion;
                     ShowWindow(buttonLIST,SW_HIDE);
                     ShowWindow(buttonshowpubli,SW_HIDE);
                     ShowWindow(buttonFRcheck,SW_HIDE);
@@ -872,10 +874,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     break;
                 }
                 case 208:{
-                    if (current_user->friends[aser]->publicacion->next!=NULL){
-                        current_user->friends[aser]->publicacion=current_user->friends[aser]->publicacion->next;}
-                    else if (current_user->friends[aser]->publicacion->next==NULL){
+                    if (actual_post==NULL){
                         aser++;
+                        if (aser<current_user->numfriends){
+                            actual_post=current_user->friends[aser]->publicacion;}
+                    }
+                    else if (actual_post->next!=NULL){
+                        actual_post=actual_post->next;}
+                    else if (actual_post->next==NULL){
+                        aser++;
+                        if (aser<current_user->numfriends){
+                            actual_post=current_user->friends[aser]->publicacion;}
                     }
                     InvalidateRect(hWnd, NULL, TRUE);
                     UpdateWindow(hWnd);
@@ -954,8 +963,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             HDC hdc = BeginPaint(hWnd, &ps);
             RECT rect;
             HFONT hFont = (HFONT)SendMessage(button4, WM_GETFONT, 0, 0);
-
-
+            hFont = CreateFont(20, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
+                               CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Courier New Black");
             HFONT hOldFont = (HFONT)SelectObject(hdc, hFont);
             if (i==0){//Ventana inicial.
                 hBrush = CreateSolidBrush(RGB(70, 0, 70));
@@ -1215,8 +1224,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 hBrush = CreateSolidBrush(RGB(100, 100, 125));
                 FillRect(hdc, &rect10, hBrush);
                 DeleteObject(hBrush);
+                print_screen_publi(current_user,actual_post,hdc,aser);
 
-                print_screen_publi(current_user,hdc,aser);
 
             }
             else if (i==16){ //VER SOLICITUDES ENTRANTES

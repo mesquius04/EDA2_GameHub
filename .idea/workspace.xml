@@ -24,14 +24,13 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/dictionary.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/dictionary.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/main.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/main.c.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/queue_functions.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/queue_functions.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/visual_functions.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/visual_functions.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/untitled16.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/untitled16.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionary.c" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/queue_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/queue_functions.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/queue_functions.h" beforeDir="false" afterPath="$PROJECT_DIR$/queue_functions.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visual_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/visual_functions.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visual_functions.h" beforeDir="false" afterPath="$PROJECT_DIR$/visual_functions.h" afterDir="false" />
     </list>
@@ -279,7 +278,11 @@
       <workItem from="1686042581721" duration="2282000" />
       <workItem from="1686051070610" duration="6250000" />
       <workItem from="1686062284179" duration="865000" />
-      <workItem from="1686068886828" duration="7348000" />
+      <workItem from="1686068886828" duration="7394000" />
+      <workItem from="1686130608370" duration="3055000" />
+      <workItem from="1686134080311" duration="302000" />
+      <workItem from="1686134809411" duration="1618000" />
+      <workItem from="1686140446829" duration="2610000" />
     </task>
     <task id="LOCAL-00001" summary="fitxer bo">
       <created>1682425595116</created>
@@ -442,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686057371675</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="a">
+      <created>1686076340532</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1686076340532</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -469,8 +479,8 @@
     <MESSAGE value="Add files via upload&#10;&#10;CLASSE 2/6" />
     <MESSAGE value="Changes by alexd" />
     <MESSAGE value="Changes by Usuario" />
-    <MESSAGE value="a" />
     <MESSAGE value="Changes by Tu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes by Tu" />
+    <MESSAGE value="a" />
+    <option name="LAST_COMMIT_MESSAGE" value="a" />
   </component>
 </project>
