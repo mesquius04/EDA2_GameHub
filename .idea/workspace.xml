@@ -20,23 +20,17 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" name="Changes" comment="a">
+    <list default="true" id="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" name="Changes" comment="TOT OK">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/dictionary.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/dictionary.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/main.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/main.c.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/visual_functions.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/visual_functions.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/untitled16.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/untitled16.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionary.c" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visual_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/visual_functions.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visual_functions.h" beforeDir="false" afterPath="$PROJECT_DIR$/visual_functions.h" afterDir="false" />
     </list>
     <list id="71eb45bd-8ba4-4b85-8f28-6b16bd6ceccb" name="Changes by aalex" comment="" />
     <list id="dbab221a-5f81-455b-89a8-31239e3b61b6" name="Changes by alexd" comment="Changes by alexd" />
-    <list id="524b5df1-64e6-4b3e-8ebd-6cd314262809" name="Changes by Tu" comment="Changes by Tu" />
     <list id="c5427c62-9ca9-470c-91d9-6b58042e43b3" name="Changes by u213937" comment="" />
     <list id="4fc915c5-2daa-4908-baeb-b283edea9b4e" name="Changes by u214576" comment="Changes by u214576" />
     <list id="79737fd2-93f4-4b5f-b3ba-1ba5b63a368d" name="Changes by Usuario" comment="Changes by Usuario" />
@@ -282,7 +276,13 @@
       <workItem from="1686130608370" duration="3055000" />
       <workItem from="1686134080311" duration="302000" />
       <workItem from="1686134809411" duration="1618000" />
-      <workItem from="1686140446829" duration="2610000" />
+      <workItem from="1686140446829" duration="2779000" />
+      <workItem from="1686155301913" duration="616000" />
+      <workItem from="1686155932345" duration="22000" />
+      <workItem from="1686156237753" duration="1593000" />
+      <workItem from="1686206784354" duration="56000" />
+      <workItem from="1686208818676" duration="780000" />
+      <workItem from="1686216121602" duration="4016000" />
     </task>
     <task id="LOCAL-00001" summary="fitxer bo">
       <created>1682425595116</created>
@@ -452,7 +452,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686076340532</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="TOT OK">
+      <created>1686143096391</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1686143096391</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -481,6 +488,7 @@
     <MESSAGE value="Changes by Usuario" />
     <MESSAGE value="Changes by Tu" />
     <MESSAGE value="a" />
-    <option name="LAST_COMMIT_MESSAGE" value="a" />
+    <MESSAGE value="TOT OK" />
+    <option name="LAST_COMMIT_MESSAGE" value="TOT OK" />
   </component>
 </project>

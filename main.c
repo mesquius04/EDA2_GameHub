@@ -834,10 +834,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     InvalidateRect(hWnd, NULL, TRUE); //Invalidem la disposició de l'anterior pestanya
                     break;
                 }
-                case 204:{//Ver publicaciones
+                case 204:{//Ver publicaciones (primer post)
                     i=15;
-                    aser=0;
-                    actual_post=current_user->friends[aser]->publicacion;
+                    while (aser < (current_user->numfriends)) {
+                        if (current_user->friends[aser]->publicacion != NULL) {
+                            actual_post = current_user->friends[aser]->publicacion;
+                            break;
+                        }
+                        aser++;
+                    }
                     ShowWindow(buttonLIST,SW_HIDE);
                     ShowWindow(buttonshowpubli,SW_HIDE);
                     ShowWindow(buttonFRcheck,SW_HIDE);
@@ -873,19 +878,34 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     UpdateWindow(hWnd);
                     break;
                 }
-                case 208:{
-                    if (actual_post==NULL){
-                        aser++;
-                        if (aser<current_user->numfriends){
-                            actual_post=current_user->friends[aser]->publicacion;}
+                case 208:{//BOTON DE NEXT PUBLI
+
+                    if (actual_post==NULL && aser<=current_user->numfriends){
+                        while (actual_post==NULL && aser<current_user->numfriends){
+                            aser++;
+                            printf("A");
+                            fflush(stdin);
+                            if (aser<current_user->numfriends){
+                                actual_post = current_user->friends[aser]->publicacion;
+                            }
+                        }
+                    }
+                    else if (actual_post->next==NULL){
+                        actual_post=actual_post->next;
+                        while (actual_post==NULL && aser<current_user->numfriends){
+                            aser++;
+                            printf("B");
+                            fflush(stdin);
+                            if (aser<current_user->numfriends){
+                                actual_post = current_user->friends[aser]->publicacion;
+                            }
+
+                        }
                     }
                     else if (actual_post->next!=NULL){
                         actual_post=actual_post->next;}
-                    else if (actual_post->next==NULL){
-                        aser++;
-                        if (aser<current_user->numfriends){
-                            actual_post=current_user->friends[aser]->publicacion;}
-                    }
+
+
                     InvalidateRect(hWnd, NULL, TRUE);
                     UpdateWindow(hWnd);
                     break;
