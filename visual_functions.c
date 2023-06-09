@@ -24,39 +24,57 @@ void print_screen_trend(HDC hdc,Dict* dict){
 }
 void print_screen_error(HDC hdc){
     RECT rect = {1220, 560, 1420, 620 };
-    DrawText(hdc, "Email debe terminar\ncon '@gmail.com'!!", -1, &rect, DT_LEFT);
+    DrawText(hdc, "ERROR: Email debe\nterminar con '@gmail.com'!!", -1, &rect, DT_LEFT);
 }
 
 void print_screen_error2(HDC hdc){
     RECT rect3 = {200, 637, 600, 687 };
     printf("\nERROR: Tienes que llenar todos los campos!");
-    DrawText(hdc, "Tienes que llenar todos los campos!", -1, &rect3, DT_CENTER | DT_BOTTOM);
+    DrawText(hdc, "ERROR: Tienes que llenar todos los campos!", -1, &rect3, DT_CENTER | DT_BOTTOM);
 }
 
 void print_screen_error3(HDC hdc){
     RECT rect2 = {700, 637, 1100, 687 };
     printf("\nERROR: Nombre de usuario no disponible!");
-    DrawText(hdc, "Nombre de usuario no disponible!", -1, &rect2, DT_CENTER | DT_BOTTOM);
+    DrawText(hdc, "ERROR: Nombre de usuario no disponible!", -1, &rect2, DT_CENTER | DT_BOTTOM);
 }
 
 void print_screen_error4(HDC hdc){
     RECT rect3 = {200, 677, 600, 727 };
     printf("\nERROR: Tienes que llenar todos los campos!");
-    DrawText(hdc, "Tienes que llenar todos los campos!", -1, &rect3, DT_CENTER | DT_BOTTOM);
+    DrawText(hdc, "ERROR: Tienes que llenar todos los campos!", -1, &rect3, DT_CENTER | DT_BOTTOM);
 }
 
 void print_screen_error5(HDC hdc){
     RECT rect = {1200, 509, 1400, 582 };
-    DrawText(hdc, "Los password\ndeben coincidir!!", -1, &rect, DT_VCENTER | DT_LEFT);
+    DrawText(hdc, "ERROR: Los password\ndeben coincidir!!", -1, &rect, DT_VCENTER | DT_LEFT);
+}
+
+void print_screen_error6(HDC hdc){
+    RECT rect2 = {200, 637, 1100, 687 };
+    DrawText(hdc, "ERROR: Gamer no registrado", -1, &rect2, DT_VCENTER | DT_LEFT);
+}
+
+
+void print_screen_error7(HDC hdc){
+    RECT rect3 = {200, 637, 1100, 687 };
+    DrawText(hdc, "ERROR: Peticion ya enviada o gamer amigo", -1, &rect3, DT_VCENTER | DT_LEFT);
+}
+
+void print_screen_error8(HDC hdc){
+    RECT rect3 = {900, 637, 1200, 687 };
+    DrawText(hdc, "ERROR: Usuario no existente", -1, &rect3, DT_VCENTER | DT_LEFT);
 }
 
 void print_screen_users(User* list,HDC hdc){
     RECT rect2 = { 100, 130, 220, 160 };
-    while (list!= NULL){
-        DrawText(hdc, list->user, -1, &rect2, DT_LEFT | DT_BOTTOM);
+    User* aux=list;
+    while (aux!= NULL){
+        printf("asd");
+        DrawText(hdc, aux->user, -1, &rect2, DT_LEFT | DT_BOTTOM);
         rect2.top+=35;
         rect2.bottom+=35;
-        list = list->next;
+        aux = aux->next;
         if (rect2.bottom>=700){
             rect2.bottom=160;
             rect2.top=130;
@@ -64,6 +82,7 @@ void print_screen_users(User* list,HDC hdc){
             rect2.right+=140;
         }
     }
+    printf("fora");
 }
 
 void print_screen_publi(User* current,Publicacion* new_post,HDC hdc,int aser){

@@ -3,11 +3,8 @@
 //
 #include <Windows.h>
 #include <stdio.h>
-#include <CommCtrl.h>
 #include "main.h"
 #include "user_functions.h"
-#include <string.h>
-#include <time.h>
 
 int are_friends(User u1, User u2){
     for(int i = 0; i<u1.numfriends; i++){
@@ -21,6 +18,7 @@ int are_friends(User u1, User u2){
 int friend_request_already(User sender, User sended){
     Element* aux = sender.friend_request->first;
     while(aux != NULL){
+        printf("F");
         if(aux->user == &sended) return TRUE;//si ya ha sido enviada
         aux = aux->next;
     }
@@ -41,23 +39,25 @@ void add_3random_Stack(User* list, User* user, Stack stack){
 }
  */
 
-void send_friend_request(User** list,User** user,char* name) {
+void send_friend_request(User** list,User** user,char* name,int* error) {
     User *newfriend = find_user(name, *list); //se encuentra al ususari que se quiere añadir
-    if (newfriend == NULL) printf("Invalid Name\n"); //si no existe se notifica
+    if (newfriend == NULL){
+        printf("Gamer no registrado\n"); //si no existe se notifica
+        *error = 18;
+    }
     else if (are_friends(**user, *newfriend) == TRUE || friend_request_already(**user, *newfriend)  == TRUE
              || friend_request_already(*newfriend, **user) ==TRUE || newfriend == (*user) ){
         //si ya son amigos o la petición había sido enviada o recibida del usuario, entonces lo notifica
-        printf("Request already sent or Already friends\n");
+        printf("Peticion ya enviada o gamer amigo\n");
+        *error = 19;
     }
     else {//encolamos en la queue de friend request
         Element* node = malloc(sizeof(Element));
         node->user = *user;
         node->next = NULL;//es el último de la lista, el siguiente apunta a null
         if((newfriend)->friend_request->first == NULL){//si es el primeo de la lista
-            node->prev = NULL; //no hay previo
             (newfriend)->friend_request->first = node; //el primero será el último
         }else{//si no es el único de la lista
-            node->prev = (newfriend)->friend_request->last; //el previo al nodo será el anterior último
             (newfriend)->friend_request->last->next=node;
         }
         (newfriend)->friend_request->last = node; //estamos encolando, así que el nuevo elemento siempre será el último
@@ -79,6 +79,7 @@ void makefriends(User* u1, User* u2) {
     u1->friends[u1->numfriends] = u2;
     u1->numfriends++;
     //el otro también se hace amigo
+    printf("\nAmics altre: %d",u2->numfriends);
     u2->friends[u2->numfriends] = u1;
     u2->numfriends++;
 }
@@ -92,9 +93,10 @@ User* dequeue(User* user){
         user->friend_request->last = NULL;
     } else { //si hay varios elementos, el primero se quita y el 2o pasa a ser el primero
         user->friend_request->first = user->friend_request->first->next;
-        user->friend_request->first->prev = NULL;
+        if (user->friend_request->first != NULL) {
+            user->friend_request->first->prev = NULL;
+        }
     }
-    free(aux);
     return primero;
 }
 

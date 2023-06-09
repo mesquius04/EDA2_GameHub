@@ -10,6 +10,6 @@
 User* dequeue(User* user);
 int are_friends(User u1, User u2);
 int friend_request_already(User sender, User sended);
-void send_friend_request(User** list,User** user,char* name);
+void send_friend_request(User** list,User** user,char* name,int* error);
 void makefriends(User* u1, User* u2);
 #endif //UNTITLED16_QUEUE_FUNCTIONS_H

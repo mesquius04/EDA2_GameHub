@@ -9,6 +9,7 @@
 #define INITIAL_FRIENDS 40
 User* find_user(char* user, User* list){
     while (list != NULL){
+        printf("Fs");
         //recorremos la lista hasta el final
         if (strcmp(user,list->user)==0){
             //nombre = usuario  (lo hemos encontrado)
@@ -37,7 +38,7 @@ void init_user(User* user){
     user->friends = (User**) malloc(INITIAL_FRIENDS*sizeof(User*));
     user->numfriends = 0;
     user->maxfriends = INITIAL_FRIENDS;
-    user->next = NULL;
+    user->publicacion = NULL;
     user->next = NULL;
 }
 
@@ -53,15 +54,17 @@ void add_user_to_list(User** list, User user){
 int len_user_list(User* list){
     int count = 0;
     while(list != NULL){
+        printf("Fi");
         //recorremos la lista y actualizamos el contador
         list = list->next;
         count++;
     }
     return count;
-};
+}
 
 void read_user_file(FILE* fd){
     while ( !feof(fd) ){
+        printf("Fa");
         char* user_name;
         fscanf(fd,"%s,", user_name);  // recoge usuarios
         printf("%s\n", user_name);    // los imprime

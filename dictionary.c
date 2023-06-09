@@ -114,7 +114,6 @@ int add_item(Dict* dict, char* key){
                         dict->items[j].count += 1;
                         dict->count +=1;
                         //tanto contador palabra como diccionario augmentan en uno
-                        found = 1;
                         break;
                     }
                 }
@@ -132,6 +131,7 @@ int dictionary(char* post, char* words[MAX_PALABRAS]) {
     while (word != NULL && word_count < MAX_PALABRAS) {
         words[word_count] = word;       //guardamos palabra
         word_count++;
+        printf("Ja");
         word = strtok(NULL, " \t\n\r.,;:!?'\"");
     }
     return word_count;  //devolvemos idx máximo
@@ -180,12 +180,12 @@ void create_post (char* post, User* user){
         user->publicacion = publi;
     }
     else{
-
         while (post_aux->next != NULL){
             //nos quedamos con la última completa
             //user->publicacion = user->publicacion->next;
-            post_aux=post_aux->next;
             printf("b");
+            post_aux=post_aux->next;
+
         }
 
         //user->publicacion->next = publi;
