@@ -485,7 +485,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                         strcpy(new_user.password,password1);
                         printf("\npass: %s",new_user.password);
                         i=7;
-                        error=0;
                         ShowWindow(hEditControl4, SW_SHOW);
                         ShowWindow(hEditControl5, SW_SHOW);
                         ShowWindow(hEditControl6, SW_SHOW);
@@ -1104,7 +1103,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
 
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
-                DrawText(hdc, "INCIAR SESION", -1, &recta, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+                DrawText(hdc, "INICIAR SESION", -1, &recta, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
                 rect.top+=260;
 
 
@@ -1225,11 +1224,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 FillRect(hdc, &rect, hBrush);
             }
             else if (i==14){//VENTANA ME, menu de usuario
-                hBrush = CreateSolidBrush(RGB(178, 102, 255)); // Crear un brush con el color deseado (en este caso, azul)
+                hBrush = CreateSolidBrush(RGB(110, 0, 110)); // Crear un brush con el color deseado (en este caso, azul)
                 RECT rect;
                 GetClientRect(hWnd, &rect);
                 FillRect(hdc, &rect, hBrush); // Pintar la ventana con el brush creado
-                SetBkColor(hdc, RGB(178, 102, 255));
+                SetBkColor(hdc, RGB(110, 0, 110));
                 hFont = CreateFont(42, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
@@ -1268,11 +1267,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 print_screen_fr(current_user,hdc);
             }
             else if (i==17){//Enviar solicitud, menu de la persona que buscamos
-                hBrush = CreateSolidBrush(RGB(0, 0, 204)); // Crear un brush con el color deseado (en este caso, azul)
+                hBrush = CreateSolidBrush(RGB(120, 120, 145)); // Crear un brush con el color deseado (en este caso, azul)
                 RECT rect;
                 GetClientRect(hWnd, &rect);
                 FillRect(hdc, &rect, hBrush); // Pintar la ventana con el brush creado
-                SetBkColor(hdc, RGB(0, 0, 204));
+                SetBkColor(hdc, RGB(120, 120, 145));
                 hFont = CreateFont(42, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
