@@ -150,9 +150,11 @@ void print_me_screen (User* user,HDC hdc){//Imprimimos un menu de usuario
     DrawText(hdc, "JUEGOS:", -1, &rect, DT_LEFT | DT_BOTTOM);//Imprimimos en la interfaz
     char result[100]; // Tamaño suficiente para almacenar el resultado
     rect.left+=200;
+    rect.top-=42;
     rect.right+=700;
     sprintf(result, "\n%s, %s, %s, %s, %s", user->hobbies[0], user->hobbies[1], user->hobbies[2], user->hobbies[3],user->hobbies[4]);
     DrawText(hdc, result, -1, &rect, DT_LEFT | DT_BOTTOM);
+    printf("%s",result);
 }
 
 void print_screen_fr(User* current_user,HDC hdc){//Imprimimos las Friend Request

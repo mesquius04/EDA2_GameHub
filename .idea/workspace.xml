@@ -20,25 +20,14 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" name="Changes" comment="ERRORES INCLUIDOS">
+    <list default="true" id="bda0bfd4-1fcb-4df0-9ef6-ba82f58705b4" name="Changes" comment="FINAL">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/dictionary.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/dictionary.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/main.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/main.c.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/queue_functions.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/queue_functions.c.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/services.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/services.c.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/user_functions.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/user_functions.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/visual_functions.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled16.dir/visual_functions.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/untitled16.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/untitled16.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/user_list" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/user_list" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionary.c" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/queue_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/queue_functions.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services.c" beforeDir="false" afterPath="$PROJECT_DIR$/services.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/user_functions.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visual_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/visual_functions.c" afterDir="false" />
     </list>
     <list id="71eb45bd-8ba4-4b85-8f28-6b16bd6ceccb" name="Changes by aalex" comment="" />
     <list id="dbab221a-5f81-455b-89a8-31239e3b61b6" name="Changes by alexd" comment="Changes by alexd" />
@@ -303,7 +292,8 @@
       <workItem from="1686245064912" duration="2935000" />
       <workItem from="1686298712659" duration="12324000" />
       <workItem from="1686345121173" duration="2273000" />
-      <workItem from="1686381746594" duration="8308000" />
+      <workItem from="1686381746594" duration="8649000" />
+      <workItem from="1686390492499" duration="1000" />
     </task>
     <task id="LOCAL-00001" summary="fitxer bo">
       <created>1682425595116</created>
@@ -508,7 +498,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686385542352</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="FINAL">
+      <created>1686390156273</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1686390156273</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -539,6 +536,7 @@
     <MESSAGE value="a" />
     <MESSAGE value="TOT OK" />
     <MESSAGE value="ERRORES INCLUIDOS" />
-    <option name="LAST_COMMIT_MESSAGE" value="ERRORES INCLUIDOS" />
+    <MESSAGE value="FINAL" />
+    <option name="LAST_COMMIT_MESSAGE" value="FINAL" />
   </component>
 </project>
