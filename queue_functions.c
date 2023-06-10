@@ -18,7 +18,6 @@ int are_friends(User u1, User u2){
 int friend_request_already(User sender, User sended){
     Element* aux = sender.friend_request->first;
     while(aux != NULL){
-        printf("F");
         if(aux->user == &sended){return TRUE;}//si ya ha sido enviada
         aux = aux->next;
     }
@@ -100,7 +99,7 @@ User* dequeue(User* user){
     return primero;
 }
 
-void manage_friend_request(User* current){
+void manage_friend_request(User* current){//Proposta de admisió de friend request per consola.
     int menu;
     User* newfriend;
     while(current->friend_request->first!=NULL){ //mientras la friendrequest no este vacia

@@ -9,7 +9,6 @@
 #define INITIAL_FRIENDS 40
 User* find_user(char* user, User* list){
     while (list != NULL){
-        printf("Fs");
         //recorremos la lista hasta el final
         if (strcmp(user,list->user)==0){
             //nombre = usuario  (lo hemos encontrado)
@@ -25,7 +24,7 @@ int log_in_data (char* name, char* password, User* list){
     if (find_user(name, list) != NULL) {
         //usuario coincide
         if(strcmp(find_user(name,list)->password, password)==0){
-            printf("\nBenvingut %s",(find_user(name,list)->user));
+            printf("\nBienvenido %s",(find_user(name,list)->user));
             return TRUE;};     //miramos que la contraseña también concida
     }
     return FALSE;                                            //no hay matches
@@ -54,7 +53,6 @@ void add_user_to_list(User** list, User user){
 int len_user_list(User* list){
     int count = 0;
     while(list != NULL){
-        printf("Fi");
         //recorremos la lista y actualizamos el contador
         list = list->next;
         count++;
@@ -64,7 +62,6 @@ int len_user_list(User* list){
 
 void read_user_file(FILE* fd){
     while ( !feof(fd) ){
-        printf("Fa");
         char* user_name;
         fscanf(fd,"%s,", user_name);  // recoge usuarios
         printf("%s\n", user_name);    // los imprime

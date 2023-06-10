@@ -8,7 +8,7 @@
 #include <time.h>
 void print_console_users(User* list){
     while(list != NULL){
-        printf("%s\n",list->user);
+        printf("\n%s",list->user);
         list = list->next;
     }
 }

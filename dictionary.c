@@ -131,7 +131,6 @@ int dictionary(char* post, char* words[MAX_PALABRAS]) {
     while (word != NULL && word_count < MAX_PALABRAS) {
         words[word_count] = word;       //guardamos palabra
         word_count++;
-        printf("Ja");
         word = strtok(NULL, " \t\n\r.,;:!?'\"");
     }
     return word_count;  //devolvemos idx máximo
@@ -183,7 +182,6 @@ void create_post (char* post, User* user){
         while (post_aux->next != NULL){
             //nos quedamos con la última completa
             //user->publicacion = user->publicacion->next;
-            printf("b");
             post_aux=post_aux->next;
 
         }
@@ -234,7 +232,7 @@ int new_post(char* post, Dict* dict, User* user){
 //        }
 //    }
 
-void revisar_timeline (User* user){
+void revisar_timeline (User* user){ //Proposta de revisar timeline para un usuario en concreto
     while (user->publicacion != NULL){
         // recorrer lista de publicaciones
         printf("%s\n", user->publicacion->post);

@@ -63,7 +63,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             dict = initialize_dictionary(1000);//Inicialitzem diccionari
             FILE* fp= fopen("../resources/user_list","r");//Obrim el fitxer que conté users inicials
             while (fscanf(fp,"%s %s %s %d %s h:%s %s %s %s %s %s",new_user.user,new_user.password,new_user.name,&new_user.age,new_user.city,new_user.hobbies[0],new_user.hobbies[1],new_user.hobbies[2],new_user.hobbies[3],new_user.hobbies[4],new_user.email)>0){
-                printf("H");
                 add_user_to_list(&list_of_user, new_user); //Els afegim a la llista
             }
             fclose(fp);//Tanquem el fitxer
@@ -75,7 +74,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             SendMessage(hEditControl, WM_SETFONT, (WPARAM)hFont, TRUE);
 
             hEditControl2 = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL | ES_PASSWORD,
-                                         300, 420, 800, 70, hWnd, (HMENU)21, hInst, NULL);//Cada Editcontrol té: 1.Nom, 2.Text inicial, 3.Propietats i
+                                         300, 420, 800, 70, hWnd, (HMENU)21, hInst, NULL);
+                                         //Cada Editcontrol(on pot escriure l'usuari) té: 1.Nom, 2.Text inicial,
+                                         // 3.Propietats, 4.Mida (4num) 5.Finestra pare
+                                         // 6. CODI de detecció pel WM_COMAND, al escriure (el més important)
+                                         // 7. hInst que és la que li pasem al principi a la funció des del main
             hEditControl3 = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL | ES_PASSWORD,
                                          300, 510, 800, 70, hWnd, (HMENU)22, hInst, NULL);
             hEditControl4 = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL,
@@ -96,7 +99,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                                            847, 500, 170, 60, hWnd, (HMENU)1227, hInst, NULL);
             hEditControl7_4 = CreateWindow("EDIT", "", SW_HIDE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL,
                                            1030, 500, 170, 60, hWnd, (HMENU)2527, hInst, NULL);
-            button66 = CreateWindowEx(
+            button66 = CreateWindowEx( //Cada botó que creem té 1. Estil, 2. Nom de clase, 3. Text, 4. Estil, 5.Mida (4num),
+                    // 6.codi hwnd de la finestra pare, li pasem des del main,
+                    // 7. Codi hMenu que ens permet detectar clicks des del WM_COMMAND
+                    // 8. hInst, la instància que també li pasem a la funció des del main
                     0,
                     "BUTTON",
                     "LOG IN",
@@ -118,7 +124,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             buttonCHAT = CreateWindowEx(
                     0,
                     "BUTTON",
-                    "SEND",
+                    "POST",
                     SW_HIDE | WS_CHILD | BS_DEFPUSHBUTTON,
                     1122, 645, 100, 80,
                     hWnd,
@@ -409,14 +415,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             );
             break;
         }
-        case WM_COMMAND: {
-            switch (LOWORD(wParam)) {
-                case 1: { //Registro de usuario
+        case WM_COMMAND: {//Des d'aqui controlem la interacció de l'usuari amb els elements que ensenyem
+            switch (LOWORD(wParam)) {//Cada case contempla un click diferent en cada botó.
+                case 1: { //Registro de gamer
                     i=1;
                     ShowWindow(button1, SW_HIDE);
                     ShowWindow(button2, SW_HIDE);
                     ShowWindow(button3, SW_HIDE);
-                    ShowWindow(button4, SW_HIDE);//Amaguem pestanya principal
+                    ShowWindow(button4, SW_HIDE);//Amaguem buttons de la finestra anterior
 
                     ShowWindow(button188,SW_SHOW); //Boton de back (case 188)
 
@@ -427,8 +433,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(hEditControl3,SW_SHOW);
                     ShowWindow(button7,SW_SHOW);//Ensenyem els nous botons i EditControls(espai on posar text)
 
-                    InvalidateRect(hWnd, NULL, TRUE);
-                    UpdateWindow(hWnd);//Invalidem la disposició de l'anterior pestanya
+                    InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                    UpdateWindow(hWnd);//Forçem la recàrrega del WM_PAINT ja que hem canviat i
                     break;
                 }
                 case 2: { //PRINT LISTADO DE USERS
@@ -436,12 +442,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(button1, SW_HIDE);
                     ShowWindow(button2, SW_HIDE);
                     ShowWindow(button3, SW_HIDE);
-                    ShowWindow(button4, SW_HIDE);//Amaguem pestanya principal
+                    ShowWindow(button4, SW_HIDE);//Amaguem finestra principal
 
                     ShowWindow(button188,SW_SHOW); //Ensenyem botó de back amb id button188
                     print_console_users(list_of_user); //FUNCIÓ EN DOC VISUALFUNCTIONS
-                    InvalidateRect(hWnd, NULL, TRUE);
-                    UpdateWindow(hWnd);//Invalidem la disposició de l'anterior pestanya
+                    InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                    UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                     break;
                 }
                 case 3: { //INICIAR SESION
@@ -449,41 +455,41 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(button1, SW_HIDE);
                     ShowWindow(button2, SW_HIDE);
                     ShowWindow(button3, SW_HIDE);
-                    ShowWindow(button4, SW_HIDE);//Amaguem pestanya principal
+                    ShowWindow(button4, SW_HIDE);//Amaguem finestra principal
 
                     ShowWindow(hEditControl22,SW_SHOW);
-                    ShowWindow(hEditControl33,SW_SHOW);
+                    ShowWindow(hEditControl33,SW_SHOW);//Ensenyem buttons de la finestra actual
                     ShowWindow(button66,SW_SHOW);//Boton iniciar sesion
                     ShowWindow(button188,SW_SHOW);//Boton del back
-                    InvalidateRect(hWnd, NULL, TRUE);
-                    UpdateWindow(hWnd);//Invalidem la disposició de l'anterior pestanya
+                    InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                    UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                     break;
                 }
                 case 4: {//CASE SALIR
                     DestroyWindow(hWnd); //Destrueix la finestra creada i finalitza l'execució.
                     break;
                 }
-                case 6:{
+                case 6:{//Registrar nom d'usuari
                     if (find_user(username,list_of_user)==NULL && strlen(username)<MAX_LENGHT && strlen(username)>=5){
                         strcpy(new_user.user,username);
-                        printf("\nuser: %s",new_user.user);
+                        printf("\nGamer: %s",new_user.user);
                         condition=1;}
                     else {error=1;}
-                    InvalidateRect(hWnd, NULL, TRUE);
-                    UpdateWindow(hWnd);
+                    InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                    UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                     break;
                 }
-                case 7:{
+                case 7:{//Registrar contrasenya
                     if (strlen(password1)<MAX_LENGHT && strlen(password1)>=5){
                         condition2=1;}
                     break;
                 }
-                case 8:{
+                case 8:{//Confirmar contrasenya
                     if (condition==1 && condition2==1 && strcmp(password1,password2)==0){
                         condition=0;
                         pass_error=0;
                         strcpy(new_user.password,password1);
-                        printf("\npass: %s",new_user.password);
+                        printf("\nPassword: %s",new_user.password);
                         i=7;
                         ShowWindow(hEditControl4, SW_SHOW);
                         ShowWindow(hEditControl5, SW_SHOW);
@@ -499,36 +505,39 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                         ShowWindow(button9,SW_SHOW);
                         ShowWindow(button10,SW_SHOW);
                         ShowWindow(button11,SW_SHOW);
-                        ShowWindow(button12,SW_SHOW);
+                        ShowWindow(button12,SW_SHOW);//Ensenyem buttons de la finestra actual
                         ShowWindow(button5,SW_HIDE);
                         ShowWindow(hEditControl,SW_HIDE);
                         ShowWindow(button6,SW_HIDE);
                         ShowWindow(button188,SW_HIDE);
                         ShowWindow(hEditControl2,SW_HIDE);
                         ShowWindow(button7,SW_HIDE);
-                        ShowWindow(hEditControl3,SW_HIDE);
+                        ShowWindow(hEditControl3,SW_HIDE);//Amaguem buttons de la finestra anterior
                         SetWindowText(hEditControl, "");
                         SetWindowText(hEditControl2, "");
                         SetWindowText(hEditControl3, "");
                         error=0;
-                        InvalidateRect(hWnd, NULL, TRUE);
-                        UpdateWindow(hWnd);}
-                    else if (error==1){
+                        InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                        UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
+                    }
+                    else if (error==1){//Posibles errors
                         error=3;
-                        InvalidateRect(hWnd, NULL, TRUE);
-                        UpdateWindow(hWnd);}
-                    else {error=2;
-                        InvalidateRect(hWnd, NULL, TRUE);
-                        UpdateWindow(hWnd);}
+                        InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                        UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
+                    }
+                    else {error=2;//Posibles errors
+                        InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                        UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
+                    }
                     if (strcmp(password1,password2)!=0){
-                        pass_error=1;
+                        pass_error=1;//Posibles errors
                     }
                     break;
                 }
                 case 13:{
-                    GetWindowText(hEditControl8, newemail, 30);
+                    GetWindowText(hEditControl8, newemail, 30);//Recollim el text des de hEditCOntrol8 a la string corresponent newemail
                     if (strlen(newemail)<=MAX_LENGTH){
-                        GetWindowText(hEditControl6, newcity, 30);
+                        GetWindowText(hEditControl6, newcity, 30);//Recollim el text des de hEditCOntrol6 a la string corresponent newcity
                         GetWindowText(hEditControl4, newname, 30);
                         GetWindowText(hEditControl5, age, 3);
                         GetWindowText(hEditControl7, new_user.hobbies[0], 30);
@@ -536,22 +545,22 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                         GetWindowText(hEditControl7_2, new_user.hobbies[2], 30);
                         GetWindowText(hEditControl7_3, new_user.hobbies[3], 30);
                         GetWindowText(hEditControl7_4,new_user.hobbies[4], 30);
-                        if (strlen(newcity)<=MAX_LENGTH){
+                        if (strlen(newcity)<=MAX_LENGTH){//Comprovem registre
                             strcpy(new_user.city,newcity);
-                            printf("\ncity: %s",new_user.city);
+                            printf("\nCiudad: %s",new_user.city);
                             condition5=1;
                         }
-                        if (strcmp(new_user.hobbies[0],"")!=0){
+                        if (strcmp(new_user.hobbies[0],"")!=0){//Comprovem registre
                             strcpy(new_user.city,newcity);
-                            printf("\nhobbie1: %s",new_user.hobbies[0]);
+                            printf("\nJuego1: %s",new_user.hobbies[0]);
                             condition6=1;
                         }
-                        if (strlen(newname)<=MAX_LENGTH){
+                        if (strlen(newname)<=MAX_LENGTH){//Comprovem registre
                             condition3=1;
                             strcpy(new_user.name,newname);
-                            printf("\nname: %s",new_user.name);
+                            printf("\nNombre: %s",new_user.name);
                         }
-                        if (strlen(age)<=3){
+                        if (strlen(age)<=3){//Comprovem registre
                             int newage=0;
                             for (int k=0;k<2;k++){
                                 newage*=10;
@@ -559,16 +568,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                             }
                             new_user.age=newage;
                             condition4=1;
-                            printf("\nage: %d",new_user.age);
+                            printf("\nEdad: %d",new_user.age);
                         }
                         strcpy(new_user.email,newemail);
                         printf("\nCorreu: %s", new_user.email);
-                        if (validar_email(newemail)) {
+                        if (validar_email(newemail)) {//Comprovem registre
                             printf("\nCorreu: %s", new_user.email);
-                            printf("\n%d %d %d %d",condition3,condition4,condition5,condition6);
                             if (condition3 == 1 && condition4 == 1 && condition5 == 1 && condition6 == 1) {
-                                add_user_to_list(&list_of_user, new_user);
-                                condition = 0, condition2 = 0, condition3 = 0, condition4 = 0, condition5 = 0, condition6 = 0;
+                                add_user_to_list(&list_of_user, new_user);//Registre correcte, afegim el nou user a la llista
+                                condition = 0, condition2 = 0, condition3 = 0, condition4 = 0, condition5 = 0, condition6 = 0;//Totes les condicions de registre tornen a ser 0
                                 ShowWindow(hEditControl4, SW_HIDE);
                                 ShowWindow(hEditControl5, SW_HIDE);
                                 ShowWindow(hEditControl6, SW_HIDE);
@@ -577,7 +585,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                                 ShowWindow(hEditControl7_2, SW_HIDE);
                                 ShowWindow(hEditControl7_3, SW_HIDE);
                                 ShowWindow(hEditControl7_4, SW_HIDE);
-                                ShowWindow(hEditControl8, SW_HIDE);
+                                ShowWindow(hEditControl8, SW_HIDE);//Amaguem buttons de la finestra anterior
                                 SetWindowText(hEditControl4, "");
                                 SetWindowText(hEditControl5, "");
                                 SetWindowText(hEditControl6, "");
@@ -586,30 +594,30 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                                 SetWindowText(hEditControl7_2, "");
                                 SetWindowText(hEditControl7_3, "");
                                 SetWindowText(hEditControl7_4, "");
-                                SetWindowText(hEditControl8, "");
+                                SetWindowText(hEditControl8, "");//Els editcontrol tornen a estar buits
                                 ShowWindow(button8, SW_HIDE);
                                 ShowWindow(button9, SW_HIDE);
                                 ShowWindow(button10, SW_HIDE);
                                 ShowWindow(button11, SW_HIDE);
-                                ShowWindow(button12, SW_HIDE);
+                                ShowWindow(button12, SW_HIDE);//Amaguem buttons de la finestra anterior
                                 ShowWindow(button1, SW_SHOW);
                                 ShowWindow(button2, SW_SHOW);
                                 ShowWindow(button3, SW_SHOW);
-                                ShowWindow(button4, SW_SHOW);
-                                ShowWindow(button288, SW_HIDE);
+                                ShowWindow(button4, SW_SHOW);//Ensenyem buttons de la finestra actual
+                                ShowWindow(button288, SW_HIDE);//Amaguem buttons de la finestra anterior
                                 i = 0;
                                 k = 0;
-                                InvalidateRect(hWnd, NULL, TRUE);
-                                UpdateWindow(hWnd);
+                                InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                                UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                             }
                             else {error=2;
-                                InvalidateRect(hWnd, NULL, TRUE);
-                                UpdateWindow(hWnd);}
+                                InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                                UpdateWindow(hWnd);}//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                         }
                         else {
                             k=1;
-                            InvalidateRect(hWnd, NULL, TRUE);
-                        UpdateWindow(hWnd);
+                            InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                            UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                         }
                         break;
 
@@ -618,98 +626,97 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 }
                 case 20:
                 {
-                    GetWindowText(hEditControl, username, 30);
+                    GetWindowText(hEditControl, username, 30);//Guardem el text de l'editcontrol
                     break;}
                 case 21:
                 {
-                    GetWindowText(hEditControl2, password1, 30);
+                    GetWindowText(hEditControl2, password1, 30);//Guardem el text de l'editcontrol
                     break;}
                 case 22:
                 {
-                    GetWindowText(hEditControl3, password2, 30);
+                    GetWindowText(hEditControl3, password2, 30);//Guardem el text de l'editcontrol
                     break;}
                 case 66: //FRIEND REQUEST SEND
                 {
-                    GetWindowText(hEditControlFR,searchfr, 30);
-                    SetWindowText(hEditControlFR, "");
-                    if (find_user(searchfr,list_of_user)!=NULL){
+                    GetWindowText(hEditControlFR,searchfr, 30);//Guardem el text de l'editcontrol
+                    SetWindowText(hEditControlFR, "");//Buidem l'editcontrol de text
+                    if (find_user(searchfr,list_of_user)!=NULL){// L'user existeix
                         i=17;
                         ShowWindow(hEditControlFR,SW_HIDE);
                         ShowWindow(buttonFR,SW_HIDE);
-                        ShowWindow(button388,SW_HIDE);
+                        ShowWindow(button388,SW_HIDE);//Amaguem buttons de la finestra anterior
                         ShowWindow(button488,SW_SHOW);
-                        ShowWindow(buttonSendFR,SW_SHOW);
-                        InvalidateRect(hWnd, NULL, TRUE);
-                        UpdateWindow(hWnd);
+                        ShowWindow(buttonSendFR,SW_SHOW);//Ensenyem buttons de la finestra actual
+                        InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                        UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                         break;}
                     else {error=18;
-                    InvalidateRect(hWnd, NULL, TRUE);
-                    UpdateWindow(hWnd);}
+                    InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                        UpdateWindow(hWnd);}//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                     break;
                 }
                 case 260:{
-                    send_friend_request(&list_of_user,&current_user,searchfr,&error); //ROMAN MIRA AIXÒ (aqui cridem la funció)
-                    printf("\n\n%d\n\n",error);
+                    send_friend_request(&list_of_user,&current_user,searchfr,&error); //Enviem solicitud de amistat
                     ShowWindow(hEditControlFR,SW_SHOW);
                     ShowWindow(buttonFR,SW_SHOW);
-                    ShowWindow(button388,SW_SHOW);
+                    ShowWindow(button388,SW_SHOW);//Ensenyem buttons de la finestra actual
                     i=12;
                     ShowWindow(button488,SW_HIDE);
-                    ShowWindow(buttonSendFR,SW_HIDE);
-                    InvalidateRect(hWnd, NULL, TRUE);
-                    UpdateWindow(hWnd);
+                    ShowWindow(buttonSendFR,SW_HIDE);//Amaguem buttons de la finestra anterior
+                    InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                    UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                     if (error!=19){error=0;}
                     break;
                 }
                 case 488:{
                     ShowWindow(hEditControlFR,SW_SHOW);
                     ShowWindow(buttonFR,SW_SHOW);
-                    ShowWindow(button388,SW_SHOW);
+                    ShowWindow(button388,SW_SHOW);//Ensenyem buttons de la finestra actual
                     i=12;
                     ShowWindow(button488,SW_HIDE);
-                    ShowWindow(buttonSendFR,SW_HIDE);
-                    InvalidateRect(hWnd, NULL, TRUE);
-                    UpdateWindow(hWnd);
+                    ShowWindow(buttonSendFR,SW_HIDE);//Amaguem buttons de la finestra anterior
+                    InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                    UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                     break;
                 }
                 case 30:
                 {
-                    GetWindowText(hEditControl8,usersearch, 30);
+                    GetWindowText(hEditControl8,usersearch, 30);//Recollim el text dels hEditControl
                     break;}
                 case 31:{ //INICIAR SESION
                     GetWindowText(hEditControl22,userlogin,MAX_LENGTH);
-                    GetWindowText(hEditControl33,userpass,MAX_LENGHT);
+                    GetWindowText(hEditControl33,userpass,MAX_LENGHT);//Recollim el text dels hEditControl
                     if (log_in_data(userlogin,userpass,list_of_user)!=FALSE){
                         i=10;
-                        current_user= find_user(userlogin,list_of_user);
+                        current_user= find_user(userlogin,list_of_user);//Iniciem sesió
                         SetWindowText(hEditControl22, "");
-                        SetWindowText(hEditControl33, "");
+                        SetWindowText(hEditControl33, "");//Els hEditControl tornen a estar buits
                         ShowWindow(hEditControl22,SW_HIDE);
                         ShowWindow(hEditControl33,SW_HIDE);
                         ShowWindow(button66,SW_HIDE);
-                        ShowWindow(button188,SW_HIDE);
+                        ShowWindow(button188,SW_HIDE);//Amaguem buttons de la finestra anterior
                         ShowWindow(buttonLIST,SW_SHOW);
                         ShowWindow(buttonshowpubli,SW_SHOW);
                         ShowWindow(buttonFRcheck,SW_SHOW);
                         ShowWindow(buttoncreatepubli,SW_SHOW);
                         ShowWindow(button_me,SW_SHOW);
                         ShowWindow(button_log_out,SW_SHOW);
-                        ShowWindow(buttonFRprev,SW_SHOW);
-                        InvalidateRect(hWnd, NULL, TRUE);
-                        UpdateWindow(hWnd);}
+                        ShowWindow(buttonFRprev,SW_SHOW);//Ensenyem buttons de la finestra actual
+                        InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                        UpdateWindow(hWnd);}//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                     else {
                         error=12;
-                        InvalidateRect(hWnd, NULL, TRUE);
-                        UpdateWindow(hWnd);
+                        InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                        UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                     }
                     break;
                 }
 
 
                 case 100:{ //NEW PUBLI CASE
-                    GetWindowText(hEditControlCHAT,new_publi,120);
-                    SetWindowText(hEditControlCHAT, "");
-                    new_post(new_publi,dict, current_user);
+                    GetWindowText(hEditControlCHAT,new_publi,120);//Recollim el text dels hEditControl
+                    SetWindowText(hEditControlCHAT, "");//Buidem el hEditControl
+                    new_post(new_publi,dict, current_user);//Fem una nova publicació, dictionary.c
                     printf("\nNew msg: %s",new_publi);
                     int top[10] = {0,0,0,0,0,0,0,0,0,0};
                     //0 -> elemento está vacío
@@ -719,8 +726,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                             printf("[%d} Pos%d: %s, %d times\n", top[b], b+1, dict->items[top[b]].key,dict->items[top[b]].count);
                         }
                     }
-                    InvalidateRect(hWnd, NULL, TRUE);
-                    UpdateWindow(hWnd);
+                    InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                    UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                     break;
                 }
 
@@ -731,7 +738,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(button1, SW_SHOW);
                     ShowWindow(button2, SW_SHOW);
                     ShowWindow(button3, SW_SHOW);
-                    ShowWindow(button4, SW_SHOW);
+                    ShowWindow(button4, SW_SHOW);//Ensenyem buttons de la finestra actual
                     ShowWindow(button188,SW_HIDE);
                     ShowWindow(hEditControl,SW_HIDE);
                     ShowWindow(button5,SW_HIDE);
@@ -741,9 +748,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(button7,SW_HIDE);
                     ShowWindow(hEditControl22,SW_HIDE);
                     ShowWindow(hEditControl33,SW_HIDE);
-                    ShowWindow(button66,SW_HIDE);
-                    InvalidateRect(hWnd, NULL, TRUE);
-                    UpdateWindow(hWnd);
+                    ShowWindow(button66,SW_HIDE);//Amaguem buttons de la finestra anterior
+                    InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                    UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                     break;
                 }
                 case 288:{ //BACK; SECOND ONE, AFTER FIRST REGISTER SCREEN
@@ -757,16 +764,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(button9,SW_HIDE);
                     ShowWindow(button10,SW_HIDE);
                     ShowWindow(button11,SW_HIDE);
-                    ShowWindow(button12,SW_HIDE);
+                    ShowWindow(button12,SW_HIDE);//Amaguem buttons de la finestra anterior
                     ShowWindow(button188,SW_SHOW);
                     ShowWindow(hEditControl,SW_SHOW);
                     ShowWindow(button5,SW_SHOW);
                     ShowWindow(hEditControl2,SW_SHOW);
                     ShowWindow(button6,SW_SHOW);
                     ShowWindow(hEditControl3,SW_SHOW);
-                    ShowWindow(button7,SW_SHOW);
-                    InvalidateRect(hWnd, NULL, TRUE);
-                    UpdateWindow(hWnd);
+                    ShowWindow(button7,SW_SHOW);//Ensenyem buttons de la finestra actual
+                    InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                    UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                     break;
                 }
                 case 388:{ //BACK TO MAIN SCREEN
@@ -789,8 +796,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(buttonFR,SW_HIDE); //Escondemos los elementos de todas las ventanas posibles desde la que podemos acceder al boton
                     ShowWindow(button_deny,SW_HIDE);
                     ShowWindow(button_accept,SW_HIDE);
-                    InvalidateRect(hWnd, NULL, TRUE);
-                    UpdateWindow(hWnd);
+                    InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                    UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                     break;
                 }
                 case 200:{
@@ -803,12 +810,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(button_log_out,SW_HIDE);
                     ShowWindow(buttonFRprev,SW_HIDE);
                     ShowWindow(button_me,SW_HIDE);
-                    ShowWindow(button_log_out,SW_HIDE);
+                    ShowWindow(button_log_out,SW_HIDE);//Amaguem buttons de la finestra anterior
                     ShowWindow(hEditControlFR,SW_SHOW);
                     ShowWindow(buttonFR,SW_SHOW);
-                    ShowWindow(button388,SW_SHOW);
-                    InvalidateRect(hWnd, NULL, TRUE);
-                    UpdateWindow(hWnd);
+                    ShowWindow(button388,SW_SHOW);//Ensenyem buttons de la finestra actual
+                    InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                    UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                     break;
                 }
                 case 201:{//Ver Solicitudes Entrantes
@@ -821,12 +828,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(buttoncreatepubli,SW_HIDE);
                     ShowWindow(buttonCHAT,SW_HIDE);
                     ShowWindow(hEditControlCHAT,SW_HIDE);
-                    ShowWindow(buttonFRprev,SW_HIDE);
+                    ShowWindow(buttonFRprev,SW_HIDE);//Amaguem buttons de la finestra anterior
                     ShowWindow(button_deny,SW_SHOW);
                     ShowWindow(button_accept,SW_SHOW);
-                    ShowWindow(button388,SW_SHOW);
-                    InvalidateRect(hWnd, NULL, TRUE);
-                    UpdateWindow(hWnd);
+                    ShowWindow(button388,SW_SHOW);//Ensenyem buttons de la finestra actual
+                    InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                    UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                     break;
                 }
                 case 203:{
@@ -837,20 +844,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(buttoncreatepubli,SW_HIDE);
                     ShowWindow(button_me,SW_HIDE);
                     ShowWindow(button_log_out,SW_HIDE);
-                    ShowWindow(buttonFRprev,SW_HIDE);
+                    ShowWindow(buttonFRprev,SW_HIDE);//Amaguem buttons de la finestra anterior
 
                     ShowWindow(button388,SW_SHOW); //Ensenyem botó de back amb id button188
-                    print_console_users(list_of_user);
-                    InvalidateRect(hWnd, NULL, TRUE);
-                    UpdateWindow(hWnd);//Invalidem la disposició de l'anterior pestanya
+                    print_console_users(list_of_user);// veure a visual_functions.c
+                    InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                    UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                     break;
                 }
                 case 204:{//Ver publicaciones (primer post)
                     i=15;
-                    while (aser < (current_user->numfriends)) {
-                        printf("C");
+                    while (aser < (current_user->numfriends)) {//aser es el identificador de indice de amigo
                         if (current_user->friends[aser]->publicacion != NULL) {
-                            actual_post = current_user->friends[aser]->publicacion;
+                            actual_post = current_user->friends[aser]->publicacion;//actualizamos actualpost
                             break;
                         }
                         aser++;
@@ -863,12 +869,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(buttoncreatepubli,SW_HIDE);
                     ShowWindow(buttonCHAT,SW_HIDE);
                     ShowWindow(hEditControlCHAT,SW_HIDE);
-                    ShowWindow(buttonFRprev,SW_HIDE);
+                    ShowWindow(buttonFRprev,SW_HIDE);//Amaguem buttons de la finestra anterior
 
                     ShowWindow(button_next_post,SW_SHOW);
-                    ShowWindow(button388,SW_SHOW);
-                    InvalidateRect(hWnd, NULL, TRUE);
-                    UpdateWindow(hWnd);
+                    ShowWindow(button388,SW_SHOW);//Ensenyem buttons de la finestra actual
+                    InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                    UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                     break;
                 }
                 case 205:{ //Nueva publicacion selecionada.
@@ -881,18 +887,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(buttoncreatepubli,SW_HIDE);
                     ShowWindow(buttonCHAT,SW_HIDE);
                     ShowWindow(hEditControlCHAT,SW_HIDE);
-                    ShowWindow(buttonFRprev,SW_HIDE);
+                    ShowWindow(buttonFRprev,SW_HIDE);//Amaguem buttons de la finestra anterior
 
                     ShowWindow(button388,SW_SHOW);
                     ShowWindow(buttonCHAT,SW_SHOW);
-                    ShowWindow(hEditControlCHAT,SW_SHOW);
-                    InvalidateRect(hWnd, NULL, TRUE);
-                    UpdateWindow(hWnd);
+                    ShowWindow(hEditControlCHAT,SW_SHOW);//Ensenyem buttons de la finestra actual
+                    InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                    UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                     break;
                 }
                 case 208:{//BOTON DE NEXT PUBLI
 
-                    if (actual_post==NULL && aser<=current_user->numfriends){
+                    if (actual_post==NULL && aser<=current_user->numfriends){//No hay post del usuario pero tenemos mas amigos
                         while (actual_post==NULL && aser<current_user->numfriends){
                             aser++;
                             if (aser<current_user->numfriends){
@@ -900,21 +906,21 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                             }
                         }
                     }
-                    else if (actual_post->next==NULL){
-                        actual_post=actual_post->next;
-                        while (actual_post==NULL && aser<current_user->numfriends){
+                    else if (actual_post->next==NULL){//No existen mas post del usuario
+                        actual_post=actual_post->next;//actual_post=NULL
+                        while (actual_post==NULL && aser<current_user->numfriends){//Comprovamos si hay mas usuarios amigos
                             aser++;
                             if (aser<current_user->numfriends){
                                 actual_post = current_user->friends[aser]->publicacion;
                             }
                         }
                     }
-                    else if (actual_post->next!=NULL){
+                    else if (actual_post->next!=NULL){//Existe otro post del mismo usuario
                         actual_post=actual_post->next;}
 
 
-                    InvalidateRect(hWnd, NULL, TRUE);
-                    UpdateWindow(hWnd);
+                    InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                    UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                     break;
                 }
                 case 221:{ //me screen
@@ -926,11 +932,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(button_me,SW_HIDE);
                     ShowWindow(button_log_out,SW_HIDE);
                     ShowWindow(hEditControlCHAT,SW_HIDE);
-                    ShowWindow(buttonFRprev,SW_HIDE);
+                    ShowWindow(buttonFRprev,SW_HIDE);//Amaguem buttons de la finestra anterior
                     ShowWindow(button388,SW_SHOW);
                     i=14;
-                    InvalidateRect(hWnd, NULL, TRUE);
-                    UpdateWindow(hWnd);
+                    InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                    UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                     break;
                 }
                 case 222:{ //log out
@@ -942,16 +948,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(button_me,SW_HIDE);
                     ShowWindow(button_log_out,SW_HIDE);
                     ShowWindow(hEditControlCHAT,SW_HIDE);
-                    ShowWindow(buttonFRprev,SW_HIDE);
+                    ShowWindow(buttonFRprev,SW_HIDE);//Amaguem buttons de la finestra anterior
 
                     i=0;
                     ShowWindow(button1, SW_SHOW);
                     ShowWindow(button2, SW_SHOW);
                     ShowWindow(button3, SW_SHOW);
-                    ShowWindow(button4, SW_SHOW);
+                    ShowWindow(button4, SW_SHOW);//Ensenyem buttons de la finestra actual
                     current_user=NULL;
-                    InvalidateRect(hWnd, NULL, TRUE);
-                    UpdateWindow(hWnd);
+                    InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                    UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                     break;
                 }
                 case 270:{//accept
@@ -959,40 +965,40 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     dequeue(current_user);
                     printf("\nACCEPTED");
                     printf("\nActual friends: %d",current_user->numfriends);
-                    InvalidateRect(hWnd, NULL, TRUE);
-                    UpdateWindow(hWnd);
+                    InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                    UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                     break;
                 }
                 case 271:{//deny
                     dequeue(current_user);
                     printf("\nDENAYED");
-                    InvalidateRect(hWnd, NULL, TRUE);
-                    UpdateWindow(hWnd);
+                    InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
+                    UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
                     break;
                 }
             }
             break;
         }
 
-        case WM_DESTROY:{
-            free(dict);
-            free(list_of_user);
+        case WM_DESTROY:{//Abans de tancar el programa venim aquí SEMPRE
+            free(dict); //Alliberem la estructura dinàmica dict
+            free(list_of_user);//Alliberem la estructura dinàmica list_of_user
             printf("\n\nVuelva pronto!\n\nEjecucion finalizada correctamente.\n");
             PostQuitMessage(00);
             break;}
 
 
 
-        case WM_PAINT:{
+        case WM_PAINT:{//Aqui pintem la pantalla, definim color de fons, escribim text i cridem a visual_functions.c
             PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
+            HDC hdc = BeginPaint(hWnd, &ps);//Començem a pintar.
             RECT rect;
-            HFONT hFont = (HFONT)SendMessage(button4, WM_GETFONT, 0, 0);
+            // Seleccionar la fuente en el contexto del dispositivo
             hFont = CreateFont(20, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Courier New Black");
             HFONT hOldFont = (HFONT)SelectObject(hdc, hFont);
             if (i==0){//Ventana inicial.
-                hBrush = CreateSolidBrush(RGB(70, 0, 70));
+                hBrush = CreateSolidBrush(RGB(70, 0, 70));// Crear un brush con el color deseado
                 LOGFONT lf = { 0 };
                 GetObject(hFont, sizeof(LOGFONT), &lf);
                 lf.lfHeight = 23;
@@ -1022,7 +1028,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 rect.top-=360;//Nos adaptamos el rect para escribir posteriormente
                 DrawText(hdc, "GAMEHUB", -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);}
             else if (i==1){//Primera parte del registro de nuevo usuario
-                hBrush = CreateSolidBrush(RGB(100, 100, 125)); // Crear un brush con el color deseado (en este caso, azul)
+                hBrush = CreateSolidBrush(RGB(100, 100, 125)); // Crear un brush con el color deseado
 
                 GetClientRect(hWnd, &rect);
                 FillRect(hdc, &rect, hBrush); // Pintar la ventana con el brush creado
@@ -1045,6 +1051,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 rect.top-=450; //Adaptamos el rect
                 SetTextColor(hdc, RGB(0, 0, 0));//Pintamos de negro nuestro texto (nuevo color)
                 //Escribimos:
+                // Seleccionar la fuente en el contexto del dispositivo
                 hFont = CreateFont(110, 0, 0, 0, FW_NORMAL, BOLD_FONTTYPE, TRUE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial Black");
 
@@ -1052,44 +1059,47 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 DrawText(hdc, "REGISTRO DE NUEVO GAMER", -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 
                 rect.top+=260;//Adaptamos el rect
-
+                // Seleccionar la fuente en el contexto del dispositivo
                 hFont = CreateFont(25, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Courier New Black");
                 hOldFont = (HFONT)SelectObject(hdc, hFont); //Cambiamos la fuente
-                SetTextColor(hdc,RGB(0,0,0));
-                RECT rect2 = { 80, 320, 300, 360 };
+                SetTextColor(hdc,RGB(0,0,0));//Cambiamos color de texto
+                RECT rect2 = { 80, 320, 300, 360 };//Creamos un rect, espacio reservado en la ventana
                 DrawText(hdc, "GAMER:", -1, &rect2, DT_LEFT | DT_VCENTER);
-                RECT rect3 = { 80, 440, 300, 480 };
+                RECT rect3 = { 80, 440, 300, 480 };//Creamos un rect, espacio reservado en la ventana
                 DrawText(hdc, "PASSWORD:", -1, &rect3, DT_LEFT | DT_VCENTER);
-                RECT rect4 = { 80, 520, 300, 580 };
+                RECT rect4 = { 80, 520, 300, 580 };//Creamos un rect, espacio reservado en la ventana
                 DrawText(hdc, "CONFIRMAR \nPASSWORD:", -1, &rect4, DT_LEFT | DT_VCENTER);
             }
             else if (i==2){//Listado de users seleccionado
-                hBrush = CreateSolidBrush(RGB(102, 0, 51)); // Crear un brush con el color deseado (en este caso, azul)
+                hBrush = CreateSolidBrush(RGB(102, 0, 51)); // Crear un brush con el color deseado
                 RECT rect;
                 GetClientRect(hWnd, &rect);
                 FillRect(hdc, &rect, hBrush); // Pintar la ventana con el brush creado
-                SetBkColor(hdc, RGB(102, 0, 51));
+                SetBkColor(hdc, RGB(102, 0, 51));//Color de subrallado (fondo del texto)
                 rect.top-=600;
 
-                SetTextColor(hdc, RGB(235, 235, 235));
+                SetTextColor(hdc, RGB(235, 235, 235));//Cambiamos color de texto
+                // Seleccionar la fuente en el contexto del dispositivo
                 hFont = CreateFont(80, 0, 0, 0, FW_NORMAL, BOLD_FONTTYPE, TRUE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial Black");
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
                 DrawText(hdc, "LISTADO DE GAMERS", -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+                // Seleccionar la fuente en el contexto del dispositivo
                 hFont = CreateFont(24, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
                 print_screen_users(list_of_user,hdc);//ver en visual_functions.c
             }
             else if (i==3){//Iniciar sesión seleccionado
-                hBrush = CreateSolidBrush(RGB(100, 100, 125)); // Crear un brush con el color deseado (en este caso, azul)
+                hBrush = CreateSolidBrush(RGB(100, 100, 125)); // Crear un brush con el color deseado
                 RECT recta;
                 GetClientRect(hWnd, &recta);
                 FillRect(hdc, &recta, hBrush); // Pintar la ventana con el brush creado
-                SetBkColor(hdc, RGB(100, 100, 125));
+                SetBkColor(hdc, RGB(100, 100, 125));//Color de subrallado (fondo del texto)
                 recta.top-=450;
-                SetTextColor(hdc, RGB(0, 0, 0));
+                SetTextColor(hdc, RGB(0, 0, 0));//Cambiamos color de texto
+                // Seleccionar la fuente en el contexto del dispositivo
                 hFont = CreateFont(115, 0, 0, 0, FW_NORMAL, BOLD_FONTTYPE, TRUE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial Black");
 
@@ -1098,14 +1108,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 DrawText(hdc, "INICIAR SESION", -1, &recta, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
                 rect.top+=260;
 
-
+                // Seleccionar la fuente en el contexto del dispositivo
                 hFont = CreateFont(28, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Courier New Black");
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
-                SetTextColor(hdc,RGB(0,0,0));
-                RECT rect2 = { 130, 320, 400, 360 };
+                SetTextColor(hdc,RGB(0,0,0));//Cambiamos color de texto
+                RECT rect2 = { 130, 320, 400, 360 };//Creamos un rect, espacio reservado en la ventana
                 DrawText(hdc, "GAMER:", -1, &rect2, DT_LEFT | DT_VCENTER);
-                RECT rect3 = { 130, 440, 400, 480 };
+                RECT rect3 = { 130, 440, 400, 480 };//Creamos un rect, espacio reservado en la ventana
                 DrawText(hdc, "PASSWORD:", -1, &rect3, DT_LEFT | DT_VCENTER);
                 if (error==12){
                     print_screen_error8(hdc);
@@ -1113,17 +1123,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             }
 
             else if (i==7){//Segunda parte del registro de nuevo usuario
-                hBrush = CreateSolidBrush(RGB(100, 100, 125));
+                hBrush = CreateSolidBrush(RGB(100, 100, 125));// Crear un brush con el color deseado
                 RECT rect;
                 GetClientRect(hWnd, &rect);
-                FillRect(hdc, &rect, hBrush);
-                SetBkColor(hdc, RGB(100, 100, 125));
+                FillRect(hdc, &rect, hBrush);// Pintar la ventana con el brush creado
+                SetBkColor(hdc, RGB(100, 100, 125));//Color de subrallado (fondo del texto)
                 rect.top-=280;
-                SetTextColor(hdc, RGB(0, 0, 0));
+                SetTextColor(hdc, RGB(0, 0, 0));//Cambiamos color de texto
                 if (error==2){
                     print_screen_error4(hdc);//ver en visual_functions.c
                 }
                 rect.top-=170;
+                // Seleccionar la fuente en el contexto del dispositivo
                 hFont = CreateFont(110, 0, 0, 0, FW_NORMAL, BOLD_FONTTYPE, TRUE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial Black");
 
@@ -1131,21 +1142,22 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 rect.top-=100;
                 DrawText(hdc, "REGISTRO DE NUEVO GAMER", -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
                 rect.top+=260;
-
+                // Seleccionar la fuente en el contexto del dispositivo
                 hFont = CreateFont(30, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Courier New Black");
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
-                SetTextColor(hdc,RGB(0,0,0));
-                RECT rect2 = { 100, 220, 300, 280 };
+                SetTextColor(hdc,RGB(0,0,0));//Cambiamos color de texto
+                RECT rect2 = { 100, 220, 300, 280 };//Creamos un rect, espacio reservado en la ventana
                 DrawText(hdc, "NOMBRE:", -1, &rect2, DT_LEFT | DT_VCENTER);
-                RECT rect3 = { 100, 320, 300, 380 };
+                RECT rect3 = { 100, 320, 300, 380 };//Creamos un rect, espacio reservado en la ventana
                 DrawText(hdc, "EDAD:", -1, &rect3, DT_LEFT | DT_VCENTER);
-                RECT rect4 = { 100, 420, 300, 480 };
+                RECT rect4 = { 100, 420, 300, 480 };//Creamos un rect, espacio reservado en la ventana
                 DrawText(hdc, "CIUDAD:", -1, &rect4, DT_LEFT | DT_VCENTER);
-                RECT rect5 = { 100, 520, 300, 580 };
+                RECT rect5 = { 100, 520, 300, 580 };//Creamos un rect, espacio reservado en la ventana
                 DrawText(hdc, "VIDEOJUEGOS:", -1, &rect5, DT_LEFT | DT_VCENTER);
-                RECT rect6 = { 100, 620, 300, 680 };
+                RECT rect6 = { 100, 620, 300, 680 };//Creamos un rect, espacio reservado en la ventana
                 DrawText(hdc, "EMAIL:", -1, &rect6, DT_LEFT | DT_VCENTER);
+                // Seleccionar la fuente en el contexto del dispositivo
                 hFont = CreateFont(18, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Courier New Black");
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
@@ -1153,133 +1165,150 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     print_screen_error(hdc);}//ver en visual_functions.c
             }
             else if (i==10){//Menú principal, despues de iniciar sesion.Incluye casi todas las funcionalidades
-                RECT rectCHAT = {320, 0, 1382, 777 };
+                RECT rectCHAT = {320, 0, 1382, 777 };//Creamos un rect, espacio reservado en la ventana
                 SetWindowText(button_me, current_user->user);
-                hBrush = CreateSolidBrush(RGB(0, 0, 0));
-                FillRect(hdc, &rectCHAT, hBrush);
+                hBrush = CreateSolidBrush(RGB(0, 0, 0));// Crear un brush con el color deseado
+                FillRect(hdc, &rectCHAT, hBrush);// Pintar la ventana con el brush creado
 
-                RECT rect10 = {0, 0, 320, 777 };
+                RECT rect10 = {0, 0, 320, 777 };//Creamos un rect, espacio reservado de pantalla
 
-                hBrush = CreateSolidBrush(RGB(100, 100, 125));
-                FillRect(hdc, &rect10, hBrush);
+                hBrush = CreateSolidBrush(RGB(100, 100, 125));// Crear un brush con el color deseado
+                FillRect(hdc, &rect10, hBrush);// Pintar la ventana con el brush creado
 
                 RECT rectCombined;
-                UnionRect(&rectCombined, &rect10, &rectCHAT);
+                UnionRect(&rectCombined, &rect10, &rectCHAT);//Creamos la union de dos rect para poder poner más de un color
 
-                hBrush = CreateSolidBrush(RGB(0, 0, 0));
-                FillRect(hdc, &rectCombined, hBrush);
-                hBrush = CreateSolidBrush(RGB(100, 100, 125));
-                FillRect(hdc, &rect10, hBrush);
-                SetBkColor(hdc, RGB(0, 0, 0));
-                SetTextColor(hdc,RGB(255,255,255));
+                hBrush = CreateSolidBrush(RGB(0, 0, 0));// Crear un brush con el color deseado
+                FillRect(hdc, &rectCombined, hBrush);// Pintar la ventana con el brush creado
+                hBrush = CreateSolidBrush(RGB(100, 100, 125));// Crear un brush con el color deseado
+                FillRect(hdc, &rect10, hBrush);// Pintar la ventana con el brush creado
+                SetBkColor(hdc, RGB(0, 0, 0));//Color de subrallado (fondo del texto)
+                SetTextColor(hdc,RGB(255,255,255));//Cambiamos color de texto
+                // Seleccionar la fuente en el contexto del dispositivo
                 hFont = CreateFont(48, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Courier New Black");
-                hOldFont = (HFONT)SelectObject(hdc, hFont);
-                RECT rect = {400, 50, 1302, 727 };
+                hOldFont = (HFONT)SelectObject(hdc, hFont);//Aplicamos Fuente
+                RECT rect = {400, 50, 1302, 727 };//Creamos un rect, espacio reservado en la ventana
+                // Seleccionar la fuente en el contexto del dispositivo
                 DrawText(hdc, "TENDENCIAS DE LA SEMANA", -1, &rect, DT_CENTER | BOLD_FONTTYPE | DT_SINGLELINE);
                 hFont = CreateFont(32, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Courier New Black");
-                hOldFont = (HFONT)SelectObject(hdc, hFont);
-                print_screen_trend(hdc,dict);
+                hOldFont = (HFONT)SelectObject(hdc, hFont);//Aplicamos la fuente
+                print_screen_trend(hdc,dict);//ver en visual_functions.c
             }
             else if (i==12){//Listado de usuarios para mandar friend request
                 hBrush = CreateSolidBrush(RGB(0, 0, 51)); // Crear un brush con el color deseado (en este caso, azul)
                 RECT rect;
                 GetClientRect(hWnd, &rect);
                 FillRect(hdc, &rect, hBrush); // Pintar la ventana con el brush creado
-                SetBkColor(hdc, RGB(0, 0, 51));
+                SetBkColor(hdc, RGB(0, 0, 51));//Color de subrallado (fondo del texto)
                 rect.top-=600;
 
-                SetTextColor(hdc, RGB(235, 235, 235));
+                SetTextColor(hdc, RGB(235, 235, 235));//Cambiamos color de texto
+                // Seleccionar la fuente en el contexto del dispositivo
                 hFont = CreateFont(70, 0, 0, 0, FW_NORMAL, BOLD_FONTTYPE, TRUE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial Black");
-                hOldFont = (HFONT)SelectObject(hdc, hFont);
+                hOldFont = (HFONT)SelectObject(hdc, hFont);//Aplicamos fuente
+                // Seleccionar la fuente en el contexto del dispositivo
                 DrawText(hdc, "ENVIAR SOLICITUD DE AMISTAD", -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
                 hFont = CreateFont(24, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
-                hOldFont = (HFONT)SelectObject(hdc, hFont);
-                SetTextColor(hdc, RGB(255, 255, 255));
+                hOldFont = (HFONT)SelectObject(hdc, hFont);//Aplicamos la fuente
+                SetTextColor(hdc, RGB(255, 255, 255));//Cambiamos color de texto
                 if (error==19){
-                    printf("E19");
                     print_screen_error7(hdc);//ver en visual_functions.c
                 }
                 else if (error==18){
-                    printf("E18");
                     print_screen_error6(hdc);//ver en visual_functions.c
                 }
                 print_screen_users(list_of_user,hdc);//ver en visual_functions.c
             }
             else if (i==13){ //Nueva publicacion seleccionada
-                hBrush = CreateSolidBrush(RGB(178, 102, 255)); // Crear un brush con el color deseado (en este caso, azul)
+                hBrush = CreateSolidBrush(RGB(0, 0, 51)); // Crear un brush con el color deseado (en este caso, azul)
                 RECT rect;
                 GetClientRect(hWnd, &rect);
-                FillRect(hdc, &rect, hBrush);
+                FillRect(hdc, &rect, hBrush);// Pintar la ventana con el brush creado
+                RECT recta = {100, 60, 1282, 687 };//Creamos un rect, espacio reservado en la ventana
+                SetBkColor(hdc, RGB(0, 0, 51));//Color de subrallado (fondo del texto)
+                SetTextColor(hdc, RGB(255, 255, 255));//Cambiamos color de texto
+                // Seleccionar la fuente en el contexto del dispositivo
+                hFont = CreateFont(110, 0, 0, 0, FW_NORMAL, BOLD_FONTTYPE, TRUE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
+                                   CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial Black");
+
+
+                hOldFont = (HFONT)SelectObject(hdc, hFont);//Aplicamos fuente
+                DrawText(hdc, "SUBIR NUEVO POST", -1, &recta, DT_CENTER | DT_SINGLELINE);
+
             }
             else if (i==14){//VENTANA ME, menu de usuario
                 hBrush = CreateSolidBrush(RGB(110, 0, 110)); // Crear un brush con el color deseado (en este caso, azul)
                 RECT rect;
                 GetClientRect(hWnd, &rect);
                 FillRect(hdc, &rect, hBrush); // Pintar la ventana con el brush creado
-                SetBkColor(hdc, RGB(110, 0, 110));
+                SetBkColor(hdc, RGB(110, 0, 110));//Color de subrallado (fondo del texto)
+                // Seleccionar la fuente en el contexto del dispositivo
                 hFont = CreateFont(42, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
-                hOldFont = (HFONT)SelectObject(hdc, hFont);
+                hOldFont = (HFONT)SelectObject(hdc, hFont);//Aplicamos la fuente
                 print_me_screen(current_user,hdc);
             }
             else if (i==15){ //VER PUBLICACIONES
-                RECT rectCHAT= {0, 0, 1382, 777 };
-                hBrush = CreateSolidBrush(RGB(100, 100, 125));
+                RECT rectCHAT= {0, 0, 1382, 777 };//Creamos un rect, espacio reservado en la ventana
+                hBrush = CreateSolidBrush(RGB(100, 100, 125));// Crear un brush con el color deseado
 
-                FillRect(hdc, &rectCHAT, hBrush);
+                FillRect(hdc, &rectCHAT, hBrush);// Pintar la ventana con el brush creado
 
-                RECT rect10 = {240, 120, 1142, 707 };
+                RECT rect10 = {240, 120, 1142, 707 };//Creamos un rect, espacio reservado en la ventana
 
-                hBrush = CreateSolidBrush(RGB(0, 0, 51));
-                FillRect(hdc, &rect10, hBrush);
+                hBrush = CreateSolidBrush(RGB(0, 0, 51));// Crear un brush con el color deseado
+                FillRect(hdc, &rect10, hBrush);// Pintar la ventana con el brush creado
 
                 RECT rectCombined;
-                UnionRect(&rectCombined, &rect10, &rectCHAT);
+                UnionRect(&rectCombined, &rect10, &rectCHAT);//Creamos la union de dos rect para poder poner más de un color
 
-                hBrush = CreateSolidBrush(RGB(180, 180, 180));
-                FillRect(hdc, &rectCombined, hBrush);
+                hBrush = CreateSolidBrush(RGB(180, 180, 180));// Crear un brush con el color deseado
+                FillRect(hdc, &rectCombined, hBrush);// Pintar la ventana con el brush creado
 
-                hBrush = CreateSolidBrush(RGB(100, 100, 125));
-                FillRect(hdc, &rect10, hBrush);
+                hBrush = CreateSolidBrush(RGB(100, 100, 125));// Crear un brush con el color deseado
+                FillRect(hdc, &rect10, hBrush);// Pintar la ventana con el brush creado
+                // Seleccionar la fuente en el contexto del dispositivo
                 hFont = CreateFont(24, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
-                hOldFont = (HFONT)SelectObject(hdc, hFont);
-                print_screen_publi(current_user,actual_post,hdc,aser);
+                hOldFont = (HFONT)SelectObject(hdc, hFont);//Aplicamos la fuente
+                print_screen_publi(current_user,actual_post,hdc,aser);//ver en visual_functions.c
             }
             else if (i==16){ //VER SOLICITUDES ENTRANTES
                 hBrush = CreateSolidBrush(RGB(178, 102, 255)); // Crear un brush con el color deseado (en este caso, azul)
                 RECT rect;
                 GetClientRect(hWnd, &rect);
                 FillRect(hdc, &rect, hBrush); // Pintar la ventana con el brush creado
-                SetBkColor(hdc, RGB(178, 102, 255));
+                SetBkColor(hdc, RGB(178, 102, 255));//Color de subrallado (fondo del texto)
+                // Seleccionar la fuente en el contexto del dispositivo
                 hFont = CreateFont(42, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
-                hOldFont = (HFONT)SelectObject(hdc, hFont);
-                print_screen_fr(current_user,hdc);
+                hOldFont = (HFONT)SelectObject(hdc, hFont);//Aplicamos fuente
+                print_screen_fr(current_user,hdc);//ver en visual_functions.c
             }
             else if (i==17){//Enviar solicitud, menu de la persona que buscamos
                 hBrush = CreateSolidBrush(RGB(120, 120, 145)); // Crear un brush con el color deseado (en este caso, azul)
                 RECT rect;
                 GetClientRect(hWnd, &rect);
                 FillRect(hdc, &rect, hBrush); // Pintar la ventana con el brush creado
-                SetBkColor(hdc, RGB(120, 120, 145));
+                SetBkColor(hdc, RGB(120, 120, 145));//Color de subrallado (fondo del texto)
+                // Seleccionar la fuente en el contexto del dispositivo
                 hFont = CreateFont(42, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
-                hOldFont = (HFONT)SelectObject(hdc, hFont);
-                print_me_screen(find_user(searchfr,list_of_user),hdc);
+                hOldFont = (HFONT)SelectObject(hdc, hFont);//Aplicamos la fuente
+                print_me_screen(find_user(searchfr,list_of_user),hdc);//ver en visual_functions.c
             }
-            DeleteObject(hBrush);
-            SelectObject(hdc, hOldFont);
-            DeleteObject(hFont);
-            EndPaint(hWnd, &ps);
+            DeleteObject(hBrush);//Liberamos el hBrush creado, un color.
+            SelectObject(hdc, hOldFont);//
+            DeleteObject(hFont);//Liberamos el hFont creado, un tipo de letra.
+            EndPaint(hWnd, &ps);//Terminamos el pintado
             break;
         }
         default:
-            return DefWindowProc(hWnd, msg, wParam, lParam);
+            return DefWindowProc(hWnd, msg, wParam, lParam);//Retorno automatico de la pantalla, nos aporta el componente dinamico
     }
     return 0;
 }
