@@ -15,10 +15,18 @@ int are_friends(User u1, User u2){
     //si no coincide, devuelve FALSE
 }
 
+//Dados 2 users, comprubea si el sended ya tiene una petición de amistad del sended, retorna TRUE o FALSE.
+
 int friend_request_already(User sender, User sended){
-    Element* aux = sender.friend_request->first;
+    if(sended.friend_request == NULL || sended.friend_request->first == NULL){
+        return FALSE;
+    }
+    Element* aux = sended.friend_request->first;
     while(aux != NULL){
-        if(aux->user == &sended){return TRUE;}//si ya ha sido enviada
+        printf("%s",aux->user->name);
+        if(strcmp(aux->user->name,sender.name) == 0){
+            return TRUE;
+        }//si ya ha sido enviada
         aux = aux->next;
     }
     return FALSE;
