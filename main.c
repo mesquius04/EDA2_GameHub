@@ -18,7 +18,7 @@ int condition=0,aser=0,condition2=0,condition3=0,condition4=0,condition5=0,condi
 User* list_of_user = NULL;
 Dict* dict=NULL;
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-HWND button1,button2,button3,button4,button5,button_accept,button_deny,buttonLIST,buttonSendFR,button488,button388,button_next_post,button6,button7,button8,button9,button10,button188,buttonCHAT,button288,button_me,button_log_out,button11,button12,button66,buttonFR,buttonFRprev,buttonFRcheck,buttoncreatepubli,buttonshowpubli,hEditControlCHAT,hEditControlFR,hEditControl22,hEditControl33,hEditControl,hEditControl2,hEditControl3,hEditControl4,hEditControl5,hEditControl6,hEditControl7,hEditControl7_1,hEditControl7_2,hEditControl7_3,hEditControl7_4,hEditControl8;
+HWND button1,button2,button3,button4,button5,button_last_post,button_accept,button_deny,buttonLIST,buttonSendFR,button488,button388,button_next_post,button6,button7,button8,button9,button10,button188,buttonCHAT,button288,button_me,button_log_out,button11,button12,button66,buttonFR,buttonFRprev,buttonFRcheck,buttoncreatepubli,buttonshowpubli,hEditControlCHAT,hEditControlFR,hEditControl22,hEditControl33,hEditControl,hEditControl2,hEditControl3,hEditControl4,hEditControl5,hEditControl6,hEditControl7,hEditControl7_1,hEditControl7_2,hEditControl7_3,hEditControl7_4,hEditControl8;
 int i=0,h=0,k=0,error=0,pass_error=0;
 
 //Funcion principal de app de Windows
@@ -413,6 +413,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     hInst,
                     NULL
             );
+            button_last_post = CreateWindowEx(
+                    0,
+                    "BUTTON",
+                    "DELETE",
+                    SW_HIDE | WS_CHILD | BS_DEFPUSHBUTTON,
+                    1252, 612, 100, 65,
+                    hWnd,
+                    (HMENU)245,
+                    hInst,
+                    NULL
+            );
             break;
         }
         case WM_COMMAND: {//Des d'aqui controlem la interacció de l'usuari amb els elements que ensenyem
@@ -698,6 +709,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                         ShowWindow(buttonLIST,SW_SHOW);
                         ShowWindow(buttonshowpubli,SW_SHOW);
                         ShowWindow(buttonFRcheck,SW_SHOW);
+                        ShowWindow(button_last_post,SW_SHOW);
                         ShowWindow(buttoncreatepubli,SW_SHOW);
                         ShowWindow(button_me,SW_SHOW);
                         ShowWindow(button_log_out,SW_SHOW);
@@ -781,6 +793,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(buttonLIST,SW_SHOW);
                     ShowWindow(buttonshowpubli,SW_SHOW);
                     ShowWindow(buttonFRcheck,SW_SHOW);
+                    ShowWindow(button_last_post,SW_SHOW);
                     ShowWindow(buttoncreatepubli,SW_SHOW);
                     ShowWindow(button_me,SW_SHOW);
                     ShowWindow(button_log_out,SW_SHOW);
@@ -805,6 +818,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(buttonLIST,SW_HIDE);
                     ShowWindow(buttonshowpubli,SW_HIDE);
                     ShowWindow(buttonFRcheck,SW_HIDE);
+                    ShowWindow(button_last_post,SW_HIDE);
                     ShowWindow(buttoncreatepubli,SW_HIDE);
                     ShowWindow(button_me,SW_HIDE);
                     ShowWindow(button_log_out,SW_HIDE);
@@ -825,6 +839,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(buttonFRcheck,SW_HIDE);
                     ShowWindow(button_me,SW_HIDE);
                     ShowWindow(button_log_out,SW_HIDE);
+                    ShowWindow(button_last_post,SW_HIDE);
                     ShowWindow(buttoncreatepubli,SW_HIDE);
                     ShowWindow(buttonCHAT,SW_HIDE);
                     ShowWindow(hEditControlCHAT,SW_HIDE);
@@ -841,6 +856,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(buttonLIST,SW_HIDE);
                     ShowWindow(buttonshowpubli,SW_HIDE);
                     ShowWindow(buttonFRcheck,SW_HIDE);
+                    ShowWindow(button_last_post,SW_HIDE);
                     ShowWindow(buttoncreatepubli,SW_HIDE);
                     ShowWindow(button_me,SW_HIDE);
                     ShowWindow(button_log_out,SW_HIDE);
@@ -866,6 +882,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(buttonFRcheck,SW_HIDE);
                     ShowWindow(button_me,SW_HIDE);
                     ShowWindow(button_log_out,SW_HIDE);
+                    ShowWindow(button_last_post,SW_HIDE);
                     ShowWindow(buttoncreatepubli,SW_HIDE);
                     ShowWindow(buttonCHAT,SW_HIDE);
                     ShowWindow(hEditControlCHAT,SW_HIDE);
@@ -884,6 +901,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(buttonFRcheck,SW_HIDE);
                     ShowWindow(button_me,SW_HIDE);
                     ShowWindow(button_log_out,SW_HIDE);
+                    ShowWindow(button_last_post,SW_HIDE);
                     ShowWindow(buttoncreatepubli,SW_HIDE);
                     ShowWindow(buttonCHAT,SW_HIDE);
                     ShowWindow(hEditControlCHAT,SW_HIDE);
@@ -901,6 +919,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     if (actual_post==NULL && aser<=current_user->numfriends){//No hay post del usuario pero tenemos mas amigos
                         while (actual_post==NULL && aser<current_user->numfriends){
                             aser++;
+                            aser++;
                             if (aser<current_user->numfriends){
                                 actual_post = current_user->friends[aser]->publicacion;
                             }
@@ -910,7 +929,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                         actual_post=actual_post->next;//actual_post=NULL
                         while (actual_post==NULL && aser<current_user->numfriends){//Comprovamos si hay mas usuarios amigos
                             aser++;
-                            if (aser<current_user->numfriends){
+                            if (aser<current_user->numfriends && current_user->friends[aser]->publicacion!=NULL){
                                 actual_post = current_user->friends[aser]->publicacion;
                             }
                         }
@@ -927,6 +946,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(buttonLIST,SW_HIDE);
                     ShowWindow(buttonshowpubli,SW_HIDE);
                     ShowWindow(buttonFRcheck,SW_HIDE);
+                    ShowWindow(button_last_post,SW_HIDE);
                     ShowWindow(buttoncreatepubli,SW_HIDE);
                     ShowWindow(buttonCHAT,SW_HIDE);
                     ShowWindow(button_me,SW_HIDE);
@@ -943,6 +963,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     ShowWindow(buttonLIST,SW_HIDE);
                     ShowWindow(buttonshowpubli,SW_HIDE);
                     ShowWindow(buttonFRcheck,SW_HIDE);
+                    ShowWindow(button_last_post,SW_HIDE);
                     ShowWindow(buttoncreatepubli,SW_HIDE);
                     ShowWindow(buttonCHAT,SW_HIDE);
                     ShowWindow(button_me,SW_HIDE);
@@ -958,6 +979,22 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     current_user=NULL;
                     InvalidateRect(hWnd, NULL, TRUE);//Invalidem la disposició de l'anterior finestra
                     UpdateWindow(hWnd);//Forçem la recarrega de la pantalla, amb la actualització del WM_PAINT
+                    break;
+                }
+                case 245:{
+                    Publicacion* top_stack =current_user->publicacion;//Encontramos el top de nuestro stack (empezamos al prinicipio)
+                    if (top_stack!=NULL){//Si el user tiene publicaciones
+                        if (top_stack->next==NULL){//Si solo tiene una
+                            free(top_stack->next);//Eliminamos la actual
+                            current_user->publicacion=NULL;//Nos quedamos sin publicaciones
+                        }
+                        else{
+                            while (top_stack->next->next!=NULL){//Buscamos la antepenultima publicacion
+                                top_stack=top_stack->next;
+                            }
+                            free(top_stack->next);//Eliminamos la siguiente a la penultima (la ultima)Hacemos un free del puntero
+                            top_stack->next=NULL;}//Ahora la nueva publicacion Top del stack apunta a NULL.
+                    }
                     break;
                 }
                 case 270:{//accept
@@ -1190,10 +1227,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 hOldFont = (HFONT)SelectObject(hdc, hFont);//Aplicamos Fuente
                 RECT rect = {400, 50, 1302, 727 };//Creamos un rect, espacio reservado en la ventana
                 // Seleccionar la fuente en el contexto del dispositivo
+                RECT recti = {1150, 580, 1382, 727 };
                 DrawText(hdc, "TENDENCIAS DE LA SEMANA", -1, &rect, DT_CENTER | BOLD_FONTTYPE | DT_SINGLELINE);
+                hFont = CreateFont(24, 0, 0, 0, FW_NORMAL, ITALIC_FONTTYPE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
+                                   CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Courier New Black");
+                hOldFont = (HFONT)SelectObject(hdc, hFont);//Aplicamos la fuente
+
+                DrawText(hdc, "Borrar mi ultimo post", -1, &recti, DT_LEFT);
                 hFont = CreateFont(32, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Courier New Black");
                 hOldFont = (HFONT)SelectObject(hdc, hFont);//Aplicamos la fuente
+
                 print_screen_trend(hdc,dict);//ver en visual_functions.c
             }
             else if (i==12){//Listado de usuarios para mandar friend request
