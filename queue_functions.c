@@ -19,7 +19,7 @@ int friend_request_already(User sender, User sended){
     Element* aux = sender.friend_request->first;
     while(aux != NULL){
         printf("F");
-        if(aux->user == &sended) return TRUE;//si ya ha sido enviada
+        if(aux->user == &sended){return TRUE;}//si ya ha sido enviada
         aux = aux->next;
     }
     return FALSE;
@@ -105,7 +105,7 @@ void manage_friend_request(User* current){
     User* newfriend;
     while(current->friend_request->first!=NULL){ //mientras la friendrequest no este vacia
         newfriend = dequeue(current);
-        printf("Quieres hacerte amigo de %s?",newfriend->name);
+        printf("Quieres hacerte amigo de %s?",newfriend->user);
         printf(" Pulsa 1 para aceptar, 2 para rechazar o 3 para salir \n");
         scanf("%d", &menu);
         if(menu == 1) makefriends(current,newfriend); //si aceptas, se hacen amigos

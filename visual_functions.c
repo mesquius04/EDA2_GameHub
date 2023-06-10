@@ -86,12 +86,18 @@ void print_screen_users(User* list,HDC hdc){
 }
 
 void print_screen_publi(User* current,Publicacion* new_post,HDC hdc,int aser){
-    RECT rect = {260, 140, 1122, 687 };
+    RECT rect = {260, 240, 1122, 687 };
+    RECT rect2 = {260, 140, 1122, 230 };
     SetBkColor(hdc, RGB(100, 100, 125));
     if (aser<current->numfriends){
+        SetTextColor(hdc,RGB(0,0,0));
         DrawText(hdc, new_post->post, -1, &rect, DT_CENTER | DT_TOP);
+        SetTextColor(hdc,RGB(80, 80, 80));
+        DrawText(hdc, current->friends[aser]->user, -1, &rect2, DT_RIGHT | DT_TOP);
         printf("\n%s",new_post->post);}
-    else DrawText(hdc, "No hay mas publicaciones disponibles", -1, &rect, DT_CENTER | DT_TOP);
+    else{
+        RECT rect = {260, 140, 1122, 687 };
+        DrawText(hdc, "No hay mas publicaciones disponibles", -1, &rect, DT_CENTER | DT_TOP);}
 
 }
 

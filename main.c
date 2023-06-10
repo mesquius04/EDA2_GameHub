@@ -162,7 +162,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             buttonLIST = CreateWindowEx(
                     0,
                     "BUTTON",
-                    "LISTADO DE USERS",
+                    "LISTADO DE GAMERS",
                     SW_HIDE | WS_CHILD | BS_DEFPUSHBUTTON,
                     30, 477, 260, 60,
                     hWnd,
@@ -895,8 +895,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     if (actual_post==NULL && aser<=current_user->numfriends){
                         while (actual_post==NULL && aser<current_user->numfriends){
                             aser++;
-                            printf("A");
-                            fflush(stdin);
                             if (aser<current_user->numfriends){
                                 actual_post = current_user->friends[aser]->publicacion;
                             }
@@ -906,15 +904,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                         actual_post=actual_post->next;
                         while (actual_post==NULL && aser<current_user->numfriends){
                             aser++;
-                            printf("B");
-                            fflush(stdin);
                             if (aser<current_user->numfriends){
                                 actual_post = current_user->friends[aser]->publicacion;
-                                printf("c");
                             }
-                            printf("d");
                         }
-                        printf("fora");
                     }
                     else if (actual_post->next!=NULL){
                         actual_post=actual_post->next;}
@@ -963,17 +956,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 }
                 case 270:{//accept
                     makefriends(current_user,current_user->friend_request->first->user);
-                    printf("ACCEPTED");
                     dequeue(current_user);
-                    printf("ACCEPTED");
-                    printf("firndes:%d",current_user->numfriends);
+                    printf("\nACCEPTED");
+                    printf("\nActual friends: %d",current_user->numfriends);
                     InvalidateRect(hWnd, NULL, TRUE);
                     UpdateWindow(hWnd);
                     break;
                 }
                 case 271:{//deny
                     dequeue(current_user);
-                    printf("DENAYED");
+                    printf("\nDENAYED");
                     InvalidateRect(hWnd, NULL, TRUE);
                     UpdateWindow(hWnd);
                     break;
@@ -1057,7 +1049,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial Black");
 
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
-                DrawText(hdc, "REGISTRO DE NUEVO USUARIO", -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+                DrawText(hdc, "REGISTRO DE NUEVO GAMER", -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 
                 rect.top+=260;//Adaptamos el rect
 
@@ -1066,7 +1058,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 hOldFont = (HFONT)SelectObject(hdc, hFont); //Cambiamos la fuente
                 SetTextColor(hdc,RGB(0,0,0));
                 RECT rect2 = { 80, 320, 300, 360 };
-                DrawText(hdc, "USER:", -1, &rect2, DT_LEFT | DT_VCENTER);
+                DrawText(hdc, "GAMER:", -1, &rect2, DT_LEFT | DT_VCENTER);
                 RECT rect3 = { 80, 440, 300, 480 };
                 DrawText(hdc, "PASSWORD:", -1, &rect3, DT_LEFT | DT_VCENTER);
                 RECT rect4 = { 80, 520, 300, 580 };
@@ -1084,7 +1076,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 hFont = CreateFont(80, 0, 0, 0, FW_NORMAL, BOLD_FONTTYPE, TRUE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial Black");
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
-                DrawText(hdc, "LISTADO DE USERS", -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+                DrawText(hdc, "LISTADO DE GAMERS", -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
                 hFont = CreateFont(24, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                                    CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
@@ -1112,7 +1104,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
                 SetTextColor(hdc,RGB(0,0,0));
                 RECT rect2 = { 130, 320, 400, 360 };
-                DrawText(hdc, "USER:", -1, &rect2, DT_LEFT | DT_VCENTER);
+                DrawText(hdc, "GAMER:", -1, &rect2, DT_LEFT | DT_VCENTER);
                 RECT rect3 = { 130, 440, 400, 480 };
                 DrawText(hdc, "PASSWORD:", -1, &rect3, DT_LEFT | DT_VCENTER);
                 if (error==12){
@@ -1137,7 +1129,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
                 hOldFont = (HFONT)SelectObject(hdc, hFont);
                 rect.top-=100;
-                DrawText(hdc, "REGISTRO DE NUEVO USUARIO", -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+                DrawText(hdc, "REGISTRO DE NUEVO GAMER", -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
                 rect.top+=260;
 
                 hFont = CreateFont(30, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
@@ -1253,6 +1245,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
                 hBrush = CreateSolidBrush(RGB(100, 100, 125));
                 FillRect(hdc, &rect10, hBrush);
+                hFont = CreateFont(24, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
+                                   CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
+                hOldFont = (HFONT)SelectObject(hdc, hFont);
                 print_screen_publi(current_user,actual_post,hdc,aser);
             }
             else if (i==16){ //VER SOLICITUDES ENTRANTES
