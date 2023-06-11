@@ -174,6 +174,7 @@ Hemos usado un algoritmo para sacar a los usuarios del archivo .txt y la complej
 Las variables que hemos usado han sido los diferentes componentes de new_user y los hemos ido añadiendo a nuestra lista de usuarios usando add_user to_list.
 
 *Tiempo
+
 Hemos dedicado algo de tiempo a la creación del archivo con los 20 usuarios iniciales pero la implementación en el main no ha sido muy exigente en este sentido. La modificación del CMakeLists.txt fue algo complicada porque para nosotros es un archivo complejo y delicado. Pero terminamos sacando la solución. 
 El tiempo total del Objetivo Deseable fue de aproximadamente 4 horas de trabajo.
 
@@ -191,14 +192,11 @@ Para poder usar una interfaz visual como base de nuestro programa hemos tenido q
 
 *Main.c (Interfaz Visual)
 
-#include
-Para entender el funcionamiento del programa, debemos empezar con los #include. En nuestro caso, debemos incluir las bibliotecas de Windows destinadas a la interfaz:
+#include:
 
-
+Para entender el funcionamiento del programa, debemos empezar con los #include. En nuestro caso, debemos incluir las bibliotecas de Windows destinadas a la interfaz.
 
 También vamos a incluir stdio.h para poder complementar la interfaz con la consola, la finalidad es utilizar sobre todo la función printf() que incluye la biblioteca, esto nos va a permitir hacer un seguimiento del estado del programa con la consola.
-
-
 
 Finalmente debemos incluir los demás archivos .h, que incluyen las declaraciones de funciones y estructuras que vamos a implementar en nuestro programa.
 
