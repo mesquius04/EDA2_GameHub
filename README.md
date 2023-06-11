@@ -17,7 +17,7 @@ Martí Esquius Arnau (u213923 / NIA: 267444)
 
 Alex de la Haya (u214576 / NIA: 268693 )
 
-Roman Atanasiu(u / NIA: 267839)
+Roman Atanasiu(u213937 / NIA: 267839)
 
 
 
@@ -314,7 +314,7 @@ La última es dict, un DICT que sirve para ver el top 10 de tendencias(palabras 
 
 # 6. DESCRIPCIÓN Y PROCESAMIENTO DE DATASET
 
-NOTA: La imagen del diagrama está subida al GitHub, para que sea más agradable a la vista
+NOTA: La imagen del diagrama está subida al GitHub, para que sea más agradable a la vista. La versón en pdf tiene más calidad
 
 Este es un diagrama de flujo del programa, cabe destacar que el programa tiene siempre una opción de “back”, que siempre nos lleva al proceso anterior. 
 
