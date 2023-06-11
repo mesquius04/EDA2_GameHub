@@ -556,7 +556,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                         GetWindowText(hEditControl7_2, new_user.hobbies[2], 30);
                         GetWindowText(hEditControl7_3, new_user.hobbies[3], 30);
                         GetWindowText(hEditControl7_4,new_user.hobbies[4], 30);
-                        if (strlen(newcity)<=MAX_LENGTH){//Comprovem registre
+                        if (strlen(newname)>=3 && strlen(newcity)<=MAX_LENGTH){//Comprovem registre
                             strcpy(new_user.city,newcity);
                             printf("\nCiudad: %s",new_user.city);
                             condition5=1;
@@ -566,12 +566,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                             printf("\nJuego1: %s",new_user.hobbies[0]);
                             condition6=1;
                         }
-                        if (strlen(newname)<=MAX_LENGTH){//Comprovem registre
+                        if (strlen(newname)>=3 && strlen(newname)<=MAX_LENGTH){//Comprovem registre
                             condition3=1;
                             strcpy(new_user.name,newname);
                             printf("\nNombre: %s",new_user.name);
                         }
-                        if (strlen(age)<=3){//Comprovem registre
+                        if (strlen(age)<=3 && strlen(age)>=1){//Comprovem registre
                             int newage=0;
                             for (int k=0;k<2;k++){
                                 newage*=10;

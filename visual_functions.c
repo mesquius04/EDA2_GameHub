@@ -23,7 +23,7 @@ void print_screen_trend(HDC hdc,Dict* dict){ //Tendencias, palabras mas usadas, 
     }
 }
 void print_screen_error(HDC hdc){//ERROR EN EMAIL
-    RECT rect = {1220, 560, 1420, 620 };//Creamos el rect, espacio de la pantalla que vamos a reservar
+    RECT rect = {1180, 560, 1420, 620 };//Creamos el rect, espacio de la pantalla que vamos a reservar
     DrawText(hdc, "ERROR: Email debe\nterminar con '@gmail.com'!!", -1, &rect, DT_LEFT);//Imprimimos en la interfaz
 }
 
