@@ -138,6 +138,7 @@ User* find_user(char* user, User* list){
     }
     return NULL;     //no ha habido suerte/ list vacía
 }
+
 Hemos implementado una búsqueda lineal en la función find user(); que es una función que dada un la lista enlazada de users, ya que como no hay forma de ordenar los usuarios ni es un array con posiciones definidas, era imposible hacer una búsqueda binaria. Esta función busca un string dado, y si este existe en la lista de users, y devuelve el usuario en cuestión. Tiene una complejidad temporal de O(n).
 
 # 2.5 Diccionario (diccionario.c y diccionario.h)
@@ -178,6 +179,7 @@ El tiempo total del Objetivo Deseable fue de aproximadamente 4 horas de trabajo.
 
 
 *Posibles mejoras
+
 Como posibles mejoras del algoritmo creemos que en el archivo deberíamos utilizar “,” o “.” para separar las palabras. 
 En nuestro caso actual la separación se realiza con el carácter “ “, eso tiene limitaciones como que no podemos añadir un juego de 3 palabras para un usuario como sí podemos hacer en la pestaña de registro y nos tenemos que limitar a usar siglas.
 
@@ -241,7 +243,7 @@ También hemos sido limitados por la velocidad y capacidad de procesamiento de m
 La conclusión a la que hemos llegado es que C no es un lenguaje de programación orientado a interfaces, como mínimo en la versión que usamos. También pensamos que las funciones de Windows tienen una capacidad bastante pobre y que para hacer interfaces visuales vamos a usar otras herramientas a partir de ahora.
 
 # 3 SOLUCIÓN
-System Architecture 
+
 Nuestro proyecto final tiene los siguientes archivos:
  - main.c
 	Destinado a la interfaz y la interacción con el usuario.
@@ -269,9 +271,12 @@ Nuestro proyecto final tiene los siguientes archivos:
 	Declaración de funciones
 
 La estructura principal del programa es la de User, está almacena los datos personales de cada usuario. Pero no solo eso, es importante tener en cuenta que estas también almacenan punteros tanto para las publicaciones como para las amistades.
+
 Primero las publicaciones, cada User tiene una lista dinámica de publicaciones, y cada vez que se hace 1 publicación se añade al final de esta lista.
 Luego están las peticiones de amistad (las peticiones son las que recibe el usuario, no las que envía), que es un puntero a una cola con el puntero del User que nos ha enviado la petición.
+
 Por último están las amistades. Són un array dinámico de puntero de users de los amigos. Cada vez que aceptamos una petición de amistad, esta se borra de la cola, y pasa a estar el puntero del User que somos amigos en su array dinámico y el suyo en el “nuestro”.
+
 Con las publicaciones usamos las propiedades del stack para tratar con ellas, es decir, para mostrarlas. Al añadir una nueva publicación hacemos que la anterior del autor apunte a la nueva, y posteriormente definimos un puntero ‘top’.
 
 # 4. TRATAMIENTO DE ERRORES 
@@ -287,9 +292,11 @@ En este caso gestionamos los errores de manera preventiva. Si el diccionario va 
 Los errores han sido tratados individualmente, y los mensajes están en visual_functions.c.
 Aún así, para el control de algunos errores específicos hemos añadido algunas funciones que vale la pena mencionar:
 validar_email: Función de services.c que comprueba que el email que estamos registrando termine con “@gmail.com”, hemos hecho esto para preparar nuestro programa para una posible futura colaboración con una pagina de mail.
+
 are_friends: Función en queue_functions.c que comprueba que, al enviar una solicitud de amistad, no se la estemos enviando a un amigo.
 friend_request_already: Función de queue_functions.c que comprueba que no estemos enviando 2 veces una solicitud de amistad al mismo usuario.
 find_user: Función de user_functions.c, esta función busca un usuario recibiendo su nombre, si no existe retorna NULL. Usando un if y llamando a print_screen_error6 (visual_functions.c) podemos saber si estamos enviando un mensaje a un usuario existente.
+
 log_in_data: Función de user_functions.c que nos permite saber si el usuario y la contraseña es correcto al iniciar sesión. También nos permite detectar errores.
 En combinación con estas funciones usaremos las funciones de visual_functions.c para poder diagnosticar estos y otros errores tales como la falta de parámetros en el registro de usuario.
 
@@ -297,10 +304,14 @@ En combinación con estas funciones usaremos las funciones de visual_functions.c
 # 5. DATA MODEL DESIGN
 
 El programa general tiene 4 variables importantes, 3 de ellas son para usuarios, y la otra es un diccionario.
+
 La primera es la list_of_users, una lista enlazada de punteros de users, que es la estructura principal donde se almacenan todos los usuarios registrados en la página web. Al principio es un puntero que apunta a NULL, pero a medida que se añaden usuarios cambia, pero este siempre apuntará al primer Usuario de la lista. 
 Vamos a aplicar las funcionalidades propias de una cola para hacer impresiones de usuarios.
+
 Otra variable importante es newUser, este es el usuario al que rellenamos los datos al crear una cuenta manualmente desde el registro de nuevo usuario, y al final se añade a la lista de usuarios.
+
 Otra current_user, que es un puntero de un User. Cuando iniciemos sesión cambiaremos la dirección al puntero del usuario iniciado, y las diferentes funciones tomarán este valor como parámetro, para saber que es él el que está siendo modificado/accedido.
+
 La última es dict, un DICT que sirve para ver el top 10 de tendencias(palabras más usadas).
 
 # 6. DESCRIPCIÓN Y PROCESAMIENTO DE DATASET
@@ -308,8 +319,8 @@ La última es dict, un DICT que sirve para ver el top 10 de tendencias(palabras 
 NOTA: La imagen del diagrama está subida al GitHub, para que sea más agradable a la vista
 
 Este es un diagrama de flujo del programa, cabe destacar que el programa tiene siempre una opción de “back”, que siempre nos lleva al proceso anterior. 
-Si bien el main es un poco caótico por las funciones visuales, el comportamiento del programa es este. Cabe destacar que cada vez que imprimimos un nuevo menú los botones anteriores se ocultan para mostrar el nuevo menú.
 
+Si bien el main es un poco caótico por las funciones visuales, el comportamiento del programa es este. Cabe destacar que cada vez que imprimimos un nuevo menú los botones anteriores se ocultan para mostrar el nuevo menú.
 
 
 
@@ -333,6 +344,7 @@ Before you continue to YouTube. (s. f.). https://www.youtube.com/@MichaelSambol
 
 La página web de geeks for geeks ha sido de gran ayuda, sobre todo para la cola, ya que
 tuvimos muchas dudas de cómo implementar una cola dinámica.
+
 GeeksforGeeks. (2023). Different Types of Queues and its Applications. GeeksforGeeks.
 https://www.geeksforgeeks.org/different-types-of-queues-and-its-applications/
 
