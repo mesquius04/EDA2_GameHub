@@ -1,3 +1,0 @@
-C:/Users/Usuario/Downloads/EDA2_GameHub-main/cmake-build-debug/CMakeFiles/untitled16.dir
-C:/Users/Usuario/Downloads/EDA2_GameHub-main/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Usuario/Downloads/EDA2_GameHub-main/cmake-build-debug/CMakeFiles/rebuild_cache.dir
