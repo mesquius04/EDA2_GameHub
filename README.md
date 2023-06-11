@@ -3,19 +3,20 @@
 
 
 
-# DATA STRUCTURES AND ALGORITHMS II, 2022-2023
-# GAMEHUB
+DATA STRUCTURES AND ALGORITHMS II, 2022-2023
 
 
 
-
+GAMEHUB
 
 
 
 
 
 Martí Esquius Arnau (u213923 / NIA: 267444)
+
 Alex de la Haya (u214576 / NIA: 268693 )
+
 Roman Atanasiu(u / NIA: 267839)
 
 
