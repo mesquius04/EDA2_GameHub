@@ -48,9 +48,6 @@ typedef struct _Queue{
     Element* last;
 } Queue;
 
-typedef struct{
-    int top;
-    User* array[3];
-}Stack;
+
 
 #endif //UNTITLED16_MAIN_H
