@@ -33,18 +33,7 @@ int friend_request_already(User sender, User sended){
 }
 
 
-/*
-void add_3random_Stack(User* list, User* user, Stack stack){
-    srand(time(NULL));
-    int len = len_user_list(list);
-    int success = 0;
-    int num;
-    while(success<3){
-        num = entero_aleatorio_fronteras(0,len+1);
 
-    }
-}
- */
 
 void send_friend_request(User** list,User** user,char* name,int* error) {
     User *newfriend = find_user(name, *list); //se encuentra al ususari que se quiere añadir
